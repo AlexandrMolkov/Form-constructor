@@ -1,0 +1,271 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border: 0;
+}
+button:hover {
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  border: 0;
+  outline: 0;
+}
+
+.wrapper {
+  max-width: 1210px;
+  padding: 0 5px;
+  margin: 0 auto;
+  display: flex;
+}
+
+body {
+  overflow: hidden;
+}
+
+body, .wrapper, .main {
+  height: 100vh;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: antiquewhite;
+  overflow: auto;
+}
+
+.button {
+  padding: 5px 15px;
+  background-color: #7fffd4;
+}
+.button__connect {
+  margin: 0 40%;
+  position: relative;
+  left: -40%;
+}
+.button__active {
+  background-color: red;
+}
+
+.sidebar-group {
+  width: 100%;
+  position: relative;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.sidebar-group label {
+  position: relative;
+  max-width: 200px;
+  width: 100%;
+}
+.sidebar-group__desc {
+  flex-basis: 100%;
+  text-transform: capitalize;
+  font-weight: 600;
+  text-align: center;
+}
+.sidebar-group__input {
+  width: 70%;
+  padding: 5px;
+}
+.sidebar-group__select {
+  display: none;
+  position: absolute;
+  right: 0;
+}
+.sidebar-group .color-input {
+  padding-right: 5px;
+}
+
+.main {
+  position: relative;
+  background-color: azure;
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.result {
+  flex-grow: 1;
+}
+
+.code {
+  margin-top: auto;
+  height: 200px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.code-out {
+  flex-grow: 1;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  resize: none;
+}
+
+.window-create {
+  display: none;
+  padding: 15px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: beige;
+  width: 400px;
+  text-align: center;
+}
+.window-create__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.window-create__group:not(:last-child) {
+  margin-bottom: 20px;
+}
+.window-create__label {
+  display: inline-block;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.window-create__select {
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+}
+.window-create__input {
+  padding: 5px;
+  width: 100%;
+}
+.window-create__input_w_50 {
+  width: 45%;
+}
+
+.visible {
+  display: block;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 300px;
+  background-color: #7fffd4;
+  padding: 25px;
+}
+
+.input-group {
+  transform: scaleY(1);
+  transition: all 0.3s;
+}
+.input-group:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.input {
+  font-family: inherit;
+  width: 100%;
+  padding: 5px;
+}
+
+.form-settings__text {
+  text-align: center;
+  font-size: 25px;
+}
+.form-settings__text:hover {
+  cursor: pointer;
+}
+
+.form-settings_hidden {
+  transition: max-height 0.5s, transform 0.3s;
+  transition-delay: 0s, 0s;
+  max-height: 0px;
+  transform: translateX(-100%);
+}
+
+.form-settings_visible {
+  transition: max-height 1s, transform 0.3s;
+  transition-delay: 0s, 0.1s;
+  max-height: 5000px;
+  transform: translateX(0);
+}
+
+.label {
+  display: flex;
+  flex-wrap: wrap;
+}
+.label-text {
+  width: 100%;
+}
+
+.select {
+  width: 20%;
+  width: 30%;
+}
+.select__input {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.select__input:hover {
+  cursor: pointer;
+  background-color: #7fffd4;
+}
+.select__input:hover ~ ul {
+  display: block;
+}
+.select__ul {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  left: 70%;
+  top: 46px;
+  width: 60px;
+  background-color: white;
+  text-align: center;
+}
+.select__ul:hover {
+  display: block;
+}
+.select__li {
+  padding: 5px;
+  transition: all 0.3s;
+  margin-bottom: 5px;
+}
+.select__li:last-child {
+  margin-bottom: 0px;
+}
+.select__li:hover {
+  background-color: #7fffd4;
+  cursor: pointer;
+}
+.select__li:active {
+  background-color: #d2fff0;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,313 @@
+@import "_null";
+
+
+
+.wrapper {
+    max-width: 1210px;
+    padding: 0 5px;
+    margin: 0 auto;
+    display: flex;
+}
+
+body {
+    overflow: hidden;
+}
+
+body,.wrapper,.main{
+    height: 100vh;
+}
+
+.sidebar{
+    width: 300px;
+    background-color: antiquewhite;
+    overflow: auto;
+}
+
+
+.button {
+    padding: 5px 15px;
+    background-color: #7fffd4;
+    
+    &__connect{
+       // width: 100%;
+        margin: 0 40%;
+        position: relative;
+        left: -40%;
+    }
+    &__active{
+        // width: 100%;
+        background-color: red;
+     }
+
+}
+
+
+.sidebar-group {
+    width: 100%;
+    position: relative;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    & label{
+        position: relative;
+        max-width: 200px;
+        width: 100%;
+    }
+
+    &__desc {
+        flex-basis: 100%;
+        text-transform: capitalize;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    &__input {
+        width: 70%;
+        padding: 5px;
+        //padding-right: 60px;
+        
+    }
+
+    &__select {
+        display: none;
+        position: absolute;
+        right: 0;
+    }
+
+    & .color-input{
+        padding-right: 5px;
+    }
+}
+
+
+
+.main {
+    position: relative;
+    background-color: azure;
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.result{
+    flex-grow: 1;
+    
+}
+
+.code{
+    margin-top: auto;
+    height: 200px;
+
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    &-out{
+        flex-grow: 1;
+
+        overflow: auto;
+
+        width: 100%;
+        height: 100%;
+
+        resize: none;
+    }
+}
+
+
+
+.window-create{
+    display: none;
+
+    padding: 15px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: beige;
+
+    width: 400px;
+
+    text-align: center;
+
+    &__group{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+
+        &:not(:last-child){
+            margin-bottom: 20px;
+        }
+
+
+    }
+
+    &__label{
+        display: inline-block;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    &__select {
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+    }
+
+    &__input {
+        padding: 5px;
+        width: 100%;
+        
+        &_w_50{
+            width: 45%;
+        }
+
+    }
+}
+.visible{
+    display: block;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+
+    width: 300px;
+    background-color: #7fffd4;
+    padding: 25px;
+}
+.input-group{
+    
+    transform: scaleY(1);
+    transition: all 0.3s;
+
+    &:not(:last-child){
+        margin-bottom: 15px;
+    }
+}
+.input{
+    font-family: inherit;
+    width: 100%;
+    padding: 5px;
+}
+
+.form-settings__text {
+    text-align: center;
+    font-size: 25px;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+.form-settings__wrapper {
+}
+
+.form-settings_hidden{
+
+   transition: max-height 0.5s, transform 0.3s;
+   transition-delay: 0s, 0s;
+
+    max-height: 0px;
+    transform: translateX(-100%);
+
+}
+
+.form-settings_visible{
+
+    transition: max-height 1s, transform 0.3s;
+    transition-delay: 0s,  0.1s;
+
+    max-height: 5000px;
+
+    transform: translateX(0);
+
+}
+
+.label{
+    display: flex;
+    flex-wrap: wrap;
+
+    &-text {
+
+        width: 100%;
+    }
+}
+
+
+.select {
+    width: 20%;
+
+    width: 30%;
+
+    &__input {
+
+        text-align: center;
+        width: 100%;
+        height: 100%;
+
+
+        &:hover {
+            cursor: pointer;
+            background-color: #7fffd4;
+
+            & ~ ul {
+                display: block;
+            }
+        }
+
+
+    }
+
+    &__ul {
+        display: none;
+
+        &:hover {
+
+            display: block;
+
+        }
+
+        position: absolute;
+        z-index: 10;
+        left: 70%;
+        top: 46px;
+        
+    
+        width: 60px;
+        background-color: white;
+        text-align: center;
+        
+    }
+
+    &__li {
+
+        padding: 5px;
+        transition: all 0.3s;
+        margin-bottom: 5px;
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+
+        &:hover {
+            background-color: #7fffd4;
+            cursor: pointer
+        }
+
+        &:active {
+            background-color: #d2fff0;
+        }
+    }
+}

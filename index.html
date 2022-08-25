@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="wrapper">
+
+        <aside class="sidebar">
+
+            <div class="form-settings">
+
+                <p class="form-settings__text">Form Settings</p>
+
+                <div class="form-settings__wrapper form-settings_hidden">
+
+                    <div id="FormPadding" class="sidebar-group">
+                        <p class="sidebar-group__desc">padding</p>
+                        <label class="label"> <p class="label-text">Top: </p>            
+                            <input class="sidebar-group__input sidebar-group__input-1" type="text" id="formPaddingT" name="padding">
+
+                            <div class="select">
+                                <input class="select__input" type="text" value="px" readonly id="select-input-formPaddingT">
+
+                                <ul class="select__ul" data-target="formPaddingT" data-input="select-input-formPaddingT" data-property="paddingTop">
+                                    <li class="select__li" data-value="px" >px</li>
+                                    <li class="select__li" data-value="em">em</li>
+                                    <li class="select__li" data-value="%">%</li>
+                                    <li class="select__li" data-value="inherit">inherit</li>
+                                </ul>
+                             </div>
+                        </label>
+
+
+                        
+
+
+                        <button class="button button__connect" id="TBConnect">TB</button>
+        
+
+                        <label class="label"> <p class="label-text">Bottom: </p>            
+                            <input class="sidebar-group__input sidebar-group__input-2" type="text" id="formPaddingB" name="padding">
+
+                            <div class="select">
+                                <input class="select__input" type="text" value="px" readonly id="select-input-formPaddingB">
+
+                                <ul class="select__ul" data-target="formPaddingB" data-input="select-input-formPaddingB" data-property="paddingBottom">
+                                    <li class="select__li" data-value="px" >px</li>
+                                    <li class="select__li" data-value="em">em</li>
+                                    <li class="select__li" data-value="%">%</li>
+                                    <li class="select__li" data-value="inherit">inherit</li>
+                                </ul>
+                             </div>
+                        </label>
+
+
+
+                        <button class="button button__connect" id="AllConnect">All</button>
+        
+
+
+                        <label class="label"> <p class="label-text">Left: </p>            
+                            <input class="sidebar-group__input sidebar-group__input-3" type="text" id="formPaddingL" name="padding">
+
+                            <div class="select">
+                                <input class="select__input" type="text" value="px" readonly id="select-input-formPaddingL">
+
+                                <ul class="select__ul" data-target="formPaddingL" data-input="select-input-formPaddingL" data-property="paddingLeft">
+                                    <li class="select__li" data-value="px" >px</li>
+                                    <li class="select__li" data-value="em">em</li>
+                                    <li class="select__li" data-value="%">%</li>
+                                    <li class="select__li" data-value="inherit">inherit</li>
+                                </ul>
+                             </div>
+                        </label>
+                        
+
+                        <button class="button button__connect" id="LRConnect">LR</button>
+
+
+                        <label class="label"> <p class="label-text">Right: </p>            
+                            <input class="sidebar-group__input sidebar-group__input-4" type="text" id="formPaddingR" name="padding">
+
+                            <div class="select">
+                                <input class="select__input" type="text" value="px" readonly id="select-input-formPaddingR">
+
+                                <ul class="select__ul" data-target="formPaddingR" data-input="select-input-formPaddingR" data-property="paddingRight">
+                                    <li class="select__li" data-value="px" >px</li>
+                                    <li class="select__li" data-value="em">em</li>
+                                    <li class="select__li" data-value="%">%</li>
+                                    <li class="select__li" data-value="inherit">inherit</li>
+                                </ul>
+                             </div>
+                        </label>
+                        
+                    </div>
+        
+                    <div class="sidebar-group">
+                        <p class="sidebar-group__desc">border-radius</p>
+                        <label>            
+                            <input class="sidebar-group__input" type="text" id="formBR" name="padding">
+                            <select class="sidebar-group__select" name="" id="selectFormBR">
+                                <option value="px">px</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="inherit">inherit</option>
+                            </select>
+                        </label>
+                    </div>
+        
+                    <div class="sidebar-group">
+                        <p class="sidebar-group__desc">Color</p>
+                        
+                        <label>            
+                            <input class="sidebar-group__input color-input" type="color" id="formCol" name="color" value="#7fffd4">
+                        </label>
+                    </div>
+        
+                    <div class="sidebar-group">
+                        <p class="sidebar-group__desc">Title</p>
+                        
+                        <label>Text            
+                            <input class="sidebar-group__input" type="text" id="formTitle" name="title">
+                        </label>
+                        <label>Size            
+                            <input class="sidebar-group__input" type="text" id="formTitleSize" name="TitleSize">
+                            <select class="sidebar-group__select" name="" id="selectformTitleSize">
+                                <option value="px">px</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="inherit">inherit</option>
+                            </select>
+                        </label>
+                        
+                        <label>Weight            
+                            <input class="sidebar-group__input" type="text" id="formTitleWeight" name="title-weight">
+                            <select class="sidebar-group__select" name="" id="selectFormTitleWeight">
+                                <option value="inherit">inherit</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="300">300</option>
+                                <option value="400">400</option>
+                                <option value="500">500</option>
+                                <option value="600">600</option>
+                                <option value="700">700</option>
+                                <option value="800">800</option>
+                                <option value="900">900</option>
+                            </select>
+                        </label>
+                        <label>Style            
+                            <input class="sidebar-group__input" type="text" id="formTitle" name="title">
+                        </label>
+                    </div>
+
+                    
+
+                </div>
+
+            </div>
+
+            <div class="form-settings">
+                <p class="form-settings__text">Inputs Settings</p>
+                <div class="form-settings__wrapper form-settings_hidden">
+
+
+                    <div class="sidebar-group">
+                        <p class="sidebar-group__desc">padding</p>
+                        <label>Top:             
+                            <input class="sidebar-group__input" type="text" id="formInputsPaddingT" name="InputsPaddingT">
+                            <select class="sidebar-group__select" name="" id="selectFormInputsPaddingT">
+                                <option value="px">px</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="inherit">inherit</option>
+                            </select>
+                        </label>
+        
+                        <label>Bottom:       
+                            <input class="sidebar-group__input" type="text" id="formInputsPaddingB" name="InputsPaddingB">
+                            <select class="sidebar-group__select" name="" id="selectFormInputsPaddingB">
+                                <option value="px">px</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="inherit">inherit</option>
+                            </select>
+                        </label>
+        
+                        <label>Left:       
+                            <input class="sidebar-group__input" type="text" id="formInputsPaddingL" name="InputsPaddingL">
+                            <select class="sidebar-group__select" name="" id="selectFormInputsPaddingL">
+                                <option value="px">px</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="inherit">inherit</option>
+                            </select>
+                        </label>
+                        
+                        <label>Right:       
+                            <input class="sidebar-group__input" type="text" id="formInputsPaddingR" name="InputsPaddingR">
+                            <select class="sidebar-group__select" name="" id="selectFormInputsPaddingR">
+                                <option value="px">px</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="inherit">inherit</option>
+                            </select>
+                        </label>
+                        
+                    </div>
+
+
+                    <div class="sidebar-group">
+                        <p class="sidebar-group__desc">border-radius</p>
+                        <label>            
+                            <input class="sidebar-group__input" type="text" id="inputsBR" name="inputsBR">
+                            <select class="sidebar-group__select" name="selectInputsBR" id="selectInputsBR">
+                                <option value="px">px</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="inherit">inherit</option>
+                            </select>
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+            
+            
+            <!-- <button class="form-settings" id="formSettings">Settings</button> -->
+            <button class="add-input" id="addInput">Add input</button>
+     <!--        <button class="add-radio" id="addRadio">Add radio</button>
+            <button class="add-checkbox" id="addCheckbox">Add checkbox</button> -->
+
+        </aside>
+
+        <main class="main">
+
+            <div class="result">
+
+                <form action="#" class="form"><p class="form__text"></p></form>
+
+            </div>
+            
+            <div class="code">
+                <div class="code__buttons">
+                    <button class="code__button" id="btnHtml">html</button>
+                    <button class="code__button" id="btnСss">css</button>
+                </div>
+                <textarea name="code" value="" class="code-out" id="codeOut"></textarea>
+            </div>
+        </main>
+
+        <div class="window-create">
+
+            <form class="window-create__form" action="#">
+
+
+                <div class="window-create__group">
+                    <label class="window-create__label" for="text-type-select">Input type</label>
+                    <select class="window-create__select" name="input-type" id="text-type-select">
+
+                        <option value="text" class="window-create_option">text</option>
+                        <option value="password" class="window-create_option">password</option>
+                        <option value="password" class="window-create_option">email</option>
+                        <option value="phone" class="window-create_option">phone</option>
+                        
+                    </select>
+                </div>
+
+                <div class="window-create__group">
+                    <label class="window-create__label" for="input-placeholder">Placeholder</label>
+                    <input class="window-create__input" type="text" id="input-placeholder" name="placeholder" value="">
+                </div>
+                
+                <div class="window-create__group">
+                    <label class="window-create__label" for="input-name">Name and value</label>
+                    <input class="window-create__input window-create__input_w_50" type="text" id="input-name" name="name" value="">
+                    <input class="window-create__input window-create__input_w_50" type="text" id="input-value" name="value" value="">
+                </div>
+
+                                
+                <div class="window-create__group">
+                    <label class="window-create__label" for="input-name">id</label>
+                    <input class="window-create__input" type="text" id="input-id" name="id" value="">
+                </div>
+
+                <div class="window-create__group">
+                    <button type="submit" class="window-create__confirm">Confirm</button>
+                    <button type="button" class="window-create__confirm">Cancel</button>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="window-create window-create-radio">
+
+            <form class="window-create__form" action="#">
+                
+                <div class="window-create__group">
+                    <label class="window-create__label" for="input-name">Name and value</label>
+                    <input class="window-create__input window-create__input_w_50" type="text" id="input-name" name="name" value="">
+                    <input class="window-create__input window-create__input_w_50" type="text" id="input-value" name="value" value="">
+                </div>
+                                
+                <div class="window-create__group">
+                    <label class="window-create__label" for="input-name">id</label>
+                    <input class="window-create__input" type="text" id="input-id" name="id" value="">
+                </div>
+
+                <div class="window-create__group">
+                    <label class="window-create__label" for="input-checked">checked</label>
+                    <input class="window-create__input" type="checkbox" id="input-checked" name="checked" value="">
+                </div>
+
+                <div class="window-create__group">
+                    <button type="submit" class="window-create__confirm">Confirm</button>
+                    <button type="button" class="window-create__confirm">Cancel</button>
+                </div>
+            </form>
+
+        </div>
+
+
+        <div class="window-create window-create-settings">
+
+            <form class="window-create__form" action="#">
+                                
+                <div class="window-create__group">
+                    <label class="window-create__label" for="input-name">id</label>
+                    <input class="window-create__input" type="text" id="input-id" name="id" value="">
+                </div>
+
+                <div class="window-create__group">
+                    <label class="window-create__label" for="input-padding">padding</label>
+                    <input class="window-create__input" type="text" id="input-paddingT" name="padding">
+                    <select name="" id="">
+                        <option value="">px</option>
+                        <option value="">%</option>
+                        <option value="">em</option>
+                        <option value="">rem</option>
+                    </select>
+                    <input class="window-create__input" type="text" id="input-paddingB" name="padding">
+                    <input class="window-create__input" type="text" id="input-paddingL" name="padding">
+                    <input class="window-create__input" type="text" id="input-paddingR" name="padding">
+                </div>
+
+                <div class="window-create__group">
+                    <button type="submit" class="window-create__confirm">Confirm</button>
+                    <button type="button" class="window-create__confirm">Cancel</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
