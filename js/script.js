@@ -10,9 +10,23 @@ const formSettings = document.querySelectorAll('.form-settings')
 const form = document.querySelector(`.form`)
 
 
-function getChildrenElements(){
-   return form.childNodes
+
+
+{
+    form.style.cssText = `
+        margin = "0 auto"
+        width = "300px";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        display: flex;
+        flex-direction: column;
+    `
 }
+
+
+
 
 
 formSettings.forEach((el)=>{
@@ -33,8 +47,50 @@ formSettings.forEach((el)=>{
 })
 
 
+///////////////////////////////////////////////////////////////////// Input
 
-///////////////////////////////////////////////////////////////////// FormPadding
+
+
+class Input {
+    constructor(group,target) {
+        this.group = document.querySelector(`${group}`)
+        this.target = document.querySelector(`${target}`)
+    }
+
+    init() {
+
+        const input = this.group.querySelector(`.sidebar-group__input`)
+        const property = input.parentNode.querySelector('.select__ul').dataset.property
+        const select = this.group.parentNode.querySelector(`.select__input`)
+
+        input.addEventListener(`input`, ()=>{
+
+            this.target.style[property] = input.value + select.value;
+
+        })
+
+        const ul = this.group.querySelector('.select__ul')
+            ul.querySelectorAll('.select__li').forEach(li => {
+                li.addEventListener('click', e => {
+                    this.group.querySelector('#' + ul.dataset.input).value = e.target.dataset.value;
+                    this.target.style[ul.dataset.property] = this.group.querySelector(`#` + ul.dataset.target).value + e.target.dataset.value;
+                })
+            })
+            
+    }
+}
+
+
+const formBordRad = new Input("#form-br",".form")
+formBordRad.init()
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////// InputsGroup
 
 
 class InputsGroup {
@@ -82,6 +138,7 @@ class InputsGroup {
         const property2 = input2.parentNode.querySelector('.select__ul').dataset.property
         const property3 = input3.parentNode.querySelector('.select__ul').dataset.property
         const property4 = input4.parentNode.querySelector('.select__ul').dataset.property
+
 
         input1.addEventListener(`input`,()=>{
         
@@ -151,25 +208,49 @@ class InputsGroup {
 
         })
 
-    // изменение едениц измерения Доделай!
+    // изменение едениц измерения
         
      
-        this.group.querySelectorAll('.select__ul')
-            .forEach(ul => {
+       const lists = this.group.querySelectorAll('.select__ul')
+
+            lists.forEach(ul => {
                 ul.querySelectorAll('.select__li').forEach(li => {
                     li.addEventListener('click', e => {
 
                         if(allConnect) {
 
-                            this.group.querySelectorAll('.select__ul')
-                                .forEach(ul => {
+                            lists.forEach(ul => {
                                     this.group.querySelector('#' + ul.dataset.input).value = e.target.dataset.value;
+                                    form.style[ul.dataset.property] = this.group.querySelector(`#` + ul.dataset.target).value + e.target.dataset.value;
                             })
+
+                        } if(tbConnect && e.target.parentNode.dataset.connect == 'tb') {
+     
+                                const value = e.target.dataset.value
+
+                                this.group.querySelector('#' + lists[0].dataset.input).value = value;
+                                form.style[lists[0].dataset.property] = this.group.querySelector(`#` + lists[0].dataset.target).value + value;
+
+                                this.group.querySelector('#' + lists[1].dataset.input).value = value;
+                                form.style[lists[1].dataset.property] = this.group.querySelector(`#` + lists[1].dataset.target).value + value;
+
+                        } if(lrConnect && e.target.parentNode.dataset.connect == 'lr') {
+                            
+                                const value = e.target.dataset.value
+
+                                this.group.querySelector('#' + lists[2].dataset.input).value = value;
+                                form.style[lists[2].dataset.property] = this.group.querySelector(`#` + lists[2].dataset.target).value + value;
+
+                                this.group.querySelector('#' + lists[3].dataset.input).value = value;
+                                form.style[lists[3].dataset.property] = this.group.querySelector(`#` + lists[3].dataset.target).value + value;
+
                         } else {
-                            this.group.querySelector('#' + ul.dataset.input).value = e.target.dataset.value;
+                                this.group.querySelector('#' + ul.dataset.input).value = e.target.dataset.value;
+
+                                form.style[ul.dataset.property] = this.group.querySelector(`#` + ul.dataset.target).value + e.target.dataset.value;
                         }
 
-                        form.style[ul.dataset.property] = this.group.querySelector(`#` + ul.dataset.target).value + e.target.dataset.value;
+                        //form.style[ul.dataset.property] = this.group.querySelector(`#` + ul.dataset.target).value + e.target.dataset.value;
                     })
                 })
             })
@@ -178,161 +259,39 @@ class InputsGroup {
 }
 
 
-const formPadding = new InputsGroup(`#FormPadding`)
+const formPadding = new InputsGroup(`#form-padding`)
 formPadding.init()
 
-/*
-const inputFormPaddingT = document.querySelector(`#formPaddingT`)
-const selectFormPaddingT = document.querySelector(`#selectFormPaddingT`)
-const inputFormPaddingB = document.querySelector(`#formPaddingB`)
-const selectFormPaddingB = document.querySelector(`#selectFormPaddingB`)
-const inputFormPaddingL = document.querySelector(`#formPaddingL`)
-const selectFormPaddingL = document.querySelector(`#selectFormPaddingL`)
-const inputFormPaddingR = document.querySelector(`#formPaddingR`)
-const selectFormPaddingR = document.querySelector(`#selectFormPaddingR`)
 
-const btnTBConnect = document.querySelector(`#TBConnect`)
-const btnLRConnect = document.querySelector(`#LRConnect`)
-const btnAllConnect = document.querySelector(`#AllConnect`)
 
-btnTBConnect.addEventListener(`click`,()=>{
-    tbConnect = !tbConnect
-    btnTBConnect.classList.toggle(`button__active`)
-})
-btnLRConnect.addEventListener(`click`,()=>{
-    lrConnect = !lrConnect
-    btnLRConnect.classList.toggle(`button__active`)
-})
-btnAllConnect.addEventListener(`click`,()=>{
-    allConnect = !allConnect
-    btnAllConnect.classList.toggle(`button__active`)
-})
+///////////////////////////////////////////////////////////////////// Select
 
-let tbConnect = false,
-    lrConnect = false,
-    allConnect = false;
 
-inputFormPaddingT.addEventListener(`input`,()=>{
-    if(tbConnect) {
-        inputFormPaddingB.value = inputFormPaddingT.value
-        form.style.paddingBottom = inputFormPaddingB.value + selectFormPaddingB.value;
-    }
-    if(allConnect) {
-        inputFormPaddingB.value = inputFormPaddingT.value
-        inputFormPaddingL.value = inputFormPaddingT.value
-        inputFormPaddingR.value = inputFormPaddingT.value
-        form.style.paddingBottom = inputFormPaddingT.value + selectFormPaddingT.value;
-        form.style.paddingLeft = inputFormPaddingL.value + selectFormPaddingL.value;
-        form.style.paddingRight = inputFormPaddingR.value + selectFormPaddingR.value;
-    }
-    form.style.paddingTop = inputFormPaddingT.value + selectFormPaddingT.value;
 
-})
-inputFormPaddingB.addEventListener(`input`,()=>{
-    if(tbConnect) {
-        inputFormPaddingT.value = inputFormPaddingB.value
-        form.style.paddingTop = inputFormPaddingT.value + selectFormPaddingT.value;
+class Select {
+    constructor(select,target){
+        this.select = document.querySelector(`${select}`)
+        this.target = document.querySelector(`${target}`)
     }
-    if(allConnect) {
-        inputFormPaddingT.value = inputFormPaddingB.value
-        inputFormPaddingL.value = inputFormPaddingB.value
-        inputFormPaddingR.value = inputFormPaddingB.value
-        form.style.paddingTop = inputFormPaddingT.value + selectFormPaddingT.value;
-        form.style.paddingLeft = inputFormPaddingL.value + selectFormPaddingL.value;
-        form.style.paddingRight = inputFormPaddingR.value + selectFormPaddingR.value;
-    }
-    form.style.paddingBottom = inputFormPaddingB.value + selectFormPaddingB.value;
-})
-inputFormPaddingL.addEventListener(`input`,()=>{
-    if(lrConnect) {
-        inputFormPaddingR.value = inputFormPaddingL.value
-        form.style.paddingRight = inputFormPaddingR.value + selectFormPaddingR.value;
-    }
-    if(allConnect) {
-        inputFormPaddingT.value = inputFormPaddingL.value
-        inputFormPaddingB.value = inputFormPaddingL.value
-        inputFormPaddingR.value = inputFormPaddingL.value
-        form.style.paddingTop = inputFormPaddingT.value + selectFormPaddingT.value;
-        form.style.paddingBottom = inputFormPaddingB.value + selectFormPaddingB.value;
-        form.style.paddingRight = inputFormPaddingR.value + selectFormPaddingR.value;
-    }
-    form.style.paddingLeft = inputFormPaddingL.value + selectFormPaddingL.value;
-})
-inputFormPaddingR.addEventListener(`input`,()=>{
-    if(lrConnect) {
-        inputFormPaddingL.value = inputFormPaddingR.value
-        form.style.paddingLeft = inputFormPaddingL.value + selectFormPaddingL.value;
-    }
-    if(allConnect) {
-        inputFormPaddingT.value = inputFormPaddingR.value
-        inputFormPaddingB.value = inputFormPaddingR.value
-        inputFormPaddingL.value = inputFormPaddingR.value
-        form.style.paddingTop = inputFormPaddingT.value + selectFormPaddingT.value;
-        form.style.paddingBottom = inputFormPaddingB.value + selectFormPaddingB.value;
-        form.style.paddingLeft = inputFormPaddingL.value + selectFormPaddingL.value;
-    }
-    form.style.paddingRight = inputFormPaddingR.value + selectFormPaddingR.value;
-})
 
-selectFormPaddingT.addEventListener(`change`,()=>{
-    if (selectFormPaddingT.value == 'inherit') {
-        inputFormPaddingT.setAttribute("disabled", "disabled");
-        inputFormPaddingT.value = ''
-        form.style.paddingTop = 'inherit';
-    } else {
-        inputFormPaddingT.removeAttribute("disabled", "disabled");
-        form.style.paddingTop = inputFormPaddingT.value + selectFormPaddingT.value;
-    }
-})
-selectFormPaddingB.addEventListener(`change`,()=>{
-    if (selectFormPaddingB.value == 'inherit') {
-        inputFormPaddingB.setAttribute("disabled", "disabled");
-        inputFormPaddingB.value = ''
-        form.style.paddingBottom = 'inherit';
-    } else {
-        inputFormPaddingB.removeAttribute("disabled", "disabled");
-        form.style.paddingBottom = inputFormPaddingB.value + selectFormPaddingB.value;
-    }
-})
-selectFormPaddingL.addEventListener(`change`,()=>{
-    if (selectFormPaddingL.value == 'inherit') {
-        inputFormPaddingL.setAttribute("disabled", "disabled");
-        inputFormPaddingL.value = ''
-        form.style.paddingLeft = 'inherit';
-    } else {
-        inputFormPaddingL.removeAttribute("disabled", "disabled");
-        form.style.paddingLeft = inputFormPaddingL.value + selectFormPaddingL.value;
-    }
-})
-selectFormPaddingR.addEventListener(`change`,()=>{
-    if (selectFormPaddingR.value == 'inherit') {
-        inputFormPaddingR.setAttribute("disabled", "disabled");
-        inputFormPaddingR.value = ''
-        form.style.paddingRight = 'inherit';
-    } else {
-        inputFormPaddingR.removeAttribute("disabled", "disabled");
-        form.style.paddingRight = inputFormPaddingR.value + selectFormPaddingR.value;
-    }
-}) 
-*/
+    init() {
 
-///////////////////////////////////////////////////////////////////// Form Border Radius
-const inputFormBR = document.querySelector(`#formBR`)
-const selectFormBR = document.querySelector(`#selectFormBR`)
+        const input = this.select.parentNode.querySelector(`.select__input`)
 
-inputFormBR.addEventListener(`input`,()=>{
-    form.style.borderRadius = inputFormBR.value + selectFormBR.value;
-})
-selectFormBR.addEventListener(`change`,()=>{
-    if (selectFormBR.value == 'inherit') {
-        inputFormBR.setAttribute("disabled", "disabled");
-        inputFormBR.value = ''
-        form.style.borderRadius = 'inherit';
-    } else {
-        inputFormBR.removeAttribute("disabled", "disabled");
-        form.style.borderRadius = inputFormBR.value + selectFormBR.value;
+        this.select.querySelectorAll('.select__li').forEach(li => {
+            li.addEventListener('click', e => {
+                this.target.style[this.select.dataset.property] = e.target.dataset.value;
+                input.value = e.target.dataset.value;
+            })
+        })
+
+
     }
-})
+
+}
+
+
+
 
 ///////////////////////////////////////////////////////////////////// Form Color
 
@@ -346,6 +305,7 @@ formCol.addEventListener(`input`,()=>{
 
 
 ///////////////////////////////////////////////////////////////////// Form Title
+
 const formTitle = document.querySelector(`#formTitle`)
 const formText = document.querySelector(`.form__text`)
 
@@ -355,44 +315,27 @@ document.querySelector(`#formTitle`).addEventListener(`input`,()=>{
     formText.innerText = formTitle.value;
 })
 
-//size
-const inputformTitleSize = document.querySelector(`#formTitleSize`)
-const selectFormTitleSize = document.querySelector(`#selectformTitleSize`)
 
-inputformTitleSize.addEventListener(`input`,()=>{
-    formText.style.fontSize = inputformTitleSize.value + selectFormTitleSize.value;
-})
-selectFormTitleSize.addEventListener(`change`,()=>{
-    if (selectFormTitleSize.value == 'inherit') {
-        inputformTitleSize.setAttribute("disabled", "disabled");
-        inputformTitleSize.value = ''
-        formText.style.fontSize = 'inherit';
-    } else {
-        inputformTitleSize.removeAttribute("disabled", "disabled");
-        formText.style.fontSize = inputformTitleSize.value + selectFormTitleSize.value;
-    }
-})
-//Weight
 
-const inputformTitleWeight = document.querySelector(`#formTitleWeight`)
-const selectFormTitleWeight = document.querySelector(`#selectFormTitleWeight`)
 
-inputformTitleWeight.addEventListener(`input`,()=>{
-    formText.style.fontWeight = inputformTitleWeight.value;
-})
-selectFormTitleWeight.addEventListener(`change`,()=>{
-    if (selectFormTitleWeight.value == 'inherit') {
-        inputformTitleWeight.setAttribute("disabled", "disabled");
-        inputformTitleWeight.value = 'inherit'
-        formText.style.fontWeight = 'inherit';
-    } else {
-        inputformTitleWeight.removeAttribute("disabled", "disabled");
-        inputformTitleWeight.value = selectFormTitleWeight.value
-        formText.style.fontWeight = selectFormTitleWeight.value;
-    }
-})
+const formTitleWeight = new Select("#form-title-weight", ".form__text")
+formTitleWeight.init()
+
+
+
+const formTitleSize = new Input("#form-title-size",".form__text")
+formTitleSize.init()
+
+const formTitleStyle = new Select("#form-title-style", ".form__text")
+formTitleStyle.init()
+
+const formTitleMB = new Input("#form-title-mb",".form__text")
+formTitleMB.init()
+
 
 ///////////////////////////////////////////////////////////////////// Inputs Border Radius
+
+
 
 
 const inputInputBR = document.querySelector(`#inputsBR`)
@@ -512,11 +455,18 @@ let autoId = 1;
 const elements = []
 
 
-buttonAddInput.addEventListener(`click` ,()=>{
+buttonAddInput.addEventListener(`click`,addNewInput)
+
+
+
+
+function addNewInput() {
+
     const createWindow = document.querySelector(`.window-create`)
     const createForm = createWindow.querySelector(`.window-create__form`)
     createWindow.classList.add(`visible`)
-    createForm.addEventListener(`submit` ,(e)=>{
+
+    createForm.addEventListener(`submit`,(e)=>{
         e.preventDefault();
         const type = createWindow.querySelector(`.window-create__select`).value
         const place = createWindow.querySelector(`#input-placeholder`).value
@@ -531,9 +481,16 @@ buttonAddInput.addEventListener(`click` ,()=>{
             return name ? `name="${name}"` : `name="${type}"`
         }
 
+        const div = document.createElement(`div`);
+        div.classList.add(`input-group`)
 
-        form.innerHTML += `<div class="input-group"><input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}"></div>`
+        div.innerHTML += `<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
 
+        form.append(div) 
+
+        //form.innerHTML += `<div class="input-group"><input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}"></div>`
+
+       
 
         //console.log(result.querySelector(`#${id}`))
 
@@ -541,13 +498,13 @@ buttonAddInput.addEventListener(`click` ,()=>{
 
         elements.push(`${id}`)
 
-
         createForm.reset()
         createWindow.classList.remove(`visible`)
 
-
     },{once: true})
-})
+}
+
+
 /*
 buttonAddRadio.addEventListener('click',()=>{
     const createWindow = document.querySelector(`.window-create-radio`)
@@ -662,24 +619,3 @@ function outCss() {
 
 
 document.querySelector(`#btnСss`).addEventListener(`click`,outCss)
-
-//document.querySelector(`#btnСss`).addEventListener(`click`,()=>{
-    /*const outPopup = document.createElement(`div`);
-    outPopup.style.cssText = `
-        width: 300px;
-        height: 300px;
-        background-color: grey;
-         white-space: pre;
-    `
-
-    document.body.append(outPopup)*/
-
-
-
-   /*
-    codeOut.value = `.form {\n \t ` + form.getAttribute('style') + `\n }`
-    codeOut.value +=`\n .form__text {\n \t ` + formText.getAttribute('style') + `\n }`
-    codeOut.value += formInputGroup.getAttribute('style') ? `\n .form__text {\n \t ` + formInputGroup.getAttribute('style') + `\n }` : ``
-    codeOut.value += formInput.getAttribute('style') ? `\n .form__text {\n \t ` + formInput.getAttribute('style') + `\n }` : ``
-
-})*/

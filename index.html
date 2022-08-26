@@ -19,22 +19,24 @@
 
                 <div class="form-settings__wrapper form-settings_hidden">
 
-                    <div id="FormPadding" class="sidebar-group">
+                    <div class="sidebar-group" id="form-padding">
                         <p class="sidebar-group__desc">padding</p>
-                        <label class="label"> <p class="label-text">Top: </p>            
+                
+                        <div class="sidebar-group__item"> 
+                            <p class="sidebar-group__text">Top: </p>            
                             <input class="sidebar-group__input sidebar-group__input-1" type="text" id="formPaddingT" name="padding">
 
                             <div class="select">
                                 <input class="select__input" type="text" value="px" readonly id="select-input-formPaddingT">
 
-                                <ul class="select__ul" data-target="formPaddingT" data-input="select-input-formPaddingT" data-property="paddingTop">
+                                <ul class="select__ul" data-target="formPaddingT" data-input="select-input-formPaddingT" data-property="paddingTop" data-connect="tb">
                                     <li class="select__li" data-value="px" >px</li>
                                     <li class="select__li" data-value="em">em</li>
                                     <li class="select__li" data-value="%">%</li>
                                     <li class="select__li" data-value="inherit">inherit</li>
                                 </ul>
                              </div>
-                        </label>
+                        </div>
 
 
                         
@@ -43,20 +45,20 @@
                         <button class="button button__connect" id="TBConnect">TB</button>
         
 
-                        <label class="label"> <p class="label-text">Bottom: </p>            
+                        <div class="sidebar-group__item"> <p class="sidebar-group__text">Bottom: </p>            
                             <input class="sidebar-group__input sidebar-group__input-2" type="text" id="formPaddingB" name="padding">
 
                             <div class="select">
                                 <input class="select__input" type="text" value="px" readonly id="select-input-formPaddingB">
 
-                                <ul class="select__ul" data-target="formPaddingB" data-input="select-input-formPaddingB" data-property="paddingBottom">
+                                <ul class="select__ul" data-target="formPaddingB" data-input="select-input-formPaddingB" data-property="paddingBottom"  data-connect="tb">
                                     <li class="select__li" data-value="px" >px</li>
                                     <li class="select__li" data-value="em">em</li>
                                     <li class="select__li" data-value="%">%</li>
                                     <li class="select__li" data-value="inherit">inherit</li>
                                 </ul>
                              </div>
-                        </label>
+                        </div>
 
 
 
@@ -64,103 +66,173 @@
         
 
 
-                        <label class="label"> <p class="label-text">Left: </p>            
+                        <div class="sidebar-group__item"> <p class="sidebar-group__text">Left: </p>            
                             <input class="sidebar-group__input sidebar-group__input-3" type="text" id="formPaddingL" name="padding">
 
                             <div class="select">
                                 <input class="select__input" type="text" value="px" readonly id="select-input-formPaddingL">
 
-                                <ul class="select__ul" data-target="formPaddingL" data-input="select-input-formPaddingL" data-property="paddingLeft">
+                                <ul class="select__ul" data-target="formPaddingL" data-input="select-input-formPaddingL" data-property="paddingLeft" data-connect="lr">
                                     <li class="select__li" data-value="px" >px</li>
                                     <li class="select__li" data-value="em">em</li>
                                     <li class="select__li" data-value="%">%</li>
                                     <li class="select__li" data-value="inherit">inherit</li>
                                 </ul>
                              </div>
-                        </label>
+                            </div>
                         
 
                         <button class="button button__connect" id="LRConnect">LR</button>
 
 
-                        <label class="label"> <p class="label-text">Right: </p>            
+                        <div class="sidebar-group__item"> <p class="sidebar-group__text">Right: </p>            
                             <input class="sidebar-group__input sidebar-group__input-4" type="text" id="formPaddingR" name="padding">
 
                             <div class="select">
                                 <input class="select__input" type="text" value="px" readonly id="select-input-formPaddingR">
 
-                                <ul class="select__ul" data-target="formPaddingR" data-input="select-input-formPaddingR" data-property="paddingRight">
+                                <ul class="select__ul" data-target="formPaddingR" data-input="select-input-formPaddingR" data-property="paddingRight" data-connect="lr">
                                     <li class="select__li" data-value="px" >px</li>
                                     <li class="select__li" data-value="em">em</li>
                                     <li class="select__li" data-value="%">%</li>
                                     <li class="select__li" data-value="inherit">inherit</li>
                                 </ul>
                              </div>
-                        </label>
+                        </div>
                         
                     </div>
         
-                    <div class="sidebar-group">
+                    <div class="sidebar-group" id="form-br">
                         <p class="sidebar-group__desc">border-radius</p>
-                        <label>            
-                            <input class="sidebar-group__input" type="text" id="formBR" name="padding">
-                            <select class="sidebar-group__select" name="" id="selectFormBR">
-                                <option value="px">px</option>
-                                <option value="%">%</option>
-                                <option value="em">em</option>
-                                <option value="inherit">inherit</option>
-                            </select>
-                        </label>
+                        <div class="sidebar-group__item"> <p class="sidebar-group__text"></p>            
+                            <input class="sidebar-group__input" type="text" id="input-form-br" name="inputs-br">
+
+                            <div class="select">
+                                <input class="select__input" type="text" value="px" readonly id="select-input-form-br">
+
+                                <ul class="select__ul" data-target="input-form-br" data-input="select-input-form-br" data-property="borderRadius">
+                                    <li class="select__li" data-value="px">px</li>
+                                    <li class="select__li" data-value="em">em</li>
+                                    <li class="select__li" data-value="%">%</li>
+                                    <li class="select__li" data-value="inherit">inherit</li>
+                                </ul>
+                             </div>
+                        </div>
                     </div>
         
                     <div class="sidebar-group">
                         <p class="sidebar-group__desc">Color</p>
                         
-                        <label>            
+                        <div class="sidebar-group__item">            
                             <input class="sidebar-group__input color-input" type="color" id="formCol" name="color" value="#7fffd4">
-                        </label>
+                        </div>
                     </div>
-        
-                    <div class="sidebar-group">
-                        <p class="sidebar-group__desc">Title</p>
-                        
-                        <label>Text            
-                            <input class="sidebar-group__input" type="text" id="formTitle" name="title">
-                        </label>
-                        <label>Size            
-                            <input class="sidebar-group__input" type="text" id="formTitleSize" name="TitleSize">
-                            <select class="sidebar-group__select" name="" id="selectformTitleSize">
-                                <option value="px">px</option>
-                                <option value="%">%</option>
-                                <option value="em">em</option>
-                                <option value="inherit">inherit</option>
-                            </select>
-                        </label>
-                        
-                        <label>Weight            
-                            <input class="sidebar-group__input" type="text" id="formTitleWeight" name="title-weight">
-                            <select class="sidebar-group__select" name="" id="selectFormTitleWeight">
-                                <option value="inherit">inherit</option>
-                                <option value="100">100</option>
-                                <option value="200">200</option>
-                                <option value="300">300</option>
-                                <option value="400">400</option>
-                                <option value="500">500</option>
-                                <option value="600">600</option>
-                                <option value="700">700</option>
-                                <option value="800">800</option>
-                                <option value="900">900</option>
-                            </select>
-                        </label>
-                        <label>Style            
-                            <input class="sidebar-group__input" type="text" id="formTitle" name="title">
-                        </label>
-                    </div>
-
                     
 
                 </div>
 
+            </div>
+
+
+            <div class="form-settings">
+                <p class="form-settings__text">Form Title Settings</p>
+
+                <div class="form-settings__wrapper form-settings_hidden">
+
+
+
+                    <div class="sidebar-group">
+                        <p class="sidebar-group__desc">Text</p>
+                        <div class="sidebar-group__item">            
+                            <input class="sidebar-group__input sidebar-group__input_w-100per" type="text" id="formTitle" name="title">
+                        </div>
+
+                    </div>
+
+                    <div class="sidebar-group" id="form-title-size">
+                        <p class="sidebar-group__desc">Size</p>
+                        <div class="sidebar-group__item"> <p class="sidebar-group__text"></p>            
+                            <input class="sidebar-group__input" type="text" id="input-form-title-size" name="inputs-ts">
+
+                            <div class="select">
+                                <input class="select__input" type="text" value="px" readonly id="select-input-form-title-size">
+
+                                <ul class="select__ul" data-target="input-form-title-size" data-input="select-input-form-title-size" data-property="fontSize">
+                                    <li class="select__li" data-value="px">px</li>
+                                    <li class="select__li" data-value="em">em</li>
+                                    <li class="select__li" data-value="%">%</li>
+                                    <li class="select__li" data-value="inherit">inherit</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-group">
+                        <p class="sidebar-group__desc">Weight</p>
+
+                        <div class="sidebar-group__item"> <p class="sidebar-group__text"></p>            
+                            <!-- <input class="sidebar-group__input" type="text" id="input-form-title-weight" name="inputs-tw"> -->
+
+                            <div class="select select_w_100per">
+                                <input class="select__input" type="text" value="400" readonly id="select-input-form-title-weight">
+
+                                <ul class="select__ul" data-property="fontWeight" id="form-title-weight">
+                                    <li class="select__li" data-value="100">100</li>
+                                    <li class="select__li" data-value="200">200</li>
+                                    <li class="select__li" data-value="300">300</li>
+                                    <li class="select__li" data-value="400">400</li>
+                                    <li class="select__li" data-value="500">500</li>
+                                    <li class="select__li" data-value="600">600</li>
+                                    <li class="select__li" data-value="700">700</li>
+                                    <li class="select__li" data-value="800">800</li>
+                                    <li class="select__li" data-value="900">900</li>
+                                    <li class="select__li" data-value="inherit">inherit</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+        
+                    <div class="sidebar-group">
+                        <p class="sidebar-group__desc">Style</p>
+
+                        <div class="sidebar-group__item"> <p class="sidebar-group__text"></p>            
+
+                            <div class="select select_w_100per">
+                                <input class="select__input" type="text" value="normal" readonly id="select-input-form-title-style">
+
+                                <ul class="select__ul" data-property="fontStyle" id="form-title-style">
+                                    <li class="select__li" data-value="normal">normal</li>
+                                    <li class="select__li" data-value="italic">italic</li>
+                                    <li class="select__li" data-value="oblique">oblique</li>
+                                    <li class="select__li" data-value="inherit">inherit</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="sidebar-group" id="form-title-mb">
+                        <p class="sidebar-group__desc">Margin-bottom</p>
+                        <div class="sidebar-group__item"> <p class="sidebar-group__text"></p>            
+                            <input class="sidebar-group__input" type="text" id="input-title-br" name="title-mb">
+
+                            <div class="select">
+                                <input class="select__input" type="text" value="px" readonly id="select-input-title-br">
+
+                                <ul class="select__ul" data-target="input-title-br" data-input="select-input-title-br" data-property="marginBottom">
+                                    <li class="select__li" data-value="px">px</li>
+                                    <li class="select__li" data-value="em">em</li>
+                                    <li class="select__li" data-value="%">%</li>
+                                    <li class="select__li" data-value="inherit">inherit</li>
+                                </ul>
+                             </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <div class="form-settings">
@@ -170,7 +242,7 @@
 
                     <div class="sidebar-group">
                         <p class="sidebar-group__desc">padding</p>
-                        <label>Top:             
+                        <div class="sidebar-group__item">Top:             
                             <input class="sidebar-group__input" type="text" id="formInputsPaddingT" name="InputsPaddingT">
                             <select class="sidebar-group__select" name="" id="selectFormInputsPaddingT">
                                 <option value="px">px</option>
@@ -178,9 +250,9 @@
                                 <option value="em">em</option>
                                 <option value="inherit">inherit</option>
                             </select>
-                        </label>
+                        </div>
         
-                        <label>Bottom:       
+                        <div class="sidebar-group__item">Bottom:       
                             <input class="sidebar-group__input" type="text" id="formInputsPaddingB" name="InputsPaddingB">
                             <select class="sidebar-group__select" name="" id="selectFormInputsPaddingB">
                                 <option value="px">px</option>
@@ -188,9 +260,9 @@
                                 <option value="em">em</option>
                                 <option value="inherit">inherit</option>
                             </select>
-                        </label>
+                        </div>
         
-                        <label>Left:       
+                        <div class="sidebar-group__item">Left:       
                             <input class="sidebar-group__input" type="text" id="formInputsPaddingL" name="InputsPaddingL">
                             <select class="sidebar-group__select" name="" id="selectFormInputsPaddingL">
                                 <option value="px">px</option>
@@ -198,9 +270,9 @@
                                 <option value="em">em</option>
                                 <option value="inherit">inherit</option>
                             </select>
-                        </label>
+                        </div>
                         
-                        <label>Right:       
+                        <div class="sidebar-group__item">Right:       
                             <input class="sidebar-group__input" type="text" id="formInputsPaddingR" name="InputsPaddingR">
                             <select class="sidebar-group__select" name="" id="selectFormInputsPaddingR">
                                 <option value="px">px</option>
@@ -208,14 +280,14 @@
                                 <option value="em">em</option>
                                 <option value="inherit">inherit</option>
                             </select>
-                        </label>
+                        </div>
                         
                     </div>
 
 
                     <div class="sidebar-group">
                         <p class="sidebar-group__desc">border-radius</p>
-                        <label>            
+                        <div class="sidebar-group__item">            
                             <input class="sidebar-group__input" type="text" id="inputsBR" name="inputsBR">
                             <select class="sidebar-group__select" name="selectInputsBR" id="selectInputsBR">
                                 <option value="px">px</option>
@@ -223,7 +295,7 @@
                                 <option value="em">em</option>
                                 <option value="inherit">inherit</option>
                             </select>
-                        </label>
+                        </div>
                     </div>
 
                 </div>
@@ -242,7 +314,11 @@
 
             <div class="result">
 
-                <form action="#" class="form"><p class="form__text"></p></form>
+                <form action="#" class="form"><p class="form__text"></p>
+
+
+                
+                </form>
 
             </div>
             
