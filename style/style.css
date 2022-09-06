@@ -49,7 +49,7 @@ body, .wrapper, .main {
 
 .sidebar {
   width: 300px;
-  background-color: antiquewhite;
+  background: rgb(79, 247, 238);
   overflow: auto;
 }
 
@@ -93,8 +93,9 @@ body, .wrapper, .main {
       }*/
 }
 .sidebar-group__item {
+  border-radius: 5px;
   position: relative;
-  max-width: 200px;
+  max-width: 120px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -127,7 +128,7 @@ body, .wrapper, .main {
 
 .main {
   position: relative;
-  background-color: azure;
+  background: linear-gradient(to top, rgb(0, 212, 255) 0%, rgb(79, 247, 238) 100%);
   flex-grow: 1;
   height: 100%;
   display: flex;
@@ -151,11 +152,13 @@ body, .wrapper, .main {
   width: 100%;
   height: 100%;
   resize: none;
+  background-color: rgb(44, 44, 44);
+  color: #7fffd4;
 }
 
 .window-create {
   display: none;
-  padding: 15px;
+  padding: 30px;
   border-radius: 10px;
   position: absolute;
   top: 50%;
@@ -168,10 +171,13 @@ body, .wrapper, .main {
 .window-create__group {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  /* gap: 15px; */
 }
 .window-create__group:not(:last-child) {
   margin-bottom: 20px;
+}
+.window-create__btn {
+  margin-right: 15px;
 }
 .window-create__label {
   display: inline-block;
@@ -201,16 +207,32 @@ body, .wrapper, .main {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   width: 300px;
   background-color: #7fffd4;
   padding: 25px;
 }
 
+.btn-del {
+  color: white;
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0);
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  right: 10px;
+  margin-top: -8px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
 .input-group {
-  /*
-  transform: scaleY(1);
-  transition: all 0.3s;*/
+  position: relative;
+}
+.input-group:hover .btn-del {
+  background-color: red;
+  cursor: pointer;
 }
 .input-group:not(:last-child) {
   margin-bottom: 15px;
@@ -274,7 +296,7 @@ body, .wrapper, .main {
   display: none;
   position: absolute;
   z-index: 10;
-  left: 70%;
+  left: 60%;
   width: 60px;
   background-color: white;
   text-align: center;

@@ -37,7 +37,10 @@ const getNewString = function(string) {
 
             //console.log(`arr[++i] is : ` + arr[i+1])
             newArr.push(tabs(numbOfTab) + symb)
-            numbOfTab++
+            if (symb === '<' && arr[i+1] !== 'i'){   //проверка на инпут
+                numbOfTab++
+            }
+
             return newArr
         }
   
@@ -50,6 +53,8 @@ const getNewString = function(string) {
         if (symb === '>') {
             //console.log(`symb === '>'`)
             newArr.push(symb + `\n`)
+            /* alert() */
+            /* newArr.push(`X\n` + symb) */
             return newArr
         }
        // console.log(`just push(symb) : ` + symb)
@@ -63,8 +68,11 @@ const getNewString = function(string) {
 
 
 function outHtml() {
-
-    codeOut.value = getNewString(form.outerHTML.replaceAll(/style="([^"]*)"/g,'')) 
+    /* codeOut.value = form.outerHTML.replaceAll(/\s\s/g,'') */
+    codeOut.value = getNewString(form.outerHTML.replaceAll(/\s\s/g,''))
+        .replaceAll(/style="([^"]*)"/g,'')
+        .replaceAll(/data-index="([^"]*)"/g,'')
+        .replaceAll(/<button class="btn-del" title="delete input" ><\/button>/g,'') 
 
 }
 
