@@ -30,6 +30,10 @@ document.querySelectorAll('.form-settings')
 
 ///////////////////////////////////////////////////////////////////// Init
 
+
+createInput("text",":)")
+
+
 document.querySelector('.form').style.cssText = `
     display: flex;
     flex-direction: column;
@@ -40,6 +44,7 @@ document.querySelector('.form').style.cssText = `
 
     width: 300px;
     background-color: #7fffd4;
+    box-shadow: 3px 3px 15px 1px rgba(0,0,0,0.2);
     padding: 25px;
     border-radius: 15px;
 `
@@ -51,7 +56,14 @@ document.querySelector('.form__text').style.cssText = `
     margin-bottom: 15px
 `
 
-createInput("text",":)")
+document.querySelector('.input').style.cssText = `
+    font: inherit;
+    border: 0;
+    border-radius: 5px;
+
+`
+
+
 
 
 
