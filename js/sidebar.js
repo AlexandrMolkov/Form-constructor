@@ -54,7 +54,17 @@ class FormSettings {
     }
 }
 
-function createInput(type,property,target){
+function changeProperty(inp) {
+    console.log()
+    const targets = document.querySelectorAll(`${inp.getAttribute('data-target')}`)
+    targets.forEach((target)=>{
+        const units = inp.nextElementSibling?.firstChild?.value
+        target.style[inp.getAttribute('data-property')] = inp.value + (units ? units : "")
+        inputsSettings[inp.getAttribute('data-property')] = inp.value + (units ? units : "")
+    })
+}
+
+function createInput(type,property,target, defaultVal){
 
     const input = document.createElement('input')
     input.classList.add('sidebar-group__input')
@@ -62,14 +72,11 @@ function createInput(type,property,target){
     input.setAttribute('type',type)
     input.setAttribute('data-property',property)
     input.setAttribute('data-target',target)
+    if (type !== 'color') input.value = parseInt(defaultVal)
+    if (type === 'color') input.value = defaultVal
 
-    input.addEventListener('input',()=>{
-        const targets = document.querySelectorAll(`${input.getAttribute('data-target')}`)
-        targets.forEach((target)=>{
-            const units = input.nextElementSibling?.firstChild?.value
-            target.style[input.getAttribute('data-property')] = 
-            input.value + (units ? units : "")
-        })
+    input.addEventListener('input',(ev)=>{
+        changeProperty(ev.target)
     })
 
     if(input.getAttribute('type') === 'color') input.style.width = '100%'
@@ -116,7 +123,9 @@ function createUnitsSelect(){
 
     lies.forEach((li)=>{
         li.addEventListener('click',()=>{
-            li.parentElement.previousElementSibling.value = li.dataset.value
+            const unitsInput =  li.parentElement.previousElementSibling
+            unitsInput.value = li.dataset.value
+            changeProperty(unitsInput.parentElement.previousElementSibling)
         })
     })
 
@@ -132,7 +141,7 @@ function createText(text){
     return textElem
 }
 
-function cretateSelect(property,target,selectValues) {
+function cretateSelect(property,target,selectValues, current) {
     
     const select = document.createElement('div')
     select.classList.add('select')
@@ -144,22 +153,21 @@ function cretateSelect(property,target,selectValues) {
     selectInput.setAttribute('data-property',property)
     selectInput.setAttribute('data-target',target)
     select.append(selectInput)
-
+    selectInput.value = current
+    applyProperty()
+    
     function applyProperty() {
         const targets = document.querySelectorAll(`${selectInput.getAttribute('data-target')}`)
-        console.log(targets.length)
         targets.forEach((target)=>{
-
             
-
-            target.style[selectInput.getAttribute('data-property')] =  selectInput.value
+            target.style[selectInput.getAttribute('data-property')] = selectInput.value
 
         })
     }
 
     const ul = document.createElement('ul')
     ul.classList.add('select__ul')
-
+    
     function createLi(...val) {
         const elements = []
         val.forEach((elem)=>{
@@ -180,22 +188,24 @@ function cretateSelect(property,target,selectValues) {
     lies[0].parentElement.previousElementSibling.value = lies[0].dataset.value
 
     lies.forEach((li)=>{
-        li.addEventListener('click',()=>{
+        li.addEventListener('click',(e)=>{
             li.parentElement.previousElementSibling.value = li.dataset.value
             applyProperty()
+            inputsSettings[e.target.parentElement.previousElementSibling.getAttribute('data-property')] 
+            = e.target.parentElement.previousElementSibling.value
         })
     })
-
+    selectInput.value = current
     return select
 }
 
-function cretateTextContentInput(target) {
+function cretateTextContentInput(target,defaultVal) {
 
     const input = document.createElement('input')
     input.classList.add('sidebar-group__input')
     input.classList.add('newinp')
     input.style.width = '100%'
-
+    input.value = defaultVal
     const targetElement = document.querySelector(target)
 
     input.addEventListener('input',()=>{
@@ -391,38 +401,37 @@ function createLinearGradient(target){
 const borderStyle = ['solid','dotted','dashed','double','groove','ridge','inset','outset']
 const weight = ['100','200','300','400','500','600','700','800','900']
 const styles = ['normal','italic','oblique','inherit']
-
 const formSets = new FormSettings('Form')
 formSets.create()
-formSets.addSidebarGroupItem('width',createInput('number','width','.form'),createUnitsSelect())
-formSets.addSidebarGroupItem('padding',createInput('number','padding','.form'),createUnitsSelect())
-formSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.form'))
+formSets.addSidebarGroupItem('width',createInput('number','width','.form', formPropertys.width),createUnitsSelect())
+formSets.addSidebarGroupItem('padding',createInput('number','padding','.form', formPropertys.padding),createUnitsSelect())
+formSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.form', formPropertys.backgroundColor))
 formSets.addSidebarGroupItem('Background gradient',createLinearGradient('.form'))
 formSets.addSidebarGroupItem('Shadow',createInputBoxShadow('.form'))
-formSets.addSidebarGroupItem('border Radius',createInput('number','borderRadius','.form'),createUnitsSelect())
+formSets.addSidebarGroupItem('border Radius',createInput('number','borderRadius','.form', formPropertys.borderRadius),createUnitsSelect())
 formSets.addSidebarGroupItem('border',
-    createText('Width'),createInput('number','borderWidth','.form',),createUnitsSelect(),
+    createText('Width'),createInput('number','borderWidth','.form', 0),createUnitsSelect(),
     createText('Style'),cretateSelect('borderStyle','.form',borderStyle),
-    createText('Color'),createInput('color','borderColor','.form',)
+    createText('Color'),createInput('color','borderColor','.form')
     )
 const formTitle = new FormSettings('Title')
 formTitle.create()
-formTitle.addSidebarGroupItem('Title',cretateTextContentInput('.form__text'))
-formTitle.addSidebarGroupItem('Title Font Size',createInput('number','fontSize','.form__text'),createUnitsSelect())
-formTitle.addSidebarGroupItem('Title Color',createInput('color','color','.form__text'))
-formTitle.addSidebarGroupItem('Title Weight',cretateSelect('fontWeight','.form__text', weight))
-formTitle.addSidebarGroupItem('Title Style',cretateSelect('fontStyle','.form__text', styles))
+formTitle.addSidebarGroupItem('Title',cretateTextContentInput('.form__text','Hello!'))
+formTitle.addSidebarGroupItem('Title Font Size',createInput('number','fontSize','.form__text',formTextPropertys.fontSize),createUnitsSelect())
+formTitle.addSidebarGroupItem('Title Color',createInput('color','color','.form__text',formTextPropertys.color))
+formTitle.addSidebarGroupItem('Title Weight',cretateSelect('fontWeight','.form__text', weight, weight[6]))
+formTitle.addSidebarGroupItem('Title Style',cretateSelect('fontStyle','.form__text', styles, styles[0]))
 formTitle.addSidebarGroupItem('Title Shadow',createInputTextShadow('.form__text'))
-formTitle.addSidebarGroupItem('Title Margin Bottom',createInput('number','marginBottom','.form__text'),createUnitsSelect())
+formTitle.addSidebarGroupItem('Title Margin Bottom',createInput('number','marginBottom','.form__text',formTextPropertys.marginBottom),createUnitsSelect())
 
 const inputsSets = new FormSettings('Inputs')
 inputsSets.create()
-inputsSets.addSidebarGroupItem('padding',createInput('number','padding','.input'),createUnitsSelect())
-inputsSets.addSidebarGroupItem('Border-Radius',createInput('text','borderRadius','.input'),createUnitsSelect())
+inputsSets.addSidebarGroupItem('padding',createInput('number','padding','.input',inputsPropertys.padding),createUnitsSelect())
+inputsSets.addSidebarGroupItem('Border-Radius',createInput('number','borderRadius','.input',inputsPropertys.borderRadius),createUnitsSelect())
 inputsSets.addSidebarGroupItem('border',
-    createText('Width'),createInput('number','borderWidth','.input',),createUnitsSelect(),
-    createText('Style'),cretateSelect('borderStyle','.input',borderStyle),
-    createText('Color'),createInput('color','borderColor','.input',)
+    createText('Width'),createInput('number','borderWidth','.input',inputsPropertys.borderWidth),createUnitsSelect(),
+    createText('Style'),cretateSelect('borderStyle','.input',borderStyle, inputsPropertys.borderStyle),
+    createText('Color'),createInput('color','borderColor','.input',inputsPropertys.borderColor)
     )
-inputsSets.addSidebarGroupItem('Color',createInput('color','color','.input'))
-inputsSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.input'))
+inputsSets.addSidebarGroupItem('Color',createInput('color','color','.input',inputsPropertys.color))
+inputsSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.input',inputsPropertys.backgroundColor))

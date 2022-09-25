@@ -2,7 +2,6 @@
 
 
 
-
 ///////////////////////////////////////////////////////////////////// menu Anim
 
 
@@ -34,7 +33,12 @@ document.querySelectorAll('.form-settings')
 createInput("text",":)")
 
 
-document.querySelector('.form').style.cssText = `
+/* const form = document.querySelector('.form') */
+for(let property in formPropertys) {
+    form.style[property] = formPropertys[property]
+}
+
+/* document.querySelector('.form').style.cssText = `
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -47,21 +51,25 @@ document.querySelector('.form').style.cssText = `
     box-shadow: 3px 3px 15px 1px rgba(0,0,0,0.2);
     padding: 25px;
     border-radius: 15px;
-`
+` */
 
-document.querySelector('.form__text').style.cssText = `
+
+
+/* document.querySelector('.form__text').style.cssText = `
     font-size: 30px;
     font-weight: 700;
     text-align: center;
     margin-bottom: 15px
-`
+` */
 
-document.querySelector('.input').style.cssText = `
+
+
+/* document.querySelector('.input').style.cssText = `
     font: inherit;
     border: 0;
     border-radius: 5px;
 
-`
+` */
 
 
 
@@ -222,6 +230,7 @@ function addNewInput() {
 
 
 function createInput(typeInput,placeInput,nameInput,idInput){
+    
     const type = typeInput
     const place = placeInput
     const name = nameInput
@@ -241,8 +250,12 @@ function createInput(typeInput,placeInput,nameInput,idInput){
     delBtn.classList.add(`btn-del`)
     delBtn.setAttribute('title', 'delete input')
     div.classList.add(`input-group`)
-    div.innerHTML += `<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
+    div.innerHTML +=`<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
     div.classList.add(`interact`)
+    const newInp = div.querySelector('input')
+    for(let property in inputsSettings) {
+        newInp.style[property] = inputsSettings[property]
+    }
     
     delBtn.setAttribute('data-index',`${formElements.length}`)
     delBtn.addEventListener('click',(e)=>{
