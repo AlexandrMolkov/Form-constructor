@@ -33,10 +33,16 @@ document.querySelectorAll('.form-settings')
 createInput("text",":)")
 
 
-/* const form = document.querySelector('.form') */
 for(let property in formPropertys) {
     form.style[property] = formPropertys[property]
 }
+
+for(let property in formTextPropertys) {
+    
+    document.querySelector('.form__text')
+        .style[property] = formTextPropertys[property]
+}
+
 
 /* document.querySelector('.form').style.cssText = `
     display: flex;

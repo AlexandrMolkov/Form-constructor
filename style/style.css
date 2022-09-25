@@ -330,4 +330,10 @@ body, .wrapper, .main {
 }
 .select__li:active {
   background-color: #d2fff0;
+}
+
+.button-align {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
 }/*# sourceMappingURL=style.css.map */

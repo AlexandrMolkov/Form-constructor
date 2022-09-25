@@ -43,8 +43,9 @@ const formTextPropertys = {
     fontStyle: 'normal',
     fontWeight: '700',
     textAlign: 'center',
-    marginBottom: '15px',
+    marginBottom: '15px'
 }
+
 const inputsPropertys = {
     font: 'inherit',
     border: '0',
@@ -52,5 +53,5 @@ const inputsPropertys = {
     padding: '5px 10px',
     borderStyle: 'solid',
     borderColor: 'black',
-    borderWidth: '0',
+    borderWidth: '0'
 }

@@ -64,7 +64,42 @@ function changeProperty(inp) {
     })
 }
 
-function createInput(type,property,target, defaultVal){
+function disableGradient() {
+    form.style.background = ''
+}
+
+function textAlign(target) {
+    div = document.createElement(`div`)
+    div.setAttribute('data-target', target)
+    div.classList.add('sidebar-group__input')
+    btnLeft = document.createElement(`button`)
+    btnLeft.classList.add('button-align', 'button-align-left')
+    btnCenter = document.createElement(`button`)
+    btnCenter.classList.add('button-align', 'button-align-center')
+    btnRight = document.createElement(`button`)
+    btnRight.classList.add('button-align', 'button-align-right')
+    div.append(btnLeft)
+    div.append(btnCenter)
+    div.append(btnRight)
+
+    btnLeft.addEventListener(`click`,(e)=>{
+        document.querySelector(e.target.parentElement.dataset.target)
+            .style.textAlign = 'left'
+    })
+    btnCenter.addEventListener(`click`,(e)=>{
+        document.querySelector(e.target.parentElement.dataset.target)
+            .style.textAlign = 'center'
+    })
+    btnRight.addEventListener(`click`,(e)=>{
+        document.querySelector(e.target.parentElement.dataset.target)
+            .style.textAlign = 'right'
+    })
+
+    return div
+
+}
+
+function createInput(type,property,target, defaultVal, func){
 
     const input = document.createElement('input')
     input.classList.add('sidebar-group__input')
@@ -72,11 +107,16 @@ function createInput(type,property,target, defaultVal){
     input.setAttribute('type',type)
     input.setAttribute('data-property',property)
     input.setAttribute('data-target',target)
-    if (type !== 'color') input.value = parseInt(defaultVal)
-    if (type === 'color') input.value = defaultVal
+    if (type !== 'color') {
+        input.value = parseInt(defaultVal)
+    } else{
+        input.value = defaultVal
+    }
 
     input.addEventListener('input',(ev)=>{
+        if(func) func()
         changeProperty(ev.target)
+        
     })
 
     if(input.getAttribute('type') === 'color') input.style.width = '100%'
@@ -229,12 +269,6 @@ function createInputBoxShadow(target){
     const targetElement = document.querySelector(target)
 
     const inputsWrapper = document.createElement('div')
-    
-/*     let = xOffset = 1,
-        yOffset = 1,
-        blurValue = 5,
-        spread = 1,
-        color = '#000'; */
 
     const propertys = {
         xOffset: 1,
@@ -261,11 +295,12 @@ function createInputBoxShadow(target){
         inputs.push(newInput)
         inputsWrapper.append(newInput)
     }
+    inputs[2].setAttribute('min','0')
     inputs.at(-1).setAttribute('type','color')
     inputs.at(-2).setAttribute('type','range')
     inputs.at(-2).setAttribute('min','0')
     inputs.at(-2).setAttribute('max','1')
-    inputs.at(-2).setAttribute('step','0.1')
+    inputs.at(-2).setAttribute('step','0.05')
 
     inputs.forEach((el,id)=>{
         const propertyKeys = Object.keys(propertys)
@@ -277,7 +312,6 @@ function createInputBoxShadow(target){
     })
    
     const applyValue = () => {
-        console.log(propertys.color)
         finalValue = `
             ${propertys.xOffset}px 
             ${propertys.yOffset}px 
@@ -405,7 +439,7 @@ const formSets = new FormSettings('Form')
 formSets.create()
 formSets.addSidebarGroupItem('width',createInput('number','width','.form', formPropertys.width),createUnitsSelect())
 formSets.addSidebarGroupItem('padding',createInput('number','padding','.form', formPropertys.padding),createUnitsSelect())
-formSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.form', formPropertys.backgroundColor))
+formSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.form', formPropertys.backgroundColor,disableGradient))
 formSets.addSidebarGroupItem('Background gradient',createLinearGradient('.form'))
 formSets.addSidebarGroupItem('Shadow',createInputBoxShadow('.form'))
 formSets.addSidebarGroupItem('border Radius',createInput('number','borderRadius','.form', formPropertys.borderRadius),createUnitsSelect())
@@ -417,6 +451,7 @@ formSets.addSidebarGroupItem('border',
 const formTitle = new FormSettings('Title')
 formTitle.create()
 formTitle.addSidebarGroupItem('Title',cretateTextContentInput('.form__text','Hello!'))
+formTitle.addSidebarGroupItem('Align', textAlign('.form__text'))
 formTitle.addSidebarGroupItem('Title Font Size',createInput('number','fontSize','.form__text',formTextPropertys.fontSize),createUnitsSelect())
 formTitle.addSidebarGroupItem('Title Color',createInput('color','color','.form__text',formTextPropertys.color))
 formTitle.addSidebarGroupItem('Title Weight',cretateSelect('fontWeight','.form__text', weight, weight[6]))
