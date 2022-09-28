@@ -1,7 +1,14 @@
-const sidebar = document.querySelector('.sidebar')
+/* const sidebar = document.querySelector('.sidebar') */
 
+const sidebar = document.createElement('aside')
+sidebar.classList.add('sidebar')
+document.querySelector('.wrapper').prepend(sidebar)
 
-
+const addInputButton = document.createElement('button')
+addInputButton.classList.add('add-input')
+addInputButton.id = 'addInput'
+addInputButton.textContent = 'Add input'
+sidebar.prepend(addInputButton)
 
 class FormSettings {
     constructor(title) {
@@ -432,6 +439,9 @@ function createLinearGradient(target){
     return inputsWrapper
 }
 
+
+
+
 const borderStyle = ['solid','dotted','dashed','double','groove','ridge','inset','outset']
 const weight = ['100','200','300','400','500','600','700','800','900']
 const styles = ['normal','italic','oblique','inherit']
@@ -470,3 +480,10 @@ inputsSets.addSidebarGroupItem('border',
     )
 inputsSets.addSidebarGroupItem('Color',createInput('color','color','.input',inputsPropertys.color))
 inputsSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.input',inputsPropertys.backgroundColor))
+
+
+const buttonsSets = new FormSettings('Buttons')
+buttonsSets.create()
+buttonsSets.addSidebarGroupItem('padding',createInput('number','padding','.btn',btnSubmitProperty.padding),createUnitsSelect())
+buttonsSets.addSidebarGroupItem('width',createInput('number','width','.btn',btnSubmitProperty.width),createUnitsSelect())
+buttonsSets.addSidebarGroupItem('height',createInput('number','height','.btn',btnSubmitProperty.height),createUnitsSelect())

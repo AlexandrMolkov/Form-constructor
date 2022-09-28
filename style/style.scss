@@ -27,9 +27,11 @@ body,.wrapper,.main{
 
 .sidebar{
     width: 300px;
-    background: rgba(79,247,238,1);
+    background: #4ff7ee;
     
     overflow: auto;
+
+    box-shadow: 0px 0px 70px 70px #65fbf3 inset;
 }
 
 
@@ -318,7 +320,6 @@ body,.wrapper,.main{
 
 
 .select {
-    
 
     &.units{
         width: 30%;
@@ -374,7 +375,6 @@ body,.wrapper,.main{
 
     &__li {
         position: relative;
-        z-index: 10;
 
         padding: 5px;
         transition: all 0.3s;
@@ -401,3 +401,4 @@ body,.wrapper,.main{
 
     margin-right: 8px;
 }
+

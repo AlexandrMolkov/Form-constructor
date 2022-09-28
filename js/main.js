@@ -55,3 +55,13 @@ const inputsPropertys = {
     borderColor: 'black',
     borderWidth: '0'
 }
+
+const btnSubmitProperty = {
+    padding: '0',
+    width: `120px`,
+    height: `40px`,
+    background: `green`,
+    borderRadius: '25px',
+    fontSize: '18px',
+    textTransform: 'uppercase'
+}

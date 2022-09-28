@@ -57,8 +57,9 @@ body, .wrapper, .main {
 
 .sidebar {
   width: 300px;
-  background: rgb(79, 247, 238);
+  background: #4ff7ee;
   overflow: auto;
+  box-shadow: 0px 0px 70px 70px #65fbf3 inset;
 }
 
 .button {
@@ -316,7 +317,6 @@ body, .wrapper, .main {
 }
 .select__li {
   position: relative;
-  z-index: 10;
   padding: 5px;
   transition: all 0.3s;
   margin-bottom: 5px;

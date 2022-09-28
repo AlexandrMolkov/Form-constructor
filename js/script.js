@@ -2,6 +2,17 @@
 
 
 
+function createButton() {
+    const div = document.createElement('div')
+    const btn = document.createElement('button')
+    btn.classList.add('form-btn', 'submit', 'interact')
+    btn.textContent = 'submit'
+    div.append(btn)
+    form.append(div)
+}
+
+
+
 ///////////////////////////////////////////////////////////////////// menu Anim
 
 
@@ -31,6 +42,9 @@ document.querySelectorAll('.form-settings')
 
 
 createInput("text",":)")
+createbutton('submit','SUBMIT')
+
+
 
 
 for(let property in formPropertys) {
@@ -43,63 +57,6 @@ for(let property in formTextPropertys) {
         .style[property] = formTextPropertys[property]
 }
 
-
-/* document.querySelector('.form').style.cssText = `
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 300px;
-    background-color: #7fffd4;
-    box-shadow: 3px 3px 15px 1px rgba(0,0,0,0.2);
-    padding: 25px;
-    border-radius: 15px;
-` */
-
-
-
-/* document.querySelector('.form__text').style.cssText = `
-    font-size: 30px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 15px
-` */
-
-
-
-/* document.querySelector('.input').style.cssText = `
-    font: inherit;
-    border: 0;
-    border-radius: 5px;
-
-` */
-
-
-
-
-
-/* new InputsGroup(`#form-padding`).init() */
-
-/* new Input("#form-br",".form").init()
-
-
-new Input("#form-title-size",".form__text").init()
-
-new Select("#form-title-weight", ".form__text").init()
-
-new Select("#form-title-style", ".form__text").init()
-
-new Input("#form-title-mb",".form__text").init()
-
-new TextAlign('.form__text','#btn-title-r', '#btn-title-c', '#btn-title-l').init()
-
-
- */
-
-
 ///////////////////////////////////////////////////////////////////// 
 
 
@@ -108,13 +65,6 @@ function render() {
     formElements.forEach((e)=>{e.render()})
 }
 
-
-
-
-
-
-/* const inputsAlign = new TextAlign('.input','#btn-input-r', '#btn-input-c', '#btn-input-l')
-inputsAlign.init() */
 
 
 ///////////////////////////////////////////////////////////////////// 
@@ -188,51 +138,34 @@ function addNewInput() {
         const name = createWindow.querySelector(`#input-name`).value
         let id = createWindow.querySelector(`#input-id`).value
         createInput(type,place,name,id)
-       /*  const type = createWindow.querySelector(`.window-create__select`).value
-        const place = createWindow.querySelector(`#input-placeholder`).value
-        const name = createWindow.querySelector(`#input-name`).value
-        let id = createWindow.querySelector(`#input-id`).value
-        
-        id ? `` : id = `input-${autoId++}`
-
-        const getPlaceholder = () => {
-            return place ? `placeholder="${place}"` : ``
-        }
-        const getName = () =>  {
-            return name ? `name="${name}"` : `name="${type}"`
-        }
-
-        const div = document.createElement(`div`);
-        const delBtn = document.createElement(`button`)
-        div.classList.add(`input-group`)
-        div.innerHTML += `<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
-        div.classList.add(`interact`)
-        
-        delBtn.classList.add(`btn-del`)
-        delBtn.setAttribute('data-index',`${formElements.length}`)
-        delBtn.addEventListener('click',(e)=>{
-                e.preventDefault()
-
-                formElements[e.target.dataset.index].remove()
-                formElements.splice(e.target.dataset.index,1)
-                reIndex()
-
-            })
-        div.append(delBtn) 
-        form.append(div) 
-
-        setInputStyle(div.querySelector('.input'))
-
-        new TextAlign(`#${id}`,'#btn-input-r', '#btn-input-c', '#btn-input-l').init()
-
-        formElements.push(div) */
-
 
         createForm.reset()
         createWindow.classList.remove(`visible`)
 
     },{once: true})
 }
+
+
+function createbutton(type, btnText) {
+    const div = document.createElement(`div`)
+    div.classList.add(`input-group`)
+    div.style.display = 'flex'
+    div.style.justifyContent = 'center'
+    const btn = document.createElement(`button`)
+    btn.classList.add('btn')
+    btn.textContent = btnText
+    btn.type = type
+
+    for(let property in btnSubmitProperty) {
+        btn.style[property] = btnSubmitProperty[property]
+    }
+
+    div.append(btn) 
+    form.append(div) 
+
+    return div
+}
+
 
 
 function createInput(typeInput,placeInput,nameInput,idInput){
@@ -277,12 +210,17 @@ function createInput(typeInput,placeInput,nameInput,idInput){
 
     setInputStyle(div.querySelector('.input'))
 
-    /* new TextAlign(`#${id}`,'#btn-input-r', '#btn-input-c', '#btn-input-l').init() */
-
     formElements.push(div)
+
+    return div
 }
 
 
 function addNewElement() {
     elements[id] = form.querySelector(`#${id}`)
 }
+
+
+
+
+
