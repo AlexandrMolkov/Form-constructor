@@ -1,7 +1,7 @@
 "use strict"
 
 
-
+/* 
 function createButton() {
     const div = document.createElement('div')
     const btn = document.createElement('button')
@@ -9,7 +9,8 @@ function createButton() {
     btn.textContent = 'submit'
     div.append(btn)
     form.append(div)
-}
+
+} */
 
 
 
@@ -39,10 +40,6 @@ document.querySelectorAll('.form-settings')
 
 
 ///////////////////////////////////////////////////////////////////// Init
-
-
-createInput("text",":)")
-createbutton('submit','SUBMIT')
 
 
 
@@ -145,8 +142,32 @@ function addNewInput() {
     },{once: true})
 }
 
+createFormInput("text",":)")
+createSubmitButton('submit','SUBMIT')
+createExitButton()
 
-function createbutton(type, btnText) {
+function createExitButton(){
+    const btn = document.createElement(`button`)
+    btn.classList.add('btn','btnExt')
+    btn.textContent = 'X'
+    form.append(btn) 
+    
+    for(let property in btnExitProperty) {
+        btn.style[property] = btnExitProperty[property]
+    }
+    btn.addEventListener('mouseover', ()=>{
+        for(let property in btnExitPropertyHover){
+            btn.style[property] = btnExitPropertyHover[property]
+        }
+    })
+    btn.addEventListener('mouseout', ()=>{
+        for(let property in btnExitPropertyHover) {
+            btn.style[property] = btnExitProperty[property]
+        }
+    })
+}
+
+function createSubmitButton(type, btnText) {
     const div = document.createElement(`div`)
     div.classList.add(`input-group`)
     div.style.display = 'flex'
@@ -159,6 +180,17 @@ function createbutton(type, btnText) {
     for(let property in btnSubmitProperty) {
         btn.style[property] = btnSubmitProperty[property]
     }
+    btn.addEventListener('mouseover', ()=>{
+        for(let property in btnSubmitPropertyHover){
+            btn.style[property] = btnSubmitPropertyHover[property]
+            console.log('hover')
+        }
+    })
+    btn.addEventListener('mouseout', ()=>{
+        for(let property in btnSubmitProperty) {
+            btn.style[property] = btnSubmitProperty[property]
+        }
+    })
 
     div.append(btn) 
     form.append(div) 
@@ -166,9 +198,7 @@ function createbutton(type, btnText) {
     return div
 }
 
-
-
-function createInput(typeInput,placeInput,nameInput,idInput){
+function createFormInput(typeInput,placeInput,nameInput,idInput){
     
     const type = typeInput
     const place = placeInput

@@ -60,8 +60,40 @@ const btnSubmitProperty = {
     padding: '0',
     width: `120px`,
     height: `40px`,
-    background: `green`,
+    background: `white`,
+    color: `black`,
     borderRadius: '25px',
     fontSize: '18px',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    transition: 'all 0.3s' 
+}
+
+const btnSubmitPropertyHover = {
+    cursor: 'pointer',
+    background: `green`,
+    color: `white`,
+}
+
+const btnExitProperty = {
+    position: 'absolute',
+    left: `92%`,
+    top: `-5%`,
+    padding: '0',
+    width: `40px`,
+    height: `40px`,
+    background: `red`,
+    color: `black`,
+    fontSize: '18px',
+    textTransform: 'uppercase',
+    transition: 'all 0.3s',
+    borderRadius: '25px',
+    borderStyle: 'solid',
+    borderColor: 'black',
+    borderWidth: '0'
+}
+
+const btnExitPropertyHover = {
+    cursor: 'pointer',
+    background: `green`,
+    color: `white`,
 }

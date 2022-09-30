@@ -10,6 +10,10 @@ addInputButton.id = 'addInput'
 addInputButton.textContent = 'Add input'
 sidebar.prepend(addInputButton)
 
+
+
+
+
 class FormSettings {
     constructor(title) {
         this.title = title,
@@ -62,7 +66,6 @@ class FormSettings {
 }
 
 function changeProperty(inp) {
-    console.log()
     const targets = document.querySelectorAll(`${inp.getAttribute('data-target')}`)
     targets.forEach((target)=>{
         const units = inp.nextElementSibling?.firstChild?.value
@@ -127,7 +130,6 @@ function createInput(type,property,target, defaultVal, func){
     })
 
     if(input.getAttribute('type') === 'color') input.style.width = '100%'
-
     return input
 }
 
@@ -394,7 +396,12 @@ function createInputTextShadow(target){
 }
 
 function createLinearGradient(target){
-    const ElementTarget = document.querySelector(target)
+
+    let ElementTarget
+
+    setTimeout(() => {
+        ElementTarget = document.querySelector(target)
+    }, 1000);
 
     const inputsWrapper = document.createElement('div')
 
@@ -458,6 +465,8 @@ formSets.addSidebarGroupItem('border',
     createText('Style'),cretateSelect('borderStyle','.form',borderStyle),
     createText('Color'),createInput('color','borderColor','.form')
     )
+
+
 const formTitle = new FormSettings('Title')
 formTitle.create()
 formTitle.addSidebarGroupItem('Title',cretateTextContentInput('.form__text','Hello!'))
@@ -468,6 +477,8 @@ formTitle.addSidebarGroupItem('Title Weight',cretateSelect('fontWeight','.form__
 formTitle.addSidebarGroupItem('Title Style',cretateSelect('fontStyle','.form__text', styles, styles[0]))
 formTitle.addSidebarGroupItem('Title Shadow',createInputTextShadow('.form__text'))
 formTitle.addSidebarGroupItem('Title Margin Bottom',createInput('number','marginBottom','.form__text',formTextPropertys.marginBottom),createUnitsSelect())
+
+
 
 const inputsSets = new FormSettings('Inputs')
 inputsSets.create()
@@ -480,10 +491,34 @@ inputsSets.addSidebarGroupItem('border',
     )
 inputsSets.addSidebarGroupItem('Color',createInput('color','color','.input',inputsPropertys.color))
 inputsSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.input',inputsPropertys.backgroundColor))
+inputsSets.addSidebarGroupItem('Align', textAlign('.input'))
 
 
-const buttonsSets = new FormSettings('Buttons')
+
+const buttonsSets = new FormSettings('Submit Button')
 buttonsSets.create()
 buttonsSets.addSidebarGroupItem('padding',createInput('number','padding','.btn',btnSubmitProperty.padding),createUnitsSelect())
 buttonsSets.addSidebarGroupItem('width',createInput('number','width','.btn',btnSubmitProperty.width),createUnitsSelect())
 buttonsSets.addSidebarGroupItem('height',createInput('number','height','.btn',btnSubmitProperty.height),createUnitsSelect())
+buttonsSets.addSidebarGroupItem('background Color',createInput('color','backgroundColor','.btn',btnSubmitProperty.backgroundColor))
+buttonsSets.addSidebarGroupItem('Color',createInput('color','color','.btn',btnSubmitProperty.color))
+buttonsSets.addSidebarGroupItem('Background gradient',createLinearGradient('.btn'))
+
+
+
+const buttonsExitSets = new FormSettings('Exit Button')
+buttonsExitSets.create()
+buttonsExitSets.addSidebarGroupItem('padding',createInput('number','padding','.btnExt',btnExitProperty.padding),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('width',createInput('number','width','.btnExt',btnExitProperty.width),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('height',createInput('number','height','.btnExt',btnExitProperty.height),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('Left',createInput('number','left','.btnExt',btnExitProperty.left),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('Top',createInput('number','top','.btnExt',btnExitProperty.top),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('Border Radius',createInput('number','borderRadius','.btnExt',btnExitProperty.borderRadius),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('border',
+    createText('Width'),createInput('number','borderWidth','.btnExt',btnExitProperty.borderWidth),createUnitsSelect(),
+    createText('Style'),cretateSelect('borderStyle','.btnExt',borderStyle, btnExitProperty.borderStyle),
+    createText('Color'),createInput('color','borderColor','.btnExt',btnExitProperty.borderColor)
+    )
+buttonsExitSets.addSidebarGroupItem('background Color',createInput('color','backgroundColor','.btnExt',btnExitProperty.backgroundColor))
+buttonsExitSets.addSidebarGroupItem('Color',createInput('color','color','.btnExt',btnExitProperty.color))
+buttonsExitSets.addSidebarGroupItem('Background gradient',createLinearGradient('.btnExt'))

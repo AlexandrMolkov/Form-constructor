@@ -83,9 +83,10 @@ function outCss() {
 
     codeOut.value = `.form {\n \t ` + form.getAttribute('style') + `\n }`
     codeOut.value +=`\n.form__text {\n \t ` + formText.getAttribute('style') + `\n }`
-
     codeOut.value += formInputGroup && formInputGroup.getAttribute('style') ? `\n .form__text {\n \t ` + formInputGroup.getAttribute('style') + `\n }` : ``
     codeOut.value += formInput && formInput.getAttribute('style') ? `\n .input {\n \t ` + formInput.getAttribute('style') + `\n }` : ``
+    codeOut.value += formInput.getAttribute('btn') + `\n }`
+    codeOut.value += formInput.getAttribute('btn btnExt') + `\n }`
 }
 
 
