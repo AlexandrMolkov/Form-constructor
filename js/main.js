@@ -4,22 +4,30 @@ let autoId = 1;
 const formElements = []
 
 const formSettings = document.querySelectorAll('.form-settings')
-const form = document.querySelector(`.form`)
+/* const form = document.querySelector(`.form`) */
 
 
 
-const inputsSettings = {
-    textAlign: 'left',
-    padding: '5px 10px',
-    borderRadius: '50px',
-    border: {
-        width: '',
-        style: '',
-        color: ''
-    },
-    color: '',
-    backgroundColor: ''
+function createForm() {
+
+    const result = document.createElement('div')
+    result.classList.add('result')
+    const form = document.createElement('form')
+    form.action = '#'
+    const p = document.createElement('p')
+    p.classList.add('form__text')
+    p.textContent = 'Hello!'
+    form.append(p)
+    form.classList.add('form')
+    result.append(form)
+
+    document.querySelector('.main').prepend(result)
+
+    return form
 }
+const form = createForm()
+
+
 
 const formPropertys = {
     display: 'flex',
@@ -29,11 +37,14 @@ const formPropertys = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '300px',
-    backgroundColor: '#7fffd4',
+    backgroundColor: '#54a4f9',
     boxShadow: '3px 3px 15px 1px rgba(0,0,0,0.2)',
-    padding: '25px',
+    paddingTop: '25px',
+    paddingBottom: '25px',
+    paddingLeft: '25px',
+    paddingRight: '25px',
     borderRadius: '15px',
-    borderStyle: 'solid',
+    borderStyle: 'dotted',
     borderColor: 'black',
     borderWidth: '0',
 }
@@ -43,21 +54,21 @@ const formTextPropertys = {
     fontStyle: 'normal',
     fontWeight: '700',
     textAlign: 'center',
-    marginBottom: '15px'
+    marginBottom: '30px'
 }
 
 const inputsPropertys = {
     font: 'inherit',
-    border: '0',
-    borderRadius: '5px',
-    padding: '5px 10px',
+    borderRadius: '15px',
+    padding: '5px 15px',
     borderStyle: 'solid',
     borderColor: 'black',
-    borderWidth: '0'
+    borderWidth: '0',
 }
 
 const btnSubmitProperty = {
     padding: '0',
+    border: '0',
     width: `120px`,
     height: `40px`,
     background: `white`,
@@ -65,23 +76,32 @@ const btnSubmitProperty = {
     borderRadius: '25px',
     fontSize: '18px',
     textTransform: 'uppercase',
+    transform: 'skewX(0deg) scale(1)',
     transition: 'all 0.3s' 
+}
+
+const btnSubmitTextProperty = {
+    transform: 'skewX(0deg)',
+    display: 'block',
+    transition: 'all 0.3s' 
+}
+const btnSubmitTextPropertyHover = {
+    transform: 'skewX(-15deg)',
 }
 
 const btnSubmitPropertyHover = {
     cursor: 'pointer',
-    background: `green`,
-    color: `white`,
+    transform: 'skewX(15deg) scale(1.2)'
 }
 
 const btnExitProperty = {
     position: 'absolute',
-    left: `92%`,
-    top: `-5%`,
+    left: `86%`,
+    top: `3px`,
     padding: '0',
     width: `40px`,
     height: `40px`,
-    background: `red`,
+    background: `transparent`,
     color: `black`,
     fontSize: '18px',
     textTransform: 'uppercase',
@@ -94,6 +114,5 @@ const btnExitProperty = {
 
 const btnExitPropertyHover = {
     cursor: 'pointer',
-    background: `green`,
-    color: `white`,
+    color: `red`
 }

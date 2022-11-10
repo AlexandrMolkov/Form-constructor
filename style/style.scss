@@ -1,4 +1,4 @@
-@import "_null";
+@import "_null", "_scroll";
 
 
 *,
@@ -11,7 +11,7 @@
 
 
 .wrapper {
-    max-width: 1210px;
+    max-width: 1920px;
     padding: 0 5px;
     margin: 0 auto;
     display: flex;
@@ -19,6 +19,7 @@
 
 body {
     overflow: hidden;
+    background-color: #e1e1e1;
 }
 
 body,.wrapper,.main{
@@ -28,9 +29,8 @@ body,.wrapper,.main{
 .sidebar{
     width: 300px;
     /* background: #4ff7ee; */
-    background-color: #e1e1e1;
     
-    overflow: auto;
+    background-color: #e1e1e1;
 
     /* box-shadow: 0px 0px 70px 70px #65fbf3 inset; */
 }
@@ -130,7 +130,9 @@ body,.wrapper,.main{
     }
 }
 
-
+.sidebar{
+    /* overflow: hidden; */
+}
 
 .main {
     position: relative;
@@ -140,8 +142,7 @@ body,.wrapper,.main{
     display: flex;
     flex-direction: column;
 
-    background: linear-gradient(to top, rgb(191 191 191) 0%, rgb(181 181 181) 100%);
-    
+    background-color: #e1e1e1;
 }
 
 .result{
@@ -243,6 +244,10 @@ body,.wrapper,.main{
     width: 300px;
     background-color: #7fffd444;
     padding: 25px;
+    
+    label{
+        cursor: pointer;
+    }
 }
 .btn-del{
     color: white;
@@ -264,10 +269,6 @@ body,.wrapper,.main{
     &:hover .btn-del{
         background-color: red;
         cursor:pointer 
-    }
-    
-    &:not(:last-child){
-        margin-bottom: 15px;
     }
 
 }
@@ -405,3 +406,6 @@ body,.wrapper,.main{
     margin-right: 8px;
 }
 
+.Input-box-shadow-wrapper{
+    text-align: center;
+}

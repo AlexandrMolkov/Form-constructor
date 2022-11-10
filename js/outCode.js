@@ -3,8 +3,6 @@
 
 
 function getResult() {
-    //code.innerText = result.outerHTML
-    //code.innerText = result.outerHTML.replace('value`,`value=""')
     code.innerText = form.outerHTML.replace('>`,`>\n')
 }
 
@@ -17,12 +15,10 @@ document.querySelector(`#btnHtml`).addEventListener(`click`,outHtml)
 
 
 const tabs = function(num){
-    //console.log(num)
 
     let string ='';
     for(let i = 0; i < num; i++){
         string = string + `\t`
-        //console.log(`loop`)
     }
     return string
 }
@@ -57,7 +53,6 @@ const getNewString = function(string) {
             /* newArr.push(`X\n` + symb) */
             return newArr
         }
-       // console.log(`just push(symb) : ` + symb)
 
         newArr.push(symb)
 
@@ -65,29 +60,52 @@ const getNewString = function(string) {
     },[]).join(``)
 }
 
-
+const satastast = new String('sdasd')
 
 function outHtml() {
-    /* codeOut.value = form.outerHTML.replaceAll(/\s\s/g,'') */
     codeOut.value = getNewString(form.outerHTML.replaceAll(/\s\s/g,''))
         .replaceAll(/style="([^"]*)"/g,'')
         .replaceAll(/data-index="([^"]*)"/g,'')
-        .replaceAll(/<button class="btn-del" title="delete input" ><\/button>/g,'') 
+        .replaceAll(/<button class="btn-del" title="delete input" >[^"]*<\/button>/g,'') 
+}
 
+const str = new String('')
+
+const hovProp = (propertys) =>{
+
+    let res = ''
+
+    for(let property in propertys){
+        if(property.search(/[A-Z]/) > - 1) {
+            let newProperty = property.slice()
+            const ind = newProperty.indexOf(newProperty[newProperty.search(/[A-Z]/)])
+            const arr = newProperty.split('')
+            arr.splice(ind, 0, "-")
+            newProperty = arr.join('').toLowerCase()
+
+            res = res + `\t${newProperty}: ${propertys[property]};\n`
+            continue
+        }
+        res = res + `\t${property}: ${propertys[property]};\n`
+    }
+    return res
 }
 
 function outCss() {
     const formText = form.querySelector(`.form__text`)
     const formInputGroup = form.querySelector(`.input-group`)
     const formInput = form.querySelector(`.input`)
+    const btnSubm = form.querySelector(`.btnSubm`)
+    const btnExt = form.querySelector(`.btnExt`)
 
     codeOut.value = `.form {\n \t ` + form.getAttribute('style') + `\n }`
     codeOut.value +=`\n.form__text {\n \t ` + formText.getAttribute('style') + `\n }`
-    codeOut.value += formInputGroup && formInputGroup.getAttribute('style') ? `\n .form__text {\n \t ` + formInputGroup.getAttribute('style') + `\n }` : ``
+    codeOut.value += formInputGroup && formInputGroup.getAttribute('style') ? `\n .input-group {\n \t ` + formInputGroup.getAttribute('style') + `\n }` : ``
     codeOut.value += formInput && formInput.getAttribute('style') ? `\n .input {\n \t ` + formInput.getAttribute('style') + `\n }` : ``
-    codeOut.value += formInput.getAttribute('btn') + `\n }`
-    codeOut.value += formInput.getAttribute('btn btnExt') + `\n }`
+    codeOut.value += `\n .btnSubm {\n \t ` + btnSubm.getAttribute('style') + `\n }`
+    codeOut.value += `\n .btnSubm:hover {\n ` + hovProp(btnSubmitPropertyHover) + `\n }`
+    codeOut.value += `\n .btnExt {\n \t ` + btnExt.getAttribute('style') + `\n }`
+    codeOut.value += `\n .btnExt:hover {\n ` + hovProp(btnExitPropertyHover) + `\n }`
 }
-
 
 document.querySelector(`#btnСss`).addEventListener(`click`,outCss)

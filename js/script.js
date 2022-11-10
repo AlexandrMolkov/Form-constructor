@@ -50,64 +50,26 @@ for(let property in formPropertys) {
 
 for(let property in formTextPropertys) {
     
-    document.querySelector('.form__text')
+    form.querySelector('.form__text')
         .style[property] = formTextPropertys[property]
 }
 
 ///////////////////////////////////////////////////////////////////// 
 
+addInputButton.addEventListener(`click`,addNewInput)
 
+addRadioButton.addEventListener(`click`, ()=>{
+    createFormInput('radio','radio')
+})
 
-function render() {
-    formElements.forEach((e)=>{e.render()})
-}
-
-
-
-///////////////////////////////////////////////////////////////////// 
-
-
-
-
-class formInput {
-    constructor(id) {
-
-        this.id = id
-    }
-    
-    getPropertyes() {
-
-        return ``
-    }
-}
-
-
-
-function renderFormInputs() {
-
-    form.innerHTML = ""
-
-    formInputs.forEach((input)=>{
-        form.innerHTML += input.getPropertyes()
-    })
-
-}
-
-
-
-
-/////////////////////////////////////////////////////////////////////
-
-
-
-
-
-document.querySelector(`#addInput`).addEventListener(`click`,addNewInput)
+addCheckboxButton.addEventListener(`click`, ()=>{
+    createFormInput('checkbox','checkbox')
+})
 
 
 function setInputStyle(input) {
-    for(let property in inputsSettings) {
-        input.style[property] = inputsSettings[property]
+    for(let property in inputsPropertys) {
+        input.style[property] = inputsPropertys[property]
     }
 }
 
@@ -133,8 +95,9 @@ function addNewInput() {
         const type = createWindow.querySelector(`.window-create__select`).value
         const place = createWindow.querySelector(`#input-placeholder`).value
         const name = createWindow.querySelector(`#input-name`).value
-        let id = createWindow.querySelector(`#input-id`).value
-        createInput(type,place,name,id)
+        const id = createWindow.querySelector(`#input-id`).value
+        const label = createWindow.querySelector(`#input-label`).value
+        createFormInput(type,place,name,id,label)
 
         createForm.reset()
         createWindow.classList.remove(`visible`)
@@ -165,6 +128,9 @@ function createExitButton(){
             btn.style[property] = btnExitProperty[property]
         }
     })
+    btn.addEventListener('click', (e)=>{
+        e.preventDefault()
+    })
 }
 
 function createSubmitButton(type, btnText) {
@@ -172,9 +138,13 @@ function createSubmitButton(type, btnText) {
     div.classList.add(`input-group`)
     div.style.display = 'flex'
     div.style.justifyContent = 'center'
+    div.style.alignItems= 'center'
     const btn = document.createElement(`button`)
-    btn.classList.add('btn')
-    btn.textContent = btnText
+    btn.classList.add('btnSubm')
+    const span = document.createElement(`span`)
+    span.textContent = btnText
+   /*  btn.textContent = btnText */
+    btn.append(span)
     btn.type = type
 
     for(let property in btnSubmitProperty) {
@@ -183,13 +153,22 @@ function createSubmitButton(type, btnText) {
     btn.addEventListener('mouseover', ()=>{
         for(let property in btnSubmitPropertyHover){
             btn.style[property] = btnSubmitPropertyHover[property]
-            console.log('hover')
         }
+        for(let property in btnSubmitTextPropertyHover){
+            btn.firstChild.style[property] = btnSubmitTextPropertyHover[property]
+        }
+
     })
     btn.addEventListener('mouseout', ()=>{
         for(let property in btnSubmitProperty) {
             btn.style[property] = btnSubmitProperty[property]
         }
+        for(let property in btnSubmitTextProperty){
+            btn.firstChild.style[property] = btnSubmitTextProperty[property]
+        }
+    })
+    btn.addEventListener('click', (e)=>{
+        e.preventDefault()
     })
 
     div.append(btn) 
@@ -198,7 +177,7 @@ function createSubmitButton(type, btnText) {
     return div
 }
 
-function createFormInput(typeInput,placeInput,nameInput,idInput){
+function createFormInput(typeInput,placeInput,nameInput,idInput,label){
     
     const type = typeInput
     const place = placeInput
@@ -215,15 +194,24 @@ function createFormInput(typeInput,placeInput,nameInput,idInput){
     }
 
     const div = document.createElement(`div`);
+    div.style.display = 'flex'
+    div.style.justifyContent = 'center'
+    div.style.alignItems = 'center'
+    div.style.marginBottom = '15px'
     const delBtn = document.createElement(`button`)
     delBtn.classList.add(`btn-del`)
+    delBtn.textContent = 'X'
     delBtn.setAttribute('title', 'delete input')
     div.classList.add(`input-group`)
+
+    if (label) div.innerHTML += `<label style="margin-right:15px" for="${id}">${label}</label>`
+
     div.innerHTML +=`<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
     div.classList.add(`interact`)
     const newInp = div.querySelector('input')
-    for(let property in inputsSettings) {
-        newInp.style[property] = inputsSettings[property]
+   
+    for(let property in inputsPropertys) {
+        newInp.style[property] = inputsPropertys[property]
     }
     
     delBtn.setAttribute('data-index',`${formElements.length}`)
@@ -235,8 +223,10 @@ function createFormInput(typeInput,placeInput,nameInput,idInput){
             reIndex()
 
         })
-    div.append(delBtn) 
-    form.append(div) 
+    div.append(delBtn)
+    const inputs = form.querySelectorAll('.input')
+    if (inputs.length>0) inputs[inputs.length - 1].parentNode.after(div)
+    else {form.append(div)}
 
     setInputStyle(div.querySelector('.input'))
 
@@ -252,5 +242,10 @@ function addNewElement() {
 
 
 
+const simplebar = document.createElement('div')
+simplebar.setAttribute('data-simplebar','')
+sidebar.append(simplebar)
 
-
+new SimpleBar(document.getElementById('sidebar'),{
+    autoHide: false
+});

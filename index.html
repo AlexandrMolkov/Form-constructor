@@ -5,28 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+
+    <title>Form Constructor</title>
+
 </head>
 <body>
 
     <div class="wrapper">
 
-<!--         <aside class="sidebar">
-
-
-            <button class="add-input" id="addInput">Add input</button>
-
-        </aside> -->
-
         <main class="main">
-
-            <div class="result">
-
-                <form action="#" class="form"><p class="form__text">Hello!</p>
-
-                </form>
-
-            </div>
             
             <div class="code">
                 <div class="code__buttons">
@@ -37,54 +25,15 @@
             </div>
         </main>
 
-        <div class="window-create">
-
-            <form class="window-create__form" action="#">
-
-
-                <div class="window-create__group">
-                    <label class="window-create__label" for="text-type-select">Input type</label>
-                    <select class="window-create__select" name="input-type" id="text-type-select">
-
-                        <option value="text" class="window-create_option">text</option>
-                        <option value="password" class="window-create_option">password</option>
-                        <option value="password" class="window-create_option">email</option>
-                        <option value="phone" class="window-create_option">phone</option>
-                        
-                    </select>
-                </div>
-
-                <div class="window-create__group">
-                    <label class="window-create__label" for="input-placeholder">Placeholder</label>
-                    <input class="window-create__input" type="text" id="input-placeholder" name="placeholder" value="">
-                </div>
-                
-                <div class="window-create__group">
-                    <label class="window-create__label" for="input-name">Name</label>
-                    <input class="window-create__input" type="text" id="input-name" name="name" value="">
-                   
-                </div>
-
-                                
-                <div class="window-create__group">
-                    <label class="window-create__label" for="input-name">id</label>
-                    <input class="window-create__input" type="text" id="input-id" name="id" value="">
-                </div>
-
-                <div class="window-create__group">
-                    <button type="submit" class="window-create__btn">Confirm</button>
-                    <button type="button" class="window-create__btn">Cancel</button>
-                </div>
-            </form>
-
-        </div>
-
     </div>
     
     <script src="js/main.js"></script>
     <script src="js/sidebar.js"></script>
+    <script src="js/newInputPopup.js"></script>
     <script src="js/outCode.js"></script>
-    
+
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+
     <script src="js/script.js"></script>
 </body>
 </html>

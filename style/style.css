@@ -32,6 +32,10 @@ input {
   outline: 0;
 }
 
+.simplebar-scrollbar::before {
+  background-color: red;
+}
+
 *,
 *::before,
 *::after {
@@ -41,7 +45,7 @@ input {
 }
 
 .wrapper {
-  max-width: 1210px;
+  max-width: 1920px;
   padding: 0 5px;
   margin: 0 auto;
   display: flex;
@@ -49,6 +53,7 @@ input {
 
 body {
   overflow: hidden;
+  background-color: #e1e1e1;
 }
 
 body, .wrapper, .main {
@@ -59,7 +64,6 @@ body, .wrapper, .main {
   width: 300px;
   /* background: #4ff7ee; */
   background-color: #e1e1e1;
-  overflow: auto;
   /* box-shadow: 0px 0px 70px 70px #65fbf3 inset; */
 }
 
@@ -136,6 +140,10 @@ body, .wrapper, .main {
   padding-right: 5px;
 }
 
+.sidebar {
+  /* overflow: hidden; */
+}
+
 .main {
   position: relative;
   /* background: linear-gradient(to top, rgba(0,212,255,1) 0%,  rgba(79,247,238,1)  100%); */
@@ -143,7 +151,7 @@ body, .wrapper, .main {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to top, rgb(191, 191, 191) 0%, rgb(181, 181, 181) 100%);
+  background-color: #e1e1e1;
 }
 
 .result {
@@ -223,6 +231,9 @@ body, .wrapper, .main {
   background-color: rgba(127, 255, 212, 0.2666666667);
   padding: 25px;
 }
+.form label {
+  cursor: pointer;
+}
 
 .btn-del {
   color: white;
@@ -244,9 +255,6 @@ body, .wrapper, .main {
 .input-group:hover .btn-del {
   background-color: red;
   cursor: pointer;
-}
-.input-group:not(:last-child) {
-  margin-bottom: 15px;
 }
 
 .input {
@@ -338,4 +346,8 @@ body, .wrapper, .main {
   width: 15px;
   height: 15px;
   margin-right: 8px;
+}
+
+.Input-box-shadow-wrapper {
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */
