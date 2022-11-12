@@ -255,6 +255,7 @@ function createSelect(property,target,selectValues, prop) {
     selectInput.setAttribute('data-property',property)
     selectInput.setAttribute('data-target',target)
     select.append(selectInput)
+    console.log(prop[property])
     selectInput.value = prop[property]
     applyProperty(prop)
     
@@ -289,14 +290,10 @@ function createSelect(property,target,selectValues, prop) {
     lies.forEach((li)=> ul.append(li) )
     select.append(ul)
 
-    lies[0].parentElement.previousElementSibling.value = lies[0].dataset.value
-
     lies.forEach((li)=>{
         li.addEventListener('click',(e)=>{
             li.parentElement.previousElementSibling.value = li.dataset.value
             applyProperty(prop)
-/*             inputsSettings[e.target.parentElement.previousElementSibling.getAttribute('data-property')] 
-                = e.target.parentElement.previousElementSibling.value */
         })
     })
     return select

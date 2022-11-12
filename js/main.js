@@ -43,7 +43,7 @@ const propertys = {
         paddingLeft: '25px',
         paddingRight: '25px',
         borderRadius: '15px',
-        borderStyle: 'dotted',
+        borderStyle: 'solid',
         borderColor: 'black',
         borderWidth: '0',
     },
