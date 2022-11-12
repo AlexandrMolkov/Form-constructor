@@ -61,6 +61,7 @@ const propertys = {
         borderStyle: 'solid',
         borderColor: 'black',
         borderWidth: '0',
+        width: '100%',
     },
 
     btnSubmitProperty: {
