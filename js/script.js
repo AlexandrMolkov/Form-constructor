@@ -1,5 +1,12 @@
+import {propertys, form, autoId, formElements} from "./main.js"
+import {addInputButton, addRadioButton, addCheckboxButton} from "./sidebar.js"
+import "./newInputPopup.js"
+import "./outCode.js"
+
+
 "use strict"
 
+let autoID = autoId
 
 /* 
 function createButton() {
@@ -44,14 +51,14 @@ document.querySelectorAll('.form-settings')
 
 
 
-for(let property in formPropertys) {
-    form.style[property] = formPropertys[property]
+for(let property in propertys.formPropertys) {
+    form.style[property] = propertys.formPropertys[property]
 }
 
-for(let property in formTextPropertys) {
+for(let property in propertys.formTextPropertys) {
     
     form.querySelector('.form__text')
-        .style[property] = formTextPropertys[property]
+        .style[property] = propertys.formTextPropertys[property]
 }
 
 ///////////////////////////////////////////////////////////////////// 
@@ -68,8 +75,8 @@ addCheckboxButton.addEventListener(`click`, ()=>{
 
 
 function setInputStyle(input) {
-    for(let property in inputsPropertys) {
-        input.style[property] = inputsPropertys[property]
+    for(let property in propertys.inputsPropertys) {
+        input.style[property] = propertys.inputsPropertys[property]
     }
 }
 
@@ -115,17 +122,17 @@ function createExitButton(){
     btn.textContent = 'X'
     form.append(btn) 
     
-    for(let property in btnExitProperty) {
-        btn.style[property] = btnExitProperty[property]
+    for(let property in propertys.btnExitProperty) {
+        btn.style[property] = propertys.btnExitProperty[property]
     }
     btn.addEventListener('mouseover', ()=>{
-        for(let property in btnExitPropertyHover){
-            btn.style[property] = btnExitPropertyHover[property]
+        for(let property in propertys.btnExitPropertyHover){
+            btn.style[property] = propertys.btnExitPropertyHover[property]
         }
     })
     btn.addEventListener('mouseout', ()=>{
-        for(let property in btnExitPropertyHover) {
-            btn.style[property] = btnExitProperty[property]
+        for(let property in propertys.btnExitPropertyHover) {
+            btn.style[property] = propertys.btnExitProperty[property]
         }
     })
     btn.addEventListener('click', (e)=>{
@@ -147,24 +154,24 @@ function createSubmitButton(type, btnText) {
     btn.append(span)
     btn.type = type
 
-    for(let property in btnSubmitProperty) {
-        btn.style[property] = btnSubmitProperty[property]
+    for(let property in propertys.btnSubmitProperty) {
+        btn.style[property] = propertys.btnSubmitProperty[property]
     }
     btn.addEventListener('mouseover', ()=>{
-        for(let property in btnSubmitPropertyHover){
-            btn.style[property] = btnSubmitPropertyHover[property]
+        for(let property in propertys.btnSubmitPropertyHover){
+            btn.style[property] = propertys.btnSubmitPropertyHover[property]
         }
-        for(let property in btnSubmitTextPropertyHover){
-            btn.firstChild.style[property] = btnSubmitTextPropertyHover[property]
+        for(let property in propertys.btnSubmitTextPropertyHover){
+            btn.firstChild.style[property] = propertys.btnSubmitTextPropertyHover[property]
         }
 
     })
     btn.addEventListener('mouseout', ()=>{
-        for(let property in btnSubmitProperty) {
-            btn.style[property] = btnSubmitProperty[property]
+        for(let property in propertys.btnSubmitProperty) {
+            btn.style[property] = propertys.btnSubmitProperty[property]
         }
-        for(let property in btnSubmitTextProperty){
-            btn.firstChild.style[property] = btnSubmitTextProperty[property]
+        for(let property in propertys.btnSubmitTextProperty){
+            btn.firstChild.style[property] = propertys.btnSubmitTextProperty[property]
         }
     })
     btn.addEventListener('click', (e)=>{
@@ -184,7 +191,7 @@ function createFormInput(typeInput,placeInput,nameInput,idInput,label){
     const name = nameInput
     let id = idInput
     
-    id ? `` : id = `input-${autoId++}`
+    id ? `` : id = `input-${autoID++}`
 
     const getPlaceholder = () => {
         return place ? `placeholder="${place}"` : ``
@@ -210,8 +217,8 @@ function createFormInput(typeInput,placeInput,nameInput,idInput,label){
     div.classList.add(`interact`)
     const newInp = div.querySelector('input')
    
-    for(let property in inputsPropertys) {
-        newInp.style[property] = inputsPropertys[property]
+    for(let property in propertys.inputsPropertys) {
+        newInp.style[property] = propertys.inputsPropertys[property]
     }
     
     delBtn.setAttribute('data-index',`${formElements.length}`)

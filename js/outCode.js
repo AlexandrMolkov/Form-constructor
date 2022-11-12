@@ -1,3 +1,5 @@
+import {propertys, form} from "./main.js"
+
 "use strict"
 
 
@@ -103,9 +105,9 @@ function outCss() {
     codeOut.value += formInputGroup && formInputGroup.getAttribute('style') ? `\n .input-group {\n \t ` + formInputGroup.getAttribute('style') + `\n }` : ``
     codeOut.value += formInput && formInput.getAttribute('style') ? `\n .input {\n \t ` + formInput.getAttribute('style') + `\n }` : ``
     codeOut.value += `\n .btnSubm {\n \t ` + btnSubm.getAttribute('style') + `\n }`
-    codeOut.value += `\n .btnSubm:hover {\n ` + hovProp(btnSubmitPropertyHover) + `\n }`
+    codeOut.value += `\n .btnSubm:hover {\n ` + hovProp(propertys.btnSubmitPropertyHover) + `\n }`
     codeOut.value += `\n .btnExt {\n \t ` + btnExt.getAttribute('style') + `\n }`
-    codeOut.value += `\n .btnExt:hover {\n ` + hovProp(btnExitPropertyHover) + `\n }`
+    codeOut.value += `\n .btnExt:hover {\n ` + hovProp(propertys.btnExitPropertyHover) + `\n }`
 }
 
 document.querySelector(`#btnСss`).addEventListener(`click`,outCss)

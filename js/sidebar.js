@@ -1,3 +1,7 @@
+import {propertys} from "./main.js"
+
+"use strict"
+
 /* const sidebar = document.querySelector('.sidebar') */
 
 const sidebar = document.createElement('aside')
@@ -104,16 +108,16 @@ function disableGradient(target) {
 }
 
 function textAlign(target, propertys) {
-    div = document.createElement(`div`)
+    const div = document.createElement(`div`)
     div.setAttribute('data-target', target)
     div.classList.add('sidebar-group__input')
-    btnLeft = document.createElement(`button`)
+    const btnLeft = document.createElement(`button`)
     btnLeft.classList.add('button-align', 'button-align-left')
     btnLeft.dataset.value = "left"
-    btnCenter = document.createElement(`button`)
+    const btnCenter = document.createElement(`button`)
     btnCenter.classList.add('button-align', 'button-align-center')
     btnCenter.dataset.value = "center"
-    btnRight = document.createElement(`button`)
+    const btnRight = document.createElement(`button`)
     btnRight.classList.add('button-align', 'button-align-right')
     btnRight.dataset.value = "right"
     div.append(btnLeft)
@@ -252,7 +256,6 @@ function createSelect(property,target,selectValues, prop) {
     selectInput.setAttribute('data-target',target)
     select.append(selectInput)
     selectInput.value = prop[property]
-    console.log(prop)
     applyProperty(prop)
     
     function applyProperty(propertys) {
@@ -346,6 +349,7 @@ function createInputBoxShadow(target, prop){
     function createBoxShadowInput(attributes, property, text) {
             const newInput = document.createElement('input')
             newInput.classList.add('sidebar-group__input')
+            console.log(attributes)
             for(attr in attributes) {
                 newInput.setAttribute(attr, attributes[attr])
             }
@@ -530,21 +534,21 @@ const weight = ['100','200','300','400','500','600','700','800','900']
 const styles = ['normal','italic','oblique','inherit']
 const formSets = new FormSettings('Form')
 formSets.create()
-formSets.addSidebarGroupItem('width',createInput('number','width','.form', formPropertys),createUnitsSelect(formPropertys))
+formSets.addSidebarGroupItem('width',createInput('number','width','.form', propertys.formPropertys),createUnitsSelect(propertys.formPropertys))
 formSets.addSidebarGroupItem('padding',
-    createText('Top'),createInput('number','paddingTop','.form', formPropertys),createUnitsSelect(),
-    createText('Bottom'),createInput('number','paddingBottom','.form', formPropertys),createUnitsSelect(),
-    createText('Left'),createInput('number','paddingLeft','.form', formPropertys),createUnitsSelect(),
-    createText('Right'),createInput('number','paddingRight','.form', formPropertys),createUnitsSelect()
+    createText('Top'),createInput('number','paddingTop','.form', propertys.formPropertys),createUnitsSelect(),
+    createText('Bottom'),createInput('number','paddingBottom','.form', propertys.formPropertys),createUnitsSelect(),
+    createText('Left'),createInput('number','paddingLeft','.form', propertys.formPropertys),createUnitsSelect(),
+    createText('Right'),createInput('number','paddingRight','.form', propertys.formPropertys),createUnitsSelect()
     )
-formSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.form', formPropertys,disableGradient))
+formSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.form', propertys.formPropertys,disableGradient))
 formSets.addSidebarGroupItem('Background gradient',createLinearGradient('.form'))
-formSets.addSidebarGroupItem('Shadow',createInputBoxShadow('.form',formPropertys))
-formSets.addSidebarGroupItem('border Radius',createInput('number','borderRadius','.form', formPropertys),createUnitsSelect())
+/* formSets.addSidebarGroupItem('Shadow',createInputBoxShadow('.form', propertys.formPropertys)) */
+formSets.addSidebarGroupItem('border Radius',createInput('number','borderRadius','.form', propertys.formPropertys),createUnitsSelect())
 formSets.addSidebarGroupItem('border',
-    createText('Width'),createInput('number','borderWidth','.form', formPropertys),createUnitsSelect(),
-    createText('Style'),createSelect('borderStyle','.form',borderStyle,formPropertys),
-    createText('Color'),createInput('color','borderColor','.form',formPropertys)
+    createText('Width'),createInput('number','borderWidth','.form', propertys.formPropertys),createUnitsSelect(),
+    createText('Style'),createSelect('borderStyle','.form',borderStyle, propertys.formPropertys),
+    createText('Color'),createInput('color','borderColor','.form', propertys.formPropertys)
     )
 
 
@@ -552,69 +556,69 @@ const formTitle = new FormSettings('Title')
 formTitle.create()
 formTitle.addSidebarGroupItem('Title',createTextContentInput('.form__text','Hello!'))
 formTitle.addSidebarGroupItem('Align', textAlign('.form__text'))
-formTitle.addSidebarGroupItem('Title Font Size',createInput('number','fontSize','.form__text',formTextPropertys),createUnitsSelect())
-formTitle.addSidebarGroupItem('Title Color',createInput('color','color','.form__text',formTextPropertys))
-formTitle.addSidebarGroupItem('Title Weight',createSelect('fontWeight','.form__text', weight, weight[6]))
-formTitle.addSidebarGroupItem('Title Style',createSelect('fontStyle','.form__text', styles, styles[0]))
+formTitle.addSidebarGroupItem('Title Font Size',createInput('number','fontSize','.form__text', propertys.formTextPropertys),createUnitsSelect())
+formTitle.addSidebarGroupItem('Title Color',createInput('color','color','.form__text', propertys.formTextPropertys))
+formTitle.addSidebarGroupItem('Title Weight',createSelect('fontWeight','.form__text', weight, propertys.formTextPropertys))
+formTitle.addSidebarGroupItem('Title Style',createSelect('fontStyle','.form__text', styles, propertys.formTextPropertys))
 formTitle.addSidebarGroupItem('Title Shadow',createInputTextShadow('.form__text'))
-formTitle.addSidebarGroupItem('Title Margin Bottom',createInput('number','marginBottom','.form__text',formTextPropertys),createUnitsSelect())
+formTitle.addSidebarGroupItem('Title Margin Bottom',createInput('number','marginBottom','.form__text', propertys.formTextPropertys),createUnitsSelect())
 
 
 
 const inputsSets = new FormSettings('Inputs')
 inputsSets.create()
-inputsSets.addSidebarGroupItem('padding',createInput('number','padding','.input',inputsPropertys),createUnitsSelect())
-inputsSets.addSidebarGroupItem('Border-Radius',createInput('number','borderRadius','.input',inputsPropertys),createUnitsSelect())
+inputsSets.addSidebarGroupItem('padding',createInput('number','padding','.input', propertys.inputsPropertys),createUnitsSelect())
+inputsSets.addSidebarGroupItem('Border-Radius',createInput('number','borderRadius','.input', propertys.inputsPropertys),createUnitsSelect())
 inputsSets.addSidebarGroupItem('border',
-    createText('Width'),createInput('number','borderWidth','.input',inputsPropertys),createUnitsSelect(),
-    createText('Style'),createSelect('borderStyle','.input',borderStyle, inputsPropertys),
-    createText('Color'),createInput('color','borderColor','.input',inputsPropertys)
+    createText('Width'),createInput('number','borderWidth','.input', propertys.inputsPropertys),createUnitsSelect(),
+    createText('Style'),createSelect('borderStyle','.input',borderStyle, propertys.inputsPropertys),
+    createText('Color'),createInput('color','borderColor','.input', propertys.inputsPropertys)
     )
-inputsSets.addSidebarGroupItem('Color',createInput('color','color','.input',inputsPropertys))
-inputsSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.input',inputsPropertys))
-inputsSets.addSidebarGroupItem('Align', textAlign('.input', inputsPropertys))
+inputsSets.addSidebarGroupItem('Color',createInput('color','color','.input', propertys.inputsPropertys))
+inputsSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.input', propertys.inputsPropertys))
+inputsSets.addSidebarGroupItem('Align', textAlign('.input', propertys.nputsPropertys))
 
 
 
 const buttonsSets = new FormSettings('Submit Button')
 buttonsSets.create()
-buttonsSets.addSidebarGroupItem('padding',createInput('number','padding','.btnSubm',btnSubmitProperty),createUnitsSelect())
-buttonsSets.addSidebarGroupItem('width',createInput('number','width','.btnSubm',btnSubmitProperty),createUnitsSelect())
-buttonsSets.addSidebarGroupItem('height',createInput('number','height','.btnSubm',btnSubmitProperty),createUnitsSelect())
-buttonsSets.addSidebarGroupItem('background Color',createInput('color','backgroundColor','.btnSubm',btnSubmitProperty))
-buttonsSets.addSidebarGroupItem('Color',createInput('color','color','.btnSubm',btnSubmitProperty))
+buttonsSets.addSidebarGroupItem('padding',createInput('number','padding','.btnSubm', propertys.btnSubmitProperty),createUnitsSelect())
+buttonsSets.addSidebarGroupItem('width',createInput('number','width','.btnSubm', propertys.btnSubmitProperty),createUnitsSelect())
+buttonsSets.addSidebarGroupItem('height',createInput('number','height','.btnSubm', propertys.btnSubmitProperty),createUnitsSelect())
+buttonsSets.addSidebarGroupItem('background Color',createInput('color','backgroundColor','.btnSubm', propertys.btnSubmitProperty))
+buttonsSets.addSidebarGroupItem('Color',createInput('color','color','.btnSubm', propertys.btnSubmitProperty))
 buttonsSets.addSidebarGroupItem('Background gradient',createLinearGradient('.btnSubm'))
 
 const buttonsSetsHover = new FormSettings('Submit Button Hover')
 buttonsSetsHover.create()
-buttonsSetsHover.addSidebarGroupItem('Background color',createInputHover('color','backgroundColor',btnSubmitPropertyHover))
-buttonsSetsHover.addSidebarGroupItem('Color',createInputHover('color','color',btnSubmitPropertyHover))
-buttonsSetsHover.addSidebarGroupItem('Width',createInputHover('number','width',btnSubmitPropertyHover),createUnitsSelect())
-buttonsSetsHover.addSidebarGroupItem('Height',createInputHover('number','height',btnSubmitPropertyHover),createUnitsSelect())
+buttonsSetsHover.addSidebarGroupItem('Background color',createInputHover('color','backgroundColor', propertys.btnSubmitPropertyHover))
+buttonsSetsHover.addSidebarGroupItem('Color',createInputHover('color','color', propertys.btnSubmitPropertyHover))
+buttonsSetsHover.addSidebarGroupItem('Width',createInputHover('number','width', propertys.btnSubmitPropertyHover),createUnitsSelect())
+buttonsSetsHover.addSidebarGroupItem('Height',createInputHover('number','height', propertys.btnSubmitPropertyHover),createUnitsSelect())
 
 const buttonsExitSets = new FormSettings('Exit Button')
 buttonsExitSets.create()
-buttonsExitSets.addSidebarGroupItem('padding',createInput('number','padding','.btnExt',btnExitProperty),createUnitsSelect())
-buttonsExitSets.addSidebarGroupItem('width',createInput('number','width','.btnExt',btnExitProperty),createUnitsSelect())
-buttonsExitSets.addSidebarGroupItem('height',createInput('number','height','.btnExt',btnExitProperty),createUnitsSelect())
-buttonsExitSets.addSidebarGroupItem('Left',createInput('number','left','.btnExt',btnExitProperty),createUnitsSelect())
-buttonsExitSets.addSidebarGroupItem('Top',createInput('number','top','.btnExt',btnExitProperty),createUnitsSelect())
-buttonsExitSets.addSidebarGroupItem('Border Radius',createInput('number','borderRadius','.btnExt',btnExitProperty),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('padding',createInput('number','padding','.btnExt', propertys.btnExitProperty),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('width',createInput('number','width','.btnExt', propertys.btnExitProperty),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('height',createInput('number','height','.btnExt', propertys.btnExitProperty),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('Left',createInput('number','left','.btnExt', propertys.btnExitProperty),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('Top',createInput('number','top','.btnExt', propertys.btnExitProperty),createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('Border Radius',createInput('number','borderRadius','.btnExt', propertys.btnExitProperty),createUnitsSelect())
 buttonsExitSets.addSidebarGroupItem('border',
-    createText('Width'),createInput('number','borderWidth','.btnExt',btnExitProperty),createUnitsSelect(),
-    createText('Style'),createSelect('borderStyle','.btnExt',borderStyle, btnExitProperty),
-    createText('Color'),createInput('color','borderColor','.btnExt',btnExitProperty)
+    createText('Width'),createInput('number','borderWidth','.btnExt', propertys.btnExitProperty),createUnitsSelect(),
+    createText('Style'),createSelect('borderStyle','.btnExt',borderStyle, propertys.btnExitProperty),
+    createText('Color'),createInput('color','borderColor','.btnExt', propertys.btnExitProperty)
     )
-buttonsExitSets.addSidebarGroupItem('background Color',createInput('color','backgroundColor','.btnExt',btnExitProperty,disableGradient))
-buttonsExitSets.addSidebarGroupItem('Color',createInput('color','color','.btnExt',btnExitProperty))
+buttonsExitSets.addSidebarGroupItem('background Color',createInput('color','backgroundColor','.btnExt', propertys.btnExitProperty,disableGradient))
+buttonsExitSets.addSidebarGroupItem('Color',createInput('color','color','.btnExt', propertys.btnExitProperty))
 buttonsExitSets.addSidebarGroupItem('Background gradient',createLinearGradient('.btnExt'))
 
 const buttonExitHover = new FormSettings('Exit Button Hover')
 buttonExitHover.create()
-buttonExitHover.addSidebarGroupItem('Background color',createInputHover('color','backgroundColor',btnExitPropertyHover))
-buttonExitHover.addSidebarGroupItem('Color',createInputHover('color','color',btnExitPropertyHover))
-buttonExitHover.addSidebarGroupItem('Width',createInputHover('number','width',btnExitPropertyHover),createUnitsSelect())
-buttonExitHover.addSidebarGroupItem('Height',createInputHover('number','height',btnExitPropertyHover),createUnitsSelect())
+buttonExitHover.addSidebarGroupItem('Background color',createInputHover('color','backgroundColor', propertys.btnExitPropertyHover))
+buttonExitHover.addSidebarGroupItem('Color',createInputHover('color','color', propertys.btnExitPropertyHover))
+buttonExitHover.addSidebarGroupItem('Width',createInputHover('number','width', propertys.btnExitPropertyHover),createUnitsSelect())
+buttonExitHover.addSidebarGroupItem('Height',createInputHover('number','height', propertys.btnExitPropertyHover),createUnitsSelect())
 
 
 
@@ -622,3 +626,4 @@ buttonExitHover.addSidebarGroupItem('Height',createInputHover('number','height',
 
 
 
+export {addInputButton, addRadioButton, addCheckboxButton}
