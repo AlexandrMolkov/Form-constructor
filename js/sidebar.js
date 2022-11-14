@@ -28,6 +28,28 @@ addCheckboxButton.textContent = 'Add Checkbox'
 sidebar.prepend(addCheckboxButton)
 
 
+
+
+
+sidebar.addEventListener('mouseover',(e)=>{
+    if(e.target.classList.contains('select__li') || e.target.classList.contains('select__input')){
+        if (document.formGradientUse) {
+            e.target.style.background = propertys.formPropertys.background
+        } else {
+            e.target.style.background = propertys.formPropertys.backgroundColor
+        }
+        
+    }
+
+})
+sidebar.addEventListener('mouseout',(e)=>{
+    if(e.target.classList.contains('select__li') || e.target.classList.contains('select__input')){
+        e.target.style.background = 'white'
+    }
+})
+
+
+
 class FormSettings {
     constructor(title) {
         this.title = title,
@@ -104,6 +126,7 @@ function changeProperty(inp,propertys) {
 
 function disableGradient(target) {
     target.style.background = ''
+    document.formGradientUse = false
 }
 
 function textAlign(target, propertys) {
@@ -197,7 +220,6 @@ function createUnitsSelect(propertys, values=['px','em','%','inherit']){
     const ul = document.createElement('ul')
     ul.classList.add('select__ul')
 
-
     function createLi(...val) {                         //создаются элементы списка (селекта)               
         const elements = []
         val.forEach((elem)=>{
@@ -205,9 +227,8 @@ function createUnitsSelect(propertys, values=['px','em','%','inherit']){
             li.classList.add('select__li')
             li.setAttribute('data-value',elem)
             li.textContent = elem
-    
+
             elements.push(li)
-            /* ul.append(li) */
         })
         return elements
     }
@@ -217,6 +238,7 @@ function createUnitsSelect(propertys, values=['px','em','%','inherit']){
         lies.forEach((li)=> ul.append(li) )             // элементы списка в список   
         lies[0].parentElement.previousElementSibling.value = lies[0].dataset.value
         lies.forEach((li)=>{
+
             li.addEventListener('click',()=>{
                 const unitsInput =  li.parentElement.previousElementSibling
                 unitsInput.value = li.dataset.value
@@ -226,13 +248,6 @@ function createUnitsSelect(propertys, values=['px','em','%','inherit']){
     } else{
         selectInput.value = values[0]
     }
-     
-
-
-    
-
-
-
 
     return select
 }
@@ -254,7 +269,6 @@ function createSelect(property,target,selectValues, prop) {
     selectInput.setAttribute('data-property',property)
     selectInput.setAttribute('data-target',target)
     select.append(selectInput)
-    console.log(prop[property])
     selectInput.value = prop[property]
     applyProperty(prop)
     
@@ -290,11 +304,13 @@ function createSelect(property,target,selectValues, prop) {
     select.append(ul)
 
     lies.forEach((li)=>{
-        li.addEventListener('click',(e)=>{
+
+        li.addEventListener('click',()=>{
             li.parentElement.previousElementSibling.value = li.dataset.value
             applyProperty(prop)
         })
     })
+
     return select
 }
 
@@ -345,8 +361,7 @@ function createInputBoxShadow(target, prop){
     function createBoxShadowInput(attributes, property, text) {
             const newInput = document.createElement('input')
             newInput.classList.add('sidebar-group__input')
-            console.log(attributes)
-            for(attr in attributes) {
+            for(let attr in attributes) {
                 newInput.setAttribute(attr, attributes[attr])
             }
             newInput.value = propertys[property]
@@ -452,7 +467,6 @@ function createInputTextShadow(target){
     })
    
     const applyValue = () => {
-        console.log(propertys.color)
         finalValue = `
             ${propertys.xOffset}px 
             ${propertys.yOffset}px 
@@ -466,7 +480,7 @@ function createInputTextShadow(target){
     return inputsWrapper
 }
 
-function createLinearGradient(target){
+function createLinearGradient(target,prop){
 
     let ElementTarget
 
@@ -476,15 +490,17 @@ function createLinearGradient(target){
 
     const inputsWrapper = document.createElement('div')
 
-    const propertys = {
+    const gradientPropertys = {
         deg: '140deg',
         color1: '#fbfe48',
         color2: '#67db29'
     }
     const applychange = function() {
-        ElementTarget.style.background = `linear-gradient(
-            ${propertys.deg}deg, ${propertys.color1}, ${propertys.color2})`;
-           
+        const value = `linear-gradient(
+            ${gradientPropertys.deg}deg, ${gradientPropertys.color1}, ${gradientPropertys.color2})`;
+        ElementTarget.style.background = value
+        console.log(prop)
+        prop.background = value
         }
 
     const degInput = document.createElement('input')
@@ -492,9 +508,10 @@ function createLinearGradient(target){
     degInput.setAttribute('type','range')
     degInput.setAttribute('min','0')
     degInput.setAttribute('max','360')
-    degInput.value = propertys.deg
+    degInput.value = gradientPropertys.deg
     degInput.addEventListener('input',()=>{
-        propertys.deg = degInput.value
+        gradientPropertys.deg = degInput.value
+        document.formGradientUse = true
         applychange()
     })
     
@@ -503,26 +520,26 @@ function createLinearGradient(target){
 
     const color1Input = document.createElement('input')
         color1Input.setAttribute('type','color')
-        color1Input.value = propertys.color1
+        color1Input.value = gradientPropertys.color1
         color1Input.addEventListener('input',()=>{
-            propertys.color1 = color1Input.value
+            document.formGradientUse = true
+            gradientPropertys.color1 = color1Input.value
             applychange()
     })
     inputsWrapper.append(color1Input)
 
     const color2Input = document.createElement('input')
         color2Input.setAttribute('type','color')
-        color2Input.value = propertys.color2
+        color2Input.value = gradientPropertys.color2
         color2Input.addEventListener('input',()=>{
-            propertys.color2 = color2Input.value
+            document.formGradientUse = true
+            gradientPropertys.color2 = color2Input.value
             applychange()
     })
     inputsWrapper.append(color2Input)
     
     return inputsWrapper
 }
-
-
 
 
 const borderStyle = ['solid','dotted','dashed','double','groove','ridge','inset','outset']
@@ -538,8 +555,8 @@ formSets.addSidebarGroupItem('padding',
     createText('Right'),createInput('number','paddingRight','.form', propertys.formPropertys),createUnitsSelect()
     )
 formSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.form', propertys.formPropertys,disableGradient))
-formSets.addSidebarGroupItem('Background gradient',createLinearGradient('.form'))
-/* formSets.addSidebarGroupItem('Shadow',createInputBoxShadow('.form', propertys.formPropertys)) */
+formSets.addSidebarGroupItem('Background gradient',createLinearGradient('.form', propertys.formPropertys))
+formSets.addSidebarGroupItem('Shadow',createInputBoxShadow('.form', propertys.formPropertys))
 formSets.addSidebarGroupItem('border Radius',createInput('number','borderRadius','.form', propertys.formPropertys),createUnitsSelect())
 formSets.addSidebarGroupItem('border',
     createText('Width'),createInput('number','borderWidth','.form', propertys.formPropertys),createUnitsSelect(),

@@ -4,7 +4,8 @@ let autoId = 1;
 const formElements = []
 
 const formSettings = document.querySelectorAll('.form-settings')
-/* const form = document.querySelector(`.form`) */
+
+document.formGradientUse = false
 
 
 function createForm() {
