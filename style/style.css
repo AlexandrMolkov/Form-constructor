@@ -39,9 +39,9 @@ input {
 .code {
   margin-top: auto;
   height: 200px;
-  overflow: auto;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .code__buttons {
   border-top: 1px solid black;
@@ -55,16 +55,20 @@ input {
   background-color: #ccc;
 }
 .code__out {
+  padding: 15px;
   flex-grow: 1;
-  overflow: auto;
   width: 100%;
-  height: 100%;
+  /*         height: 100%; */
   resize: none;
   background-color: rgb(44, 44, 44);
   color: #7fffd4;
 }
+.code .scroll-wrapper {
+  overflow: auto;
+}
 
 .sidebar {
+  overflow: auto;
   width: 300px;
   background-color: #e1e1e1;
 }
@@ -166,7 +170,7 @@ input {
 
 .wrapper {
   max-width: 1920px;
-  padding: 0 5px;
+  padding: 0;
   margin: 0 auto;
   display: flex;
 }
@@ -327,6 +331,18 @@ body, .wrapper, .main {
   margin-right: 8px;
 }
 
-.Input-box-shadow-wrapper {
-  text-align: center;
+.scroll {
+  overflow: auto;
+}
+
+.scroll::-webkit-scrollbar {
+  /* background: linear-gradient(to right, #ffddd600 30%, #ccc 30%, #ccc 70%, #dbdbdb00 70%); */
+  background-color: transparent;
+  width: 6px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: rgb(153, 153, 153);
+  border-radius: 5px;
+  width: 6px;
 }/*# sourceMappingURL=style.css.map */

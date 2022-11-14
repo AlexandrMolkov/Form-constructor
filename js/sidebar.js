@@ -2,11 +2,10 @@ import {propertys} from "./main.js"
 
 "use strict"
 
-/* const sidebar = document.querySelector('.sidebar') */
-
 const sidebar = document.createElement('aside')
 sidebar.id = 'sidebar'
 sidebar.classList.add('sidebar')
+sidebar.classList.add('scroll')
 document.querySelector('.wrapper').prepend(sidebar)
 
 const addInputButton = document.createElement('button')

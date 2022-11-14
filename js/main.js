@@ -11,6 +11,7 @@ function createForm() {
 
     const result = document.createElement('div')
     result.classList.add('result')
+
     const form = document.createElement('form')
     form.action = '#'
     const p = document.createElement('p')

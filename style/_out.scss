@@ -2,10 +2,10 @@
     margin-top: auto;
     height: 200px;
 
-    overflow: auto;
-
     display: flex;
     flex-direction: column;
+
+    overflow: hidden;
 
     &__buttons{
         border-top: 1px solid black;
@@ -22,17 +22,24 @@
     }
 
     &__out{
+        padding: 15px;
+        
         flex-grow: 1;
 
-        overflow: auto;
-
         width: 100%;
-        height: 100%;
+/*         height: 100%; */
 
         resize: none;
 
         background-color: rgb(44, 44, 44);
         color: #7fffd4;
+
+
+    }
+
+    .scroll-wrapper {
+
+        overflow: auto;
     }
 
 }

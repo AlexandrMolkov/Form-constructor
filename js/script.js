@@ -251,10 +251,24 @@ function addNewElement() {
 
 //////////   simplebar
 
-const simplebar = document.createElement('div')
+/* const simplebar = document.createElement('div')
 simplebar.setAttribute('data-simplebar','')
 sidebar.append(simplebar)
 
-new SimpleBar(document.getElementById('sidebar'),{
+new SimpleBar(document.getElementById('scroll'),{
     autoHide: false
 });
+
+const simplebarOutCode = document.createElement('div')
+simplebarOutCode.setAttribute('data-simplebar','')
+document.querySelector('.code__out').append(simplebarOutCode)
+
+new SimpleBar(document.getElementById('codeout'),{
+    autoHide: false
+}); */
+
+/* document.querySelectorAll('.scroll').forEach(e => {
+    new SimpleBar(e,{
+        autoHide: false
+    });
+})  */

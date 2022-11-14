@@ -11,14 +11,18 @@ const codeButtonCss = document.createElement('button')
 const codeOut = document.createElement('textarea')
 
 CodeBlock.classList.add("code")
+CodeBlock.id = "code" 
+
 codeOut.classList.add("code__out")
+codeOut.classList.add("scroll")
+codeOut.id = 'codeout'
+
 codeButtons.classList.add("code__buttons")
 codeButtonHtml.classList.add("code__btn")
 codeButtonCss.classList.add("code__btn")
 
 codeButtonHtml.innerText = 'HTML'
 codeButtonCss.innerText = 'CSS'
-
 
 codeButtons.append(codeButtonHtml)
 codeButtons.append(codeButtonCss)
@@ -82,9 +86,7 @@ const getNewString = function(string) {
 
         return newArr
     },[]).join(``)
-}
-
-const satastast = new String('sdasd')
+} 
 
 function outHtml() {
     codeOut.value = getNewString(form.outerHTML.replaceAll(/\s\s/g,''))
@@ -92,8 +94,6 @@ function outHtml() {
         .replaceAll(/data-index="([^"]*)"/g,'')
         .replaceAll(/<button class="btn-del" title="delete input" >[^"]*<\/button>/g,'') 
 }
-
-const str = new String('')
 
 const hovProp = (propertys) =>{
 
