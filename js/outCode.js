@@ -4,15 +4,37 @@ import {propertys, form} from "./main.js"
 
 
 
+const CodeBlock = document.createElement('div')
+const codeButtons = document.createElement('div')
+const codeButtonHtml = document.createElement('button')
+const codeButtonCss = document.createElement('button')
+const codeOut = document.createElement('textarea')
+
+CodeBlock.classList.add("code")
+codeOut.classList.add("code__out")
+codeButtons.classList.add("code__buttons")
+codeButtonHtml.classList.add("code__btn")
+codeButtonCss.classList.add("code__btn")
+
+codeButtonHtml.innerText = 'HTML'
+codeButtonCss.innerText = 'CSS'
+
+
+codeButtons.append(codeButtonHtml)
+codeButtons.append(codeButtonCss)
+
+CodeBlock.append(codeButtons)
+CodeBlock.append(codeOut)
+document.querySelector(`.main`).append(CodeBlock)
+
+
 function getResult() {
     code.innerText = form.outerHTML.replace('>`,`>\n')
 }
 
-const codeOut = document.querySelector(`#codeOut`)
 
-
-document.querySelector(`#btnHtml`).addEventListener(`click`,outHtml)
-
+codeButtonHtml.addEventListener(`click`,outHtml)
+codeButtonCss.addEventListener(`click`,outCss)
 
 
 
@@ -113,4 +135,3 @@ function outCss() {
    
 }
 
-document.querySelector(`#btnСss`).addEventListener(`click`,outCss)

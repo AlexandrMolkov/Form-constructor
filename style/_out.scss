@@ -1,0 +1,38 @@
+.code{
+    margin-top: auto;
+    height: 200px;
+
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    &__buttons{
+        border-top: 1px solid black;
+    }
+
+    &__btn{
+        padding: 5px 15px;
+        transition: background-color 0.3s;
+
+        &:hover{
+            cursor: pointer;
+            background-color: #ccc;
+        }
+    }
+
+    &__out{
+        flex-grow: 1;
+
+        overflow: auto;
+
+        width: 100%;
+        height: 100%;
+
+        resize: none;
+
+        background-color: rgb(44, 44, 44);
+        color: #7fffd4;
+    }
+
+}

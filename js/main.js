@@ -7,7 +7,6 @@ const formSettings = document.querySelectorAll('.form-settings')
 /* const form = document.querySelector(`.form`) */
 
 
-
 function createForm() {
 
     const result = document.createElement('div')
@@ -32,7 +31,7 @@ const propertys = {
         display: 'flex',
         flexDirection: 'column',
         position: 'absolute',
-        top: '50%',
+        top: 'calc(50% - 100px)',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: '300px',

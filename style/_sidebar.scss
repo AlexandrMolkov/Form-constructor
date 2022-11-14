@@ -1,0 +1,131 @@
+.sidebar{
+    width: 300px;
+    background-color: #e1e1e1;
+}
+
+.sidebar-group {
+    width: 100%;
+    position: relative;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    &__item{      
+        border-radius: 5px;
+        position: relative;
+        max-width: 120px;
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    
+    }
+
+    &__text{
+        width: 100%;
+    }
+        
+/*
+    & label{
+        position: relative;
+        max-width: 200px;
+        width: 100%;
+    }*/
+
+    &__desc {
+        flex-basis: 100%;
+        text-transform: capitalize;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    &__input {
+
+        width: 70%;
+        padding: 5px;
+        
+        &_w-100per{
+            width: 100%;
+        }
+    }
+
+    &__select {
+        display: none;
+        position: absolute;
+        right: 0;
+    }
+
+    & .color-input{
+        padding-right: 5px;
+    }
+}
+
+.button {
+    padding: 5px 15px;
+    background-color: #7fffd4;
+    
+    &__connect{
+       // width: 100%;
+        margin: 0 40%;
+        position: relative;
+        left: -40%;
+    }
+    &__active{
+        // width: 100%;
+        background-color: red;
+     }
+
+}
+
+.text-alighn-btn{
+
+    margin-right: 15px;
+
+    height: 20px;
+    width: 20px;
+
+    background-color: #7fffd4;
+
+    font-size: 16px;
+
+    &:last-child{
+        margin-right: 0;
+    }
+    
+}
+
+
+.form-settings__text {
+    text-align: center;
+    font-size: 25px;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+.form-settings__wrapper {
+}
+
+.form-settings_hidden{
+
+   transition: max-height 0.5s, transform 0.3s;
+   transition-delay: 0s, 0s;
+
+    max-height: 0px;
+    transform: translateX(-100%);
+
+}
+
+.form-settings_visible{
+
+    transition: max-height 1s, transform 0.3s;
+    transition-delay: 0s,  0.1s;
+
+    max-height: 5000px;
+
+    transform: translateX(0);
+
+}

@@ -249,6 +249,8 @@ function addNewElement() {
 
 
 
+//////////   simplebar
+
 const simplebar = document.createElement('div')
 simplebar.setAttribute('data-simplebar','')
 sidebar.append(simplebar)
