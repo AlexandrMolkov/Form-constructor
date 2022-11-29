@@ -1,4 +1,4 @@
-import {propertys} from "./main.js"
+import {propertys, form} from "./main.js"
 
 "use strict"
 
@@ -49,6 +49,55 @@ sidebar.addEventListener('mouseout',(e)=>{
 })
 
 
+const getValues = (target, parent, property) => {
+
+    let parentValue = document.querySelector(parent).offsetWidth
+    if(property === 'borderRadius') parentValue = target.offsetWidth
+    const targetValue = parseInt(getComputedStyle(target)[property])
+
+    return {
+        parentValue,
+        targetValue
+    }
+}
+
+const percentToPx = (parent, target, property, propertys) => {
+    const t = document.querySelector(target)
+ /*   const {parentValue, targetValue} = getValues(t, parent, property, propertys)
+     let value = parentValue * (pxToPercent(parent, target, property, propertys) / 100) */
+    let value = parseInt(getComputedStyle(t)[property])
+    return value
+}
+const pxToPercent = (parent, target, property, propertys) => {
+    const t = document.querySelector(target)
+    const {parentValue, targetValue} = getValues(t, parent, property, propertys)
+    return (targetValue * 100) / parentValue
+}
+const percentToEm = (parent, target, property, propertys) => {
+    const targetElement = document.querySelector(target)
+    let em = parseInt(getComputedStyle(targetElement).fontSize)
+    if(property === 'fontSize') em = parseInt(getComputedStyle(targetElement.parentElement).fontSize)
+    const targetValue = parseInt(getComputedStyle(document.querySelector(target))[property])
+    return targetValue/em
+}
+const pxToEm = (parent, target, property, propertys) => {
+    const targetElement = document.querySelector(target)
+    const parentElement = targetElement.parentElement
+    /* parentElement.prepend(block) */
+    /* targetElement.prepend(block) */
+   /*  const em = block.offsetWidth */
+    let em = parseInt(getComputedStyle(targetElement).fontSize)
+    if(property === 'fontSize') em = parseInt(getComputedStyle(parentElement).fontSize)
+    return parseInt(getComputedStyle(targetElement)[property]) / em
+    /* return parseInt(getComputedStyle(targetElement)[property]) / pEm */
+}
+const toRem = (target,property) => {
+    const targ = document.querySelector(target)
+    const rem = parseInt(getComputedStyle(document.body).fontSize)
+    const {targetValue} = getValues(targ, '.result', property, propertys)
+
+    return targetValue / rem
+}
 
 class FormSettings {
     constructor(title) {
@@ -101,7 +150,7 @@ class FormSettings {
     }
 }
 
-function changeProperty(inp,propertys) {
+function changeProperty(inp, propertys) {
     const targets = document.querySelectorAll(`${inp.getAttribute('data-target')}`)
     targets.forEach((target)=>{
         const units = inp.nextElementSibling?.firstChild?.value
@@ -112,14 +161,10 @@ function changeProperty(inp,propertys) {
             propertys[inp.getAttribute('data-property')] = `rgba(${hex2rgb(inp.value).r},${hex2rgb(inp.value).g},${hex2rgb(inp.value).b},${a})`
         } else {
 
-            target.style[inp.getAttribute('data-property')] = inp.value + (units ? units : "")
-            /* inputsSettings[inp.getAttribute('data-property')] = inp.value + (units ? units : "") */
+            target.style[inp.getAttribute('data-property')] = inp.value  + (units ? units : "")
+
             propertys[inp.getAttribute('data-property')] = inp.value + (units ? units : "")
         }
-
-
-
-
         
     })
 }
@@ -205,7 +250,7 @@ function createInputHover(type, property, propertys){
     return input
 }
 
-function createUnitsSelect(propertys, values=['px','em','%','inherit']){
+function createUnitsSelect(propertys, values=['px','em','rem','%']){
 
     const select = document.createElement('div')
     select.classList.add('select')
@@ -225,7 +270,7 @@ function createUnitsSelect(propertys, values=['px','em','%','inherit']){
         val.forEach((elem)=>{
             const li = document.createElement('li')
             li.classList.add('select__li')
-            li.setAttribute('data-value',elem)
+            li.setAttribute('data-value', elem)
             li.textContent = elem
 
             elements.push(li)
@@ -235,14 +280,45 @@ function createUnitsSelect(propertys, values=['px','em','%','inherit']){
     if (values.length > 1){
         const lies = createLi(...values)  // элементы, значения установятся как 'data-value' 
         select.append(ul)                               // список в селект (div class="select")  
-        lies.forEach((li)=> ul.append(li) )             // элементы списка в список   
+        lies.forEach((li) => ul.append(li) )             // элементы списка в список   
         lies[0].parentElement.previousElementSibling.value = lies[0].dataset.value
         lies.forEach((li)=>{
-
             li.addEventListener('click',()=>{
-                const unitsInput =  li.parentElement.previousElementSibling
+
+                if (li.parentElement.previousElementSibling.value === li.dataset.value) return null // если выбранные юнитсы соответствуют текущим
+
+                const unitsInput = li.parentElement.previousElementSibling
+                const valueInput = unitsInput.parentElement.previousElementSibling
+                const targetProperty = valueInput.dataset.property
+                const lastUnitsValue = unitsInput.value
                 unitsInput.value = li.dataset.value
-                changeProperty(unitsInput.parentElement.previousElementSibling, propertys)
+
+                if(lastUnitsValue === 'px') {
+                    switch(li.dataset.value) {
+                        case '%': valueInput.value = pxToPercent('.result',valueInput.dataset.target, targetProperty, propertys); break;
+                        case 'em': valueInput.value = pxToEm('.result',valueInput.dataset.target, targetProperty, propertys); break;
+                        case 'rem': valueInput.value = toRem(valueInput.dataset.target,targetProperty); break;
+                    }
+                } else if(lastUnitsValue === '%') {
+                    switch(li.dataset.value) {
+                        case 'px': valueInput.value = percentToPx('.result',valueInput.dataset.target, targetProperty, propertys); break;
+                        case 'em': valueInput.value = percentToEm('.result',valueInput.dataset.target, targetProperty, propertys); break;
+                        case 'rem': valueInput.value = toRem(valueInput.dataset.target,targetProperty); break;
+                    }
+                } else if(lastUnitsValue === 'em') {
+                    switch(li.dataset.value) {
+                        case 'px': valueInput.value = percentToPx('.result',valueInput.dataset.target, targetProperty, propertys); break;
+                        case '%': valueInput.value = pxToPercent('.result',valueInput.dataset.target, targetProperty, propertys); break;
+                        case 'rem': valueInput.value = toRem(valueInput.dataset.target,targetProperty); break;
+                    }
+                 }else if(lastUnitsValue === 'rem') {
+                    switch(li.dataset.value) {
+                        case 'px': valueInput.value = percentToPx('.result',valueInput.dataset.target, targetProperty, propertys); break;
+                        case '%': valueInput.value = pxToPercent('.result',valueInput.dataset.target, targetProperty, propertys); break;
+                        case 'em': valueInput.value = percentToEm('.result',valueInput.dataset.target, targetProperty, propertys); break;
+                    }
+                }
+                changeProperty(valueInput, propertys)
             })
         })
     } else{
@@ -251,6 +327,7 @@ function createUnitsSelect(propertys, values=['px','em','%','inherit']){
 
     return select
 }
+
 function createText(text){
     const textElem = document.createElement('p')
     textElem.classList.add('sidebar-group__text')
@@ -499,7 +576,6 @@ function createLinearGradient(target,prop){
         const value = `linear-gradient(
             ${gradientPropertys.deg}deg, ${gradientPropertys.color1}, ${gradientPropertys.color2})`;
         ElementTarget.style.background = value
-        console.log(prop)
         prop.background = value
         }
 
@@ -549,17 +625,17 @@ const formSets = new FormSettings('Form')
 formSets.create()
 formSets.addSidebarGroupItem('width',createInput('number','width','.form', propertys.formPropertys),createUnitsSelect(propertys.formPropertys))
 formSets.addSidebarGroupItem('padding',
-    createText('Top'),createInput('number','paddingTop','.form', propertys.formPropertys),createUnitsSelect(),
-    createText('Bottom'),createInput('number','paddingBottom','.form', propertys.formPropertys),createUnitsSelect(),
-    createText('Left'),createInput('number','paddingLeft','.form', propertys.formPropertys),createUnitsSelect(),
-    createText('Right'),createInput('number','paddingRight','.form', propertys.formPropertys),createUnitsSelect()
+    createText('Top'),createInput('number','paddingTop','.form', propertys.formPropertys),createUnitsSelect(propertys.formPropertys),
+    createText('Bottom'),createInput('number','paddingBottom','.form', propertys.formPropertys),createUnitsSelect(propertys.formPropertys),
+    createText('Left'),createInput('number','paddingLeft','.form', propertys.formPropertys),createUnitsSelect(propertys.formPropertys),
+    createText('Right'),createInput('number','paddingRight','.form', propertys.formPropertys),createUnitsSelect(propertys.formPropertys)
     )
 formSets.addSidebarGroupItem('Background Color',createInput('color','backgroundColor','.form', propertys.formPropertys,disableGradient))
 formSets.addSidebarGroupItem('Background gradient',createLinearGradient('.form', propertys.formPropertys))
 formSets.addSidebarGroupItem('Shadow',createInputBoxShadow('.form', propertys.formPropertys))
-formSets.addSidebarGroupItem('border Radius',createInput('number','borderRadius','.form', propertys.formPropertys),createUnitsSelect())
+formSets.addSidebarGroupItem('border Radius',createInput('number','borderRadius','.form', propertys.formPropertys),createUnitsSelect(propertys.formPropertys))
 formSets.addSidebarGroupItem('border',
-    createText('Width'),createInput('number','borderWidth','.form', propertys.formPropertys),createUnitsSelect(),
+    createText('Width'),createInput('number','borderWidth','.form', propertys.formPropertys),createUnitsSelect(propertys.formPropertys),
     createText('Style'),createSelect('borderStyle','.form',borderStyle, propertys.formPropertys),
     createText('Color'),createInput('color','borderColor','.form', propertys.formPropertys)
     )
@@ -569,7 +645,7 @@ const formTitle = new FormSettings('Title')
 formTitle.create()
 formTitle.addSidebarGroupItem('Title',createTextContentInput('.form__text','Hello!'))
 formTitle.addSidebarGroupItem('Align', textAlign('.form__text'))
-formTitle.addSidebarGroupItem('Title Font Size',createInput('number','fontSize','.form__text', propertys.formTextPropertys),createUnitsSelect())
+formTitle.addSidebarGroupItem('Title Font Size',createInput('number','fontSize','.form__text', propertys.formTextPropertys),createUnitsSelect(propertys.formTextPropertys,['px','em','rem']))
 formTitle.addSidebarGroupItem('Title Color',createInput('color','color','.form__text', propertys.formTextPropertys))
 formTitle.addSidebarGroupItem('Title Weight',createSelect('fontWeight','.form__text', weight, propertys.formTextPropertys))
 formTitle.addSidebarGroupItem('Title Style',createSelect('fontStyle','.form__text', styles, propertys.formTextPropertys))

@@ -1,6 +1,5 @@
 @import "_null", "_scroll", "_out", "_sidebar";
 
-
 .wrapper {
     max-width: 1920px;
     padding: 0;
@@ -11,6 +10,7 @@
 body {
     overflow: hidden;
     background-color: #e1e1e1;
+
 }
 
 body,.wrapper,.main{
@@ -30,8 +30,6 @@ body,.wrapper,.main{
 }
 
 .result{
-    flex-grow: 1;
-    
 }
 
 

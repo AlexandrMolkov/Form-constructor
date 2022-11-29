@@ -243,10 +243,6 @@ body, .wrapper, .main {
   background-color: #e1e1e1;
 }
 
-.result {
-  flex-grow: 1;
-}
-
 .window-create {
   display: none;
   padding: 30px;

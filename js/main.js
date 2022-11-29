@@ -2,11 +2,9 @@
 
 let autoId = 1;
 const formElements = []
-
 const formSettings = document.querySelectorAll('.form-settings')
 
 document.formGradientUse = false
-
 
 function createForm() {
 
@@ -47,6 +45,7 @@ const propertys = {
         borderStyle: 'solid',
         borderColor: 'black',
         borderWidth: '0',
+        fontSize: '30px',
     },
     formTextPropertys: {
         fontSize: '30px',
@@ -56,7 +55,8 @@ const propertys = {
         marginBottom: '30px'
     },
     inputsPropertys: {
-        font: 'inherit',
+        fontFamily: 'inherit',
+        fontSize: '16px',
         borderRadius: '15px',
         padding: '5px 15px',
         borderStyle: 'solid',
@@ -76,12 +76,12 @@ const propertys = {
         fontSize: '18px',
         textTransform: 'uppercase',
         transform: 'skewX(0deg) scale(1)',
-        transition: 'all 0.3s' 
+        transition: 'all 0.3s'
     },
     btnSubmitTextProperty: {
         transform: 'skewX(0deg)',
         display: 'block',
-        transition: 'all 0.3s' 
+        transition: 'all 0.3s'
     },
     btnSubmitTextPropertyHover: {
         transform: 'skewX(-15deg)',
@@ -116,6 +116,6 @@ const propertys = {
 
 
 
-export {propertys,form, autoId, formElements}
+export { propertys, form, autoId, formElements }
 
 
