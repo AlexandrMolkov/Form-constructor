@@ -23,21 +23,31 @@ function createButton() {
 
 ///////////////////////////////////////////////////////////////////// menu Anim
 
+const checkHidden = (element) => {
+    if (element.classList.contains('form-settings_hidden')) {
+        element.style.marginTop = -element.offsetHeight + 'px'
+        element.style.zIndex = '1'
+    }
 
+    if (element.classList.contains('form-settings_visible')) {
+        element.style.marginTop = 0
+        element.style.zIndex = '2'
+    }
+}
 
 document.querySelectorAll('.form-settings')
     .forEach((el) => {
+        el.parentElement.querySelectorAll('.form-settings__wrapper')
+            .forEach(element => {
+                checkHidden(element)
+
+            });
         el.addEventListener('click', (e) => {
             e.target.parentElement.querySelectorAll('.form-settings__wrapper')
                 .forEach(element => {
                     element.classList.toggle('form-settings_hidden')
                     element.classList.toggle('form-settings_visible')
-
-                    if (element.classList.contains('form-settings_hidden')) {
-                    }
-
-                    if (element.classList.contains('form-settings_visible')) {
-                    }
+                    checkHidden(element)
 
                 });
         })

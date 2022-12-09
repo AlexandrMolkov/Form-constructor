@@ -1,8 +1,7 @@
 .sidebar {
-    padding-top: 10px;
     overflow: auto;
     width: 300px;
-    background-color: #e1e1e1;
+    background-color: $grey;
 }
 
 .sidebar-group {
@@ -13,6 +12,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
+    background-color: $grey;
 
     &__item {
         border-radius: 5px;
@@ -120,6 +120,9 @@
 
 .form-settings__label {
     transition: background-color .3s;
+    position: relative;
+    background: $grey;
+    z-index: 10;
 }
 
 .form-settings__label:after {
@@ -133,11 +136,16 @@
     background: #c1c1c1;
 }
 
+.form-settings__wrapper {
+    transition: all 0.3s;
+    position: relative;
+}
+
 .form-settings__label:hover {
     background-color: $darkgrey;
 }
 
-.form-settings_hidden {
+/* .form-settings_hidden {
 
     transition: max-height 0.5s, transform 0.3s;
     transition-delay: 0s, 0s;
@@ -156,7 +164,7 @@
 
     transform: translateX(0);
 
-}
+} */
 
 .select {
 
