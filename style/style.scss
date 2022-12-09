@@ -1,3 +1,7 @@
+$lightgray: #f8f8f8;
+$grey: #e1e1e1;
+$darkgrey: #c1c1c1;
+
 @import "_null", "_scroll", "_out", "_sidebar";
 
 .wrapper {
@@ -9,11 +13,13 @@
 
 body {
     overflow: hidden;
-    background-color: #e1e1e1;
+    background-color: $grey;
 
 }
 
-body,.wrapper,.main{
+body,
+.wrapper,
+.main {
     height: 100vh;
 }
 
@@ -26,47 +32,53 @@ body,.wrapper,.main{
     display: flex;
     flex-direction: column;
 
-    background-color: #e1e1e1;
+    background-color: $grey;
 }
 
-.result{
+.result {}
+
+.btn {
+    margin-right: 15px;
+    padding: 5px 10px;
+    text-transform: capitalize;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: $darkgrey;
+    }
 }
 
-
-
-.window-create{
+.window-create {
     display: none;
 
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    background-color: beige;
+    background-color: $grey;
+    border: 1px solid $darkgrey;
 
     width: 400px;
 
     text-align: center;
 
-    &__group{
+    &__group {
         display: flex;
         flex-wrap: wrap;
-        /* gap: 15px; */
 
-        &:not(:last-child){
+        &:not(:last-child) {
             margin-bottom: 20px;
         }
 
 
     }
 
-    &__btn{
-        margin-right: 15px;
-    }
+    &__btn {}
 
-    &__label{
+    &__label {
         display: inline-block;
         margin-bottom: 5px;
         width: 100%;
@@ -76,24 +88,26 @@ body,.wrapper,.main{
         width: 100%;
         text-align: center;
         padding: 5px;
+        text-transform: capitalize;
     }
 
     &__input {
         padding: 5px;
         width: 100%;
-        
-        &_w_50{
+        text-align: center;
+
+        &_w_50 {
             width: 45%;
         }
 
     }
 }
 
-.visible{
+.visible {
     display: block;
 }
 
-.btn-del{
+.btn-del {
     color: white;
     text-align: center;
     background-color: rgba(255, 0, 0, 0);
@@ -107,22 +121,27 @@ body,.wrapper,.main{
     transition: all 0.3s;
 }
 
-.input-group{
+.input-group {
 
-     position: relative;
+    position: relative;
 
-    &:hover .btn-del{
+    &:hover .btn-del {
         background-color: red;
-        cursor:pointer 
-    } 
+        cursor: pointer
+    }
 
 
 }
 
+.topPanel {
+    padding-top: 10px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
 
-
-.label{
-/*     display: flex;
+.label {
+    /*     display: flex;
     flex-wrap: wrap;
 
     &-text {
@@ -133,7 +152,7 @@ body,.wrapper,.main{
 
 
 
-.button-align{
+.button-align {
     width: 15px;
     height: 15px;
 
@@ -141,19 +160,21 @@ body,.wrapper,.main{
 }
 
 
-  
 
 
-.scroll{
-    overflow:auto;
+
+.scroll {
+    overflow: auto;
 }
-.scroll::-webkit-scrollbar{
+
+.scroll::-webkit-scrollbar {
     /* background: linear-gradient(to right, #ffddd600 30%, #ccc 30%, #ccc 70%, #dbdbdb00 70%); */
     background-color: transparent;
     width: 6px;
 }
-.scroll::-webkit-scrollbar-thumb{
-    background-color: rgb(153, 153, 153);
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: #999999;
     border-radius: 5px;
     width: 6px;
 }

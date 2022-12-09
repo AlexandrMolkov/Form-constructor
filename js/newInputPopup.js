@@ -10,7 +10,7 @@ function group() {
     const groupDiv = document.createElement('div')
     groupDiv.classList.add('window-create__group')
     return groupDiv
-} 
+}
 
 
 {
@@ -36,6 +36,7 @@ function group() {
     newInputForm.append(res)
 }
 
+// Placeholder
 {
     const label = document.createElement('label')
     label.classList.add('window-create__label')
@@ -47,6 +48,7 @@ function group() {
     input.name = "placeholder"
     input.id = "input-placeholder"
     input.type = 'text'
+    input.autocomplete = 'off'
 
 
     const res = group()
@@ -55,6 +57,7 @@ function group() {
     newInputForm.append(res)
 }
 
+// Name
 {
     const label = document.createElement('label')
     label.classList.add('window-create__label')
@@ -66,6 +69,7 @@ function group() {
     input.name = "name"
     input.id = "input-name"
     input.type = 'text'
+    input.autocomplete = 'off'
 
 
     const res = group()
@@ -74,6 +78,7 @@ function group() {
     newInputForm.append(res)
 }
 
+// Id
 {
     const label = document.createElement('label')
     label.classList.add('window-create__label')
@@ -85,6 +90,7 @@ function group() {
     input.name = "id"
     input.id = "input-id"
     input.type = 'text'
+    input.autocomplete = 'off'
 
 
     const res = group()
@@ -93,6 +99,7 @@ function group() {
     newInputForm.append(res)
 }
 
+// Label
 {
     const label = document.createElement('label')
     label.classList.add('window-create__label')
@@ -104,6 +111,7 @@ function group() {
     input.name = "label"
     input.id = "input-label"
     input.type = 'text'
+    input.autocomplete = 'off'
 
 
     const res = group()
@@ -114,15 +122,19 @@ function group() {
 
 {
     const buttonSub = document.createElement('button')
-    buttonSub.classList.add('window-create__btn')
+    buttonSub.classList.add('window-create__btn', "btn")
     buttonSub.type = 'submit'
     buttonSub.textContent = 'Confirm'
 
     const buttonRes = document.createElement('button')
-    buttonRes.classList.add('window-create__btn')
+    buttonRes.classList.add('window-create__btn', "btn")
     buttonRes.type = 'button'
     buttonRes.textContent = 'Cancel'
 
+    buttonRes.addEventListener('click', () => {
+        newInputForm.reset()
+        windowCreate.classList.remove('visible')
+    })
 
     const res = group()
     res.append(buttonSub)

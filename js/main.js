@@ -64,6 +64,20 @@ const propertys = {
         borderWidth: '0',
         width: '100%',
     },
+    inputGroupPropertys: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '5px',
+        marginBottom: '15px',
+    },
+    inputLabelPropertys: {
+        fontSize: '16px',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        marginRight: '15px',
+    },
 
     btnSubmitProperty: {
         padding: '0',

@@ -1,5 +1,5 @@
-import {propertys, form, autoId, formElements} from "./main.js"
-import {addInputButton, addRadioButton, addCheckboxButton} from "./sidebar.js"
+import { propertys, form, autoId, formElements } from "./main.js"
+import { addInputButton, addRadioButton, addCheckboxButton } from "./sidebar.js"
 import "./newInputPopup.js"
 import "./outCode.js"
 
@@ -26,19 +26,19 @@ function createButton() {
 
 
 document.querySelectorAll('.form-settings')
-    .forEach((el)=>{
-        el.addEventListener('click',(e)=>{
+    .forEach((el) => {
+        el.addEventListener('click', (e) => {
             e.target.parentElement.querySelectorAll('.form-settings__wrapper')
                 .forEach(element => {
                     element.classList.toggle('form-settings_hidden')
                     element.classList.toggle('form-settings_visible')
 
-                    if(element.classList.contains('form-settings_hidden')) {
+                    if (element.classList.contains('form-settings_hidden')) {
                     }
 
                     if (element.classList.contains('form-settings_visible')) {
                     }
-                    
+
                 });
         })
     })
@@ -51,39 +51,39 @@ document.querySelectorAll('.form-settings')
 
 
 
-for(let property in propertys.formPropertys) {
+for (let property in propertys.formPropertys) {
     form.style[property] = propertys.formPropertys[property]
 }
 
-for(let property in propertys.formTextPropertys) {
-    
+for (let property in propertys.formTextPropertys) {
+
     form.querySelector('.form__text')
         .style[property] = propertys.formTextPropertys[property]
 }
 
 ///////////////////////////////////////////////////////////////////// 
 
-addInputButton.addEventListener(`click`,addNewInput)
+addInputButton.addEventListener(`click`, addNewInput)
 
-addRadioButton.addEventListener(`click`, ()=>{
-    createFormInput('radio','radio')
+addRadioButton.addEventListener(`click`, () => {
+    createFormInput('radio', 'radio')
 })
 
-addCheckboxButton.addEventListener(`click`, ()=>{
-    createFormInput('checkbox','checkbox')
+addCheckboxButton.addEventListener(`click`, () => {
+    createFormInput('checkbox', 'checkbox')
 })
 
 
 function setInputStyle(input) {
-    for(let property in propertys.inputsPropertys) {
+    for (let property in propertys.inputsPropertys) {
         input.style[property] = propertys.inputsPropertys[property]
     }
 }
 
 
 function reIndex() {
-    formElements.forEach((inp,ind)=>{
-        inp.querySelector('.btn-del').setAttribute('data-index',`${ind}`)
+    formElements.forEach((inp, ind) => {
+        inp.querySelector('.btn-del').setAttribute('data-index', `${ind}`)
     })
 }
 
@@ -96,7 +96,7 @@ function addNewInput() {
 
     createWindow.classList.add(`visible`)
 
-    createForm.addEventListener(`submit`,(e)=>{
+    createForm.addEventListener(`submit`, (e) => {
 
         e.preventDefault();
         const type = createWindow.querySelector(`.window-create__select`).value
@@ -104,38 +104,38 @@ function addNewInput() {
         const name = createWindow.querySelector(`#input-name`).value
         const id = createWindow.querySelector(`#input-id`).value
         const label = createWindow.querySelector(`#input-label`).value
-        createFormInput(type,place,name,id,label)
+        createFormInput(type, place, name, id, label)
 
         createForm.reset()
         createWindow.classList.remove(`visible`)
 
-    },{once: true})
+    }, { once: true })
 }
 
-createFormInput("text",":)")
-createSubmitButton('submit','SUBMIT')
+createFormInput("text", ":)")
+createSubmitButton('submit', 'SUBMIT')
 createExitButton()
 
-function createExitButton(){
+function createExitButton() {
     const btn = document.createElement(`button`)
-    btn.classList.add('btn','btnExt')
+    btn.classList.add('btn', 'btnExt')
     btn.textContent = 'X'
-    form.append(btn) 
-    
-    for(let property in propertys.btnExitProperty) {
+    form.append(btn)
+
+    for (let property in propertys.btnExitProperty) {
         btn.style[property] = propertys.btnExitProperty[property]
     }
-    btn.addEventListener('mouseover', ()=>{
-        for(let property in propertys.btnExitPropertyHover){
+    btn.addEventListener('mouseover', () => {
+        for (let property in propertys.btnExitPropertyHover) {
             btn.style[property] = propertys.btnExitPropertyHover[property]
         }
     })
-    btn.addEventListener('mouseout', ()=>{
-        for(let property in propertys.btnExitPropertyHover) {
+    btn.addEventListener('mouseout', () => {
+        for (let property in propertys.btnExitPropertyHover) {
             btn.style[property] = propertys.btnExitProperty[property]
         }
     })
-    btn.addEventListener('click', (e)=>{
+    btn.addEventListener('click', (e) => {
         e.preventDefault()
     })
 }
@@ -145,95 +145,110 @@ function createSubmitButton(type, btnText) {
     div.classList.add(`input-group`)
     div.style.display = 'flex'
     div.style.justifyContent = 'center'
-    div.style.alignItems= 'center'
+    div.style.alignItems = 'center'
     const btn = document.createElement(`button`)
     btn.classList.add('btnSubm')
     const span = document.createElement(`span`)
     span.textContent = btnText
-   /*  btn.textContent = btnText */
+    /*  btn.textContent = btnText */
     btn.append(span)
     btn.type = type
 
-    for(let property in propertys.btnSubmitProperty) {
+    for (let property in propertys.btnSubmitProperty) {
         btn.style[property] = propertys.btnSubmitProperty[property]
     }
-    btn.addEventListener('mouseover', ()=>{
-        for(let property in propertys.btnSubmitPropertyHover){
+    btn.addEventListener('mouseover', () => {
+        for (let property in propertys.btnSubmitPropertyHover) {
             btn.style[property] = propertys.btnSubmitPropertyHover[property]
         }
-        for(let property in propertys.btnSubmitTextPropertyHover){
+        for (let property in propertys.btnSubmitTextPropertyHover) {
             btn.firstChild.style[property] = propertys.btnSubmitTextPropertyHover[property]
         }
 
     })
-    btn.addEventListener('mouseout', ()=>{
-        for(let property in propertys.btnSubmitProperty) {
+    btn.addEventListener('mouseout', () => {
+        for (let property in propertys.btnSubmitProperty) {
             btn.style[property] = propertys.btnSubmitProperty[property]
         }
-        for(let property in propertys.btnSubmitTextProperty){
+        for (let property in propertys.btnSubmitTextProperty) {
             btn.firstChild.style[property] = propertys.btnSubmitTextProperty[property]
         }
     })
-    btn.addEventListener('click', (e)=>{
+    btn.addEventListener('click', (e) => {
         e.preventDefault()
     })
 
-    div.append(btn) 
-    form.append(div) 
+    div.append(btn)
+    form.append(div)
 
     return div
 }
 
-function createFormInput(typeInput,placeInput,nameInput,idInput,label){
-    
+function createFormInput(typeInput, placeInput, nameInput, idInput, label) {
+
     const type = typeInput
     const place = placeInput
     const name = nameInput
     let id = idInput
-    
+
     id ? `` : id = `input-${autoID++}`
 
     const getPlaceholder = () => {
         return place ? `placeholder="${place}"` : ``
     }
-    const getName = () =>  {
+    const getName = () => {
         return name ? `name="${name}"` : `name="${type}"`
     }
 
+
     const div = document.createElement(`div`);
-    div.style.display = 'flex'
-    div.style.justifyContent = 'center'
-    div.style.alignItems = 'center'
-    div.style.marginBottom = '15px'
+    div.classList.add(`input-group`)
+
+    for (let property in propertys.inputGroupPropertys) {
+        div.style[property] = propertys.inputGroupPropertys[property]
+    }
+
+
+    // кнопка удаления инпута
     const delBtn = document.createElement(`button`)
     delBtn.classList.add(`btn-del`)
     delBtn.textContent = 'X'
     delBtn.setAttribute('title', 'delete input')
-    div.classList.add(`input-group`)
 
-    if (label) div.innerHTML += `<label style="margin-right:15px" for="${id}">${label}</label>`
+    // label
+    if (label) {
+        const inputLabel = document.createElement('label')
+        inputLabel.classList.add('label')
+        inputLabel.setAttribute('for', id)
+        inputLabel.innerText = label
+        div.prepend(inputLabel)
 
-    div.innerHTML +=`<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
+        for (let property in propertys.inputLabelPropertys) {
+            inputLabel.style[property] = propertys.inputLabelPropertys[property]
+        }
+    }
+
+    div.innerHTML += `<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
     div.classList.add(`interact`)
     const newInp = div.querySelector('input')
-   
-    for(let property in propertys.inputsPropertys) {
+
+    for (let property in propertys.inputsPropertys) {
         newInp.style[property] = propertys.inputsPropertys[property]
     }
-    
-    delBtn.setAttribute('data-index',`${formElements.length}`)
-    delBtn.addEventListener('click',(e)=>{
-            e.preventDefault()
-            
-            formElements[e.target.dataset.index].remove()
-            formElements.splice(e.target.dataset.index,1)
-            reIndex()
 
-        })
+    delBtn.setAttribute('data-index', `${formElements.length}`)
+    delBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        formElements[e.target.dataset.index].remove()
+        formElements.splice(e.target.dataset.index, 1)
+        reIndex()
+
+    })
     div.append(delBtn)
     const inputs = form.querySelectorAll('.input')
-    if (inputs.length>0) inputs[inputs.length - 1].parentNode.after(div)
-    else {form.append(div)}
+    if (inputs.length > 0) inputs[inputs.length - 1].parentNode.after(div)
+    else { form.append(div) }
 
     setInputStyle(div.querySelector('.input'))
 
