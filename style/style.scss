@@ -51,6 +51,8 @@ body,
 .window-create {
     display: none;
 
+    max-height: 600px;
+    overflow: auto;
     padding: 30px;
     border-radius: 20px;
     position: absolute;

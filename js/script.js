@@ -8,17 +8,6 @@ import "./outCode.js"
 
 let autoID = autoId
 
-/* 
-function createButton() {
-    const div = document.createElement('div')
-    const btn = document.createElement('button')
-    btn.classList.add('form-btn', 'submit', 'interact')
-    btn.textContent = 'submit'
-    div.append(btn)
-    form.append(div)
-
-} */
-
 
 
 ///////////////////////////////////////////////////////////////////// menu Anim
@@ -76,7 +65,8 @@ for (let property in propertys.formTextPropertys) {
 addInputButton.addEventListener(`click`, addNewInput)
 
 addRadioButton.addEventListener(`click`, () => {
-    createFormInput('radio', 'radio')
+    addNewRadio()
+    /* createFormInput('radio', 'radio') */
 })
 
 addCheckboxButton.addEventListener(`click`, () => {
@@ -102,8 +92,6 @@ function addNewInput() {
     const createWindow = document.querySelector(`.window-create`)
     const createForm = createWindow.querySelector(`.window-create__form`)
 
-
-
     createWindow.classList.add(`visible`)
 
     createForm.addEventListener(`submit`, (e) => {
@@ -121,6 +109,228 @@ function addNewInput() {
 
     }, { once: true })
 }
+function createRadioForm() {
+    const formWrapper = document.createElement('div')
+    const radioInputsWrapper = document.createElement('div')
+    const form = document.createElement('form')
+    form.addEventListener(`submit`, (e) => {
+        e.preventDefault();
+    })
+
+    formWrapper.classList.add('window-create', 'create-radio')
+    form.classList.add('window-create__form')
+    form.id = 'createRadioForm'
+    formWrapper.append(form)
+
+    const inputs = [
+        { id: 'input-id', text: 'Id' },
+        { id: 'input-label', text: 'Label' },
+        { id: 'input-checked', text: 'Checked', type: 'radio' }
+    ]
+
+    let radioCount = 2
+
+    {
+        const inputGroup = document.createElement('div')
+        inputGroup.classList.add('window-create__group')
+        const label = document.createElement('label')
+        label.classList.add('window-create__label')
+        label.innerText = 'Count'
+        const input = document.createElement('input')
+        input.classList.add('window-create__input')
+        input.id = 'input-count'
+        input.type = 'number'
+        input.value = radioCount
+        input.min = 2
+        inputGroup.append(label)
+        inputGroup.append(input)
+        form.append(inputGroup)
+
+        input.addEventListener('input', () => {
+            radioCount = input.value
+            renderInputs()
+        })
+    }
+    {
+        const inputGroup = document.createElement('div')
+        inputGroup.classList.add('window-create__group')
+        const label = document.createElement('label')
+        label.classList.add('window-create__label')
+        label.innerText = 'Name'
+        const input = document.createElement('input')
+        input.classList.add('window-create__input')
+        input.id = 'input-name'
+        input.type = 'text'
+        inputGroup.append(label)
+        inputGroup.append(input)
+        form.append(inputGroup)
+    }
+
+    form.append(radioInputsWrapper)
+
+    function renderInputs() {
+        radioInputsWrapper.innerHTML = ''
+
+        for (let i = 0; i < radioCount; i++) {
+            const p = document.createElement('p')
+            p.innerText = 'radio: ' + (i + 1)
+            radioInputsWrapper.append(p)
+            for (let j = 0; j < inputs.length; j++) {
+                const inputGroup = document.createElement('div')
+                inputGroup.classList.add('window-create__group')
+                const label = document.createElement('label')
+                label.classList.add('window-create__label')
+                label.innerText = inputs[j].text
+                const input = document.createElement('input')
+                input.classList.add('window-create__input')
+                input.id = inputs[j].id + '-' + i
+                input.type = inputs[j].type ? inputs[j].type : 'text'
+                inputGroup.append(label)
+                inputGroup.append(input)
+
+                radioInputsWrapper.append(inputGroup)
+
+            }
+        }
+    }
+
+    renderInputs()
+
+    // buttons
+
+    {
+        const inputGroup = document.createElement('div')
+        inputGroup.classList.add('window-create__group')
+        const inputSubm = document.createElement('button')
+        inputSubm.classList.add('window-create__btn', 'btn')
+        inputSubm.type = 'submit'
+        inputSubm.innerText = 'Confirm'
+        inputGroup.append(inputSubm)
+
+        const inputCancel = document.createElement('button')
+        inputCancel.classList.add('window-create__btn', 'btn')
+        inputCancel.type = 'button'
+        inputCancel.innerText = 'Exit'
+        inputGroup.append(inputCancel)
+
+        inputCancel.addEventListener('click', () => { formWrapper.classList.remove('visible') })
+        inputSubm.addEventListener('click', createRadio)
+
+        form.append(inputGroup)
+    }
+
+    return formWrapper
+}
+
+document.querySelector('.wrapper').append(createRadioForm())
+
+function addNewRadio() {
+
+    const createWindow = document.querySelector('.create-radio')
+    const createForm = createWindow.querySelector(`.window-create__form`)
+
+    createWindow.classList.add(`visible`)
+
+    createForm.addEventListener(`submit`, (e) => {
+        e.preventDefault();
+
+        const type = 'radio'
+        const count = createWindow.querySelector(`#input-count`).value
+        const name = createWindow.querySelector(`#input-name`).value
+
+
+        if (count) {
+            const id = []
+            const label = []
+            const set = new Set()
+            for (let i = 0; i < count; i++) {
+                const val = createWindow.querySelector(`#input-id-${i}`).value
+                id.push(val)
+                set.add(val)
+            }
+            if (id.length != set.size) {
+                alert('error: double id')
+            } else {
+                console.log('succes')
+                for (let i = 0; i < count; i++) {
+                    label.push(createWindow.querySelector(`#input-label-${i}`).value)
+                }
+                createFormInput(type, null, name, id, label, count)
+                createForm.reset()
+
+                createForm.querySelector(`.input-count`).formDefault()
+
+                createWindow.classList.remove(`visible`)
+            }
+        } else {
+            const id = createWindow.querySelector(`#input-id-0`).value
+            const label = createWindow.querySelector(`#input-label-0`).value
+            createFormInput(type, null, name, id, label, count)
+            createForm.reset()
+            createWindow.classList.remove(`visible`)
+        }
+
+        /* 
+                
+        
+                if (count) {
+                    label = []
+                    id = []
+                    for (let i = 0; i < count; i++) {
+                        label.push(createWindow.querySelector(`#input-label-${i}`).value)
+                        id.push(createWindow.querySelector(`#input-id-${i}`).value)
+                    }
+                } else {
+                    id = createWindow.querySelector(`#input-id-0`).value
+                    label = createWindow.querySelector(`#input-label-0`).value
+                }
+                createFormInput(type, null, name, id, label, count)
+                createForm.reset()
+                createWindow.classList.remove(`visible`)
+         */
+    }, { once: true })
+}
+
+function createRadio() {
+    const createWindow = document.querySelector('.create-radio')
+    const createForm = createWindow.querySelector(`.window-create__form`)
+
+    createWindow.classList.add(`visible`)
+
+    const type = 'radio'
+    const count = createWindow.querySelector(`#input-count`).value
+    const name = createWindow.querySelector(`#input-name`).value
+
+
+    if (count) {
+        const id = []
+        const label = []
+        const set = new Set()
+        for (let i = 0; i < count; i++) {
+            const val = createWindow.querySelector(`#input-id-${i}`).value
+            id.push(val)
+            set.add(val)
+        }
+        if (id.length != set.size) {
+            alert('error')
+        } else {
+            console.log('succes')
+            for (let i = 0; i < count; i++) {
+                label.push(createWindow.querySelector(`#input-label-${i}`).value)
+            }
+            createFormInput(type, null, name, id, label, count)
+            createForm.reset()
+            createWindow.classList.remove(`visible`)
+        }
+    } else {
+        const id = createWindow.querySelector(`#input-id-0`).value
+        const label = createWindow.querySelector(`#input-label-0`).value
+        createFormInput(type, null, name, id, label, count)
+        createForm.reset()
+        createWindow.classList.remove(`visible`)
+    }
+}
+
 
 createFormInput("text", ":)")
 createSubmitButton('submit', 'SUBMIT')
@@ -194,7 +404,7 @@ function createSubmitButton(type, btnText) {
     return div
 }
 
-function createFormInput(typeInput, placeInput, nameInput, idInput, label) {
+function createFormInput(typeInput, placeInput, nameInput, idInput, label, count) {
 
     const type = typeInput
     const place = placeInput
@@ -225,26 +435,53 @@ function createFormInput(typeInput, placeInput, nameInput, idInput, label) {
     delBtn.textContent = 'X'
     delBtn.setAttribute('title', 'delete input')
 
+
     // label
-    if (label) {
+    function createLabel(id, label) {
         const inputLabel = document.createElement('label')
         inputLabel.classList.add('label')
         inputLabel.setAttribute('for', id)
         inputLabel.innerText = label
-        div.prepend(inputLabel)
-
         for (let property in propertys.inputLabelPropertys) {
             inputLabel.style[property] = propertys.inputLabelPropertys[property]
         }
+        return inputLabel
     }
 
-    div.innerHTML += `<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
-    div.classList.add(`interact`)
-    const newInp = div.querySelector('input')
+    if (count) {
+        for (let i = 0; i < count; i++) {
+            if (label) {
+                div.append(createLabel(id[i], label[i]))
+            }
+            const input = document.createElement('input')
+            input.classList.add('input')
+            input.type = type
+            input.name = getName()
+            /* input.placeholder = getPlaceholder() */
+            input.id = id[i]
+            div.append(input)
+            div.classList.add(`interact`)
 
-    for (let property in propertys.inputsPropertys) {
-        newInp.style[property] = propertys.inputsPropertys[property]
+            for (let property in propertys.inputsPropertys) {
+                input.style[property] = propertys.inputsPropertys[property]
+            }
+        }
+    } else {
+
+        if (label) {
+            div.prepend(createLabel())
+        }
+
+        div.innerHTML += `<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
+        div.classList.add(`interact`)
+        const newInp = div.querySelector('input')
+
+        for (let property in propertys.inputsPropertys) {
+            newInp.style[property] = propertys.inputsPropertys[property]
+        }
     }
+
+
 
     delBtn.setAttribute('data-index', `${formElements.length}`)
     delBtn.addEventListener('click', (e) => {

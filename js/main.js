@@ -78,7 +78,6 @@ const propertys = {
         fontWeight: '400',
         marginRight: '15px',
     },
-
     btnSubmitProperty: {
         padding: '0',
         border: '0',
@@ -104,7 +103,6 @@ const propertys = {
         cursor: 'pointer',
         transform: 'skewX(15deg) scale(1.2)'
     },
-
     btnExitProperty: {
         position: 'absolute',
         left: `86%`,
@@ -125,7 +123,7 @@ const propertys = {
     btnExitPropertyHover: {
         cursor: 'pointer',
         color: `red`
-    }
+    },
 }
 
 

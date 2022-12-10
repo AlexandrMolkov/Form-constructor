@@ -105,8 +105,8 @@ const toRem = (target, property) => {
 
 class FormSettings {
     constructor(title) {
-        this.title = title,
-            this.wrapper
+        this.title = title
+        this.wrapper
         this.group
     }
     create() {

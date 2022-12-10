@@ -232,7 +232,7 @@ input {
 .select__ul {
   display: none;
   position: absolute;
-  z-index: 10;
+  z-index: 100;
   left: 60%;
   width: 60px;
   background-color: white;
@@ -293,6 +293,8 @@ body,
 
 .window-create {
   display: none;
+  max-height: 600px;
+  overflow: auto;
   padding: 30px;
   border-radius: 20px;
   position: absolute;
