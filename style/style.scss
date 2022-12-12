@@ -70,6 +70,8 @@ body,
     &__group {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
 
         &:not(:last-child) {
             margin-bottom: 20px;
@@ -83,11 +85,11 @@ body,
     &__label {
         display: inline-block;
         margin-bottom: 5px;
-        width: 100%;
+        width: 30%;
     }
 
     &__select {
-        width: 100%;
+        width: 70%;
         text-align: center;
         padding: 5px;
         text-transform: capitalize;
@@ -95,7 +97,7 @@ body,
 
     &__input {
         padding: 5px;
-        width: 100%;
+        width: 70%;
         text-align: center;
 
         &_w_50 {
@@ -103,6 +105,15 @@ body,
         }
 
     }
+}
+
+.radio-number {
+    text-transform: capitalize;
+    font-weight: 600;
+    border-bottom: 1px solid $darkgrey;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+
 }
 
 .visible {

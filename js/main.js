@@ -1,6 +1,6 @@
 "use strict"
 
-let autoId = 1;
+
 const formElements = []
 const formSettings = document.querySelectorAll('.form-settings')
 
@@ -128,6 +128,6 @@ const propertys = {
 
 
 
-export { propertys, form, autoId, formElements }
+export { propertys, form, formElements }
 
 

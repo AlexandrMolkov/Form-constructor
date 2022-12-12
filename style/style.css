@@ -309,6 +309,8 @@ body,
 .window-create__group {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 .window-create__group:not(:last-child) {
   margin-bottom: 20px;
@@ -316,21 +318,29 @@ body,
 .window-create__label {
   display: inline-block;
   margin-bottom: 5px;
-  width: 100%;
+  width: 30%;
 }
 .window-create__select {
-  width: 100%;
+  width: 70%;
   text-align: center;
   padding: 5px;
   text-transform: capitalize;
 }
 .window-create__input {
   padding: 5px;
-  width: 100%;
+  width: 70%;
   text-align: center;
 }
 .window-create__input_w_50 {
   width: 45%;
+}
+
+.radio-number {
+  text-transform: capitalize;
+  font-weight: 600;
+  border-bottom: 1px solid #c1c1c1;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .visible {
