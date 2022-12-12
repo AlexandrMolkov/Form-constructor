@@ -9,6 +9,8 @@ import applyPropertys from "./functions/applyPropertys.js"
 import addNewInput from "./functions/addNewInput.js"
 import createRadioForm from "./functions/createRadioForm.js"
 import addNewRadio from "./functions/addNewRadio.js"
+import createCBForm from "./functions/createCBForm.js"
+import addNewCheckbox from "./functions/addNewCheckbox.js"
 import createSubmitButton from "./functions/createSubmitButton.js"
 import createExitButton from "./functions/createExitButton.js"
 
@@ -60,18 +62,15 @@ applyPropertys(form.querySelector('.form__text'), propertys.formTextPropertys)
 
 
 document.querySelector('.wrapper').append(createRadioForm())
+document.querySelector('.wrapper').append(createCBForm())
 
 ///////////////////////////////////////////////////////////////////// 
 
 addInputButton.addEventListener(`click`, addNewInput)
 
-addRadioButton.addEventListener(`click`, () => {
-    addNewRadio()
-})
+addRadioButton.addEventListener(`click`, addNewRadio)
 
-addCheckboxButton.addEventListener(`click`, () => {
-    /*  createFormInput('checkbox', 'checkbox') */
-})
+addCheckboxButton.addEventListener(`click`, addNewCheckbox)
 
 
 

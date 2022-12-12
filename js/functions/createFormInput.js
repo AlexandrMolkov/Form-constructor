@@ -77,12 +77,23 @@ export default function createFormInput({ type, place, name, id, label, count, c
             div.prepend(createLabel(id, label))
         }
 
-        div.innerHTML += `<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
+
+
+        /*         div.innerHTML += `<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
+                div.classList.add(`interact`)
+                const newInp = div.querySelector('input') */
+
+        const input = document.createElement('input')
+        input.classList.add('input')
+        input.type = type
+        input.name = getName()
+        if (checked) input.setAttribute('checked', 'checked')
+        input.id = id
+        div.append(input)
         div.classList.add(`interact`)
-        const newInp = div.querySelector('input')
 
         for (let property in propertys.inputsPropertys) {
-            newInp.style[property] = propertys.inputsPropertys[property]
+            input.style[property] = propertys.inputsPropertys[property]
         }
     }
     delBtn.setAttribute('data-index', `${formElements.length}`)
