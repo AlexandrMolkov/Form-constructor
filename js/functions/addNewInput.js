@@ -21,7 +21,5 @@ export default function addNewInput() {
             createWindow.classList.remove(`visible`)
         })
 
-
-
     }, { once: true })
 }

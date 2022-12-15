@@ -13,6 +13,7 @@ function group() {
 }
 
 
+// type
 {
     const label = document.createElement('label')
     label.classList.add('window-create__label')

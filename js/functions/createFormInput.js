@@ -1,5 +1,6 @@
 import { propertys, formElements, form } from '../main.js'
 import applyPropertys from './applyPropertys.js'
+import changeFormInput from './changeFormInput.js'
 
 let autoID = 1;
 
@@ -22,7 +23,7 @@ export default function createFormInput({ type, place, name, id, label, count, c
         return place ? `placeholder="${place}"` : ``
     }
     const getName = () => {
-        return name ? `name="${name}"` : `name="${type}"`
+        return name ? `${name}` : `${type + id}`
     }
 
 
@@ -36,10 +37,14 @@ export default function createFormInput({ type, place, name, id, label, count, c
 
     // кнопка удаления инпута
     const delBtn = document.createElement(`button`)
-    delBtn.classList.add(`btn-del`)
+    delBtn.classList.add('btn-del', 'btn-inp')
     delBtn.textContent = 'X'
     delBtn.setAttribute('title', 'delete input')
-
+    // кнопка изменения инпута
+    const setBtn = document.createElement(`button`)
+    setBtn.classList.add('btn-set', 'btn-inp')
+    setBtn.textContent = 'S'
+    setBtn.setAttribute('title', 'input settings')
 
     // label
     function createLabel(id, label) {
@@ -59,6 +64,7 @@ export default function createFormInput({ type, place, name, id, label, count, c
                 div.append(createLabel(id[i], label[i]))
             }
             const input = document.createElement('input')
+
             input.classList.add('input')
             input.type = type
             input.name = getName()
@@ -77,17 +83,15 @@ export default function createFormInput({ type, place, name, id, label, count, c
             div.prepend(createLabel(id, label))
         }
 
-
-
-        /*         div.innerHTML += `<input class="input" type="${type}" ${getName()} value="" ${getPlaceholder()} id="${id}">`
-                div.classList.add(`interact`)
-                const newInp = div.querySelector('input') */
+        delBtn.dataset.target = id
+        setBtn.dataset.target = id
 
         const input = document.createElement('input')
         input.classList.add('input')
         input.type = type
         input.name = getName()
         if (checked) input.setAttribute('checked', 'checked')
+        if (place) input.placeholder = place
         input.id = id
         div.append(input)
         div.classList.add(`interact`)
@@ -96,16 +100,59 @@ export default function createFormInput({ type, place, name, id, label, count, c
             input.style[property] = propertys.inputsPropertys[property]
         }
     }
-    delBtn.setAttribute('data-index', `${formElements.length}`)
+    /* delBtn.setAttribute('data-index', `${formElements.length}`) */
     delBtn.addEventListener('click', (e) => {
         e.preventDefault()
 
-        formElements[e.target.dataset.index].remove()
-        formElements.splice(e.target.dataset.index, 1)
-        /* reIndex() */
+        const createConfirm = () => {
+            const confirm = document.createElement('form')
+            const confirmWrapper = document.createElement('div')
+            confirm.classList.add('window-create__form')
+            confirmWrapper.classList.add('window-create', 'visible')
+            const inpConf = document.createElement('input')
+            const inpExit = document.createElement('input')
+            const inpGroup = document.createElement('div')
+            inpGroup.classList.add('window-create__group')
+            inpConf.type = 'submit'
+            inpConf.value = 'Confirm'
+            inpConf.classList.add('window-create__btn', 'btn')
+            inpExit.type = 'button'
+            inpExit.value = 'Back'
+            inpExit.classList.add('window-create__btn', 'btn')
+            inpGroup.append(inpConf)
+            inpGroup.append(inpExit)
+            confirm.append(inpGroup)
+            confirmWrapper.append(confirm)
 
+            confirm.addEventListener('submit', (eSubm) => {
+                eSubm.preventDefault()
+                e.target.parentNode.remove()
+                confirmWrapper.remove()
+            })
+
+            inpExit.addEventListener('click', () => {
+                confirmWrapper.remove()
+            })
+
+            return confirmWrapper
+        }
+        document.body.append(createConfirm())
+
+        /*  e.target.parentNode.remove() */
+
+        /*         formElements[e.target.dataset.index].remove()
+                formElements.splice(e.target.dataset.index, 1)
+                reIndex()
+         */
     })
+    setBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+        changeFormInput(document.querySelector(`#${e.target.dataset.target}`))
+    })
+
+
     div.append(delBtn)
+    div.append(setBtn)
     const inputs = form.querySelectorAll('.input')
 
     if (inputs.length > 0) {
