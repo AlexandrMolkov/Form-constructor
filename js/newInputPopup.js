@@ -127,19 +127,19 @@ function group() {
     buttonSub.type = 'submit'
     buttonSub.textContent = 'Confirm'
 
-    const buttonRes = document.createElement('button')
-    buttonRes.classList.add('window-create__btn', "btn")
-    buttonRes.type = 'button'
-    buttonRes.textContent = 'Cancel'
-
-    buttonRes.addEventListener('click', () => {
+    const buttonCancel = document.createElement('button')
+    buttonCancel.classList.add('window-create__btn', "btn")
+    buttonCancel.type = 'button'
+    buttonCancel.id = 'btn-input-cancel'
+    buttonCancel.textContent = 'Cancel'
+    buttonCancel.addEventListener('click', () => {
         newInputForm.reset()
         windowCreate.classList.remove('visible')
     })
 
     const res = group()
     res.append(buttonSub)
-    res.append(buttonRes)
+    res.append(buttonCancel)
     newInputForm.append(res)
 }
 

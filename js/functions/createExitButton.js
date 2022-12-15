@@ -4,6 +4,7 @@ export default function createExitButton() {
     const btn = document.createElement(`button`)
     btn.classList.add('btn', 'btnExt')
     btn.textContent = 'X'
+    btn.dataset.dntmove = 'true'
     form.append(btn)
 
     for (let property in propertys.btnExitProperty) {

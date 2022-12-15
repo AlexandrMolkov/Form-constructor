@@ -79,12 +79,6 @@ addCheckboxButton.addEventListener(`click`, addNewCheckbox)
 
 
 
-
-
-
-
-
-
 createFormInput({ type: 'text', place: ':)', name: 'smile' })
 createSubmitButton('submit', 'SUBMIT')
 createExitButton()

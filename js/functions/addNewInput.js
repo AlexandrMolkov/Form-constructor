@@ -7,19 +7,22 @@ export default function addNewInput() {
 
     createWindow.classList.add(`visible`)
 
-    createForm.addEventListener(`submit`, (e) => {
-
-        e.preventDefault();
+    const createFormInputOnSubmit = (e) => {
         const type = createWindow.querySelector(`.window-create__select`).value
         const place = createWindow.querySelector(`#input-placeholder`).value
         const name = createWindow.querySelector(`#input-name`).value
         const id = createWindow.querySelector(`#input-id`).value
         const label = createWindow.querySelector(`#input-label`).value
-        console.log(label)
         createFormInput({ type, place, name, id, label }, () => {
             createForm.reset()
             createWindow.classList.remove(`visible`)
         })
+    }
 
-    }, { once: true })
+    createForm.addEventListener(`submit`, createFormInputOnSubmit, { once: true })
+
+    const buttonRes = document.querySelector('#btn-input-cancel')
+    buttonRes.addEventListener('click', () => {
+        createForm.removeEventListener('submit', createFormInputOnSubmit)
+    })
 }

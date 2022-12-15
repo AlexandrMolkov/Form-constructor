@@ -16,6 +16,7 @@ function createForm() {
     const p = document.createElement('p')
     p.classList.add('form__text')
     p.textContent = 'Hello!'
+    p.dataset.dntmove = true
     form.append(p)
     form.classList.add('form')
     result.append(form)

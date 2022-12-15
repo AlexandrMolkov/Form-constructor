@@ -6,6 +6,7 @@ export default function createSubmitButton(type, btnText) {
     div.style.display = 'flex'
     div.style.justifyContent = 'center'
     div.style.alignItems = 'center'
+    div.dataset.dntmove = true
     const btn = document.createElement(`button`)
     btn.classList.add('btnSubm')
     const span = document.createElement(`span`)

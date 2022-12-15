@@ -10,13 +10,8 @@ function reIndex() {
     })
 }
 
-export default function createFormInput({ type, place, name, id, label, count, checked }, cb) {
+export default function createFormInput({ type, place, name, id, label, count, checked, dntMove }, cb) {
 
-    /*     const type = typeInput
-        const place = placeInput
-        const name = nameInput
-        let id = idInput
-     */
     id ? `` : id = `input-${autoID++}`
 
     const getPlaceholder = () => {
@@ -29,6 +24,7 @@ export default function createFormInput({ type, place, name, id, label, count, c
 
     const div = document.createElement(`div`);
     div.classList.add(`input-group`)
+    if (dntMove) div.dataset.dntMove = dntMove
 
     for (let property in propertys.inputGroupPropertys) {
         div.style[property] = propertys.inputGroupPropertys[property]
@@ -45,6 +41,13 @@ export default function createFormInput({ type, place, name, id, label, count, c
     setBtn.classList.add('btn-set', 'btn-inp')
     setBtn.textContent = 'S'
     setBtn.setAttribute('title', 'input settings')
+
+    const upBtn = document.createElement(`button`)
+    upBtn.classList.add('btn-inp', 'btn-up')
+    upBtn.textContent = 'U'
+    const dwnBtn = document.createElement(`button`)
+    dwnBtn.classList.add('btn-inp', 'btn-dwn')
+    dwnBtn.textContent = 'D'
 
     // label
     function createLabel(id, label) {
@@ -85,6 +88,8 @@ export default function createFormInput({ type, place, name, id, label, count, c
 
         delBtn.dataset.target = id
         setBtn.dataset.target = id
+        upBtn.dataset.target = id
+        dwnBtn.dataset.target = id
 
         const input = document.createElement('input')
         input.classList.add('input')
@@ -100,59 +105,83 @@ export default function createFormInput({ type, place, name, id, label, count, c
             input.style[property] = propertys.inputsPropertys[property]
         }
     }
-    /* delBtn.setAttribute('data-index', `${formElements.length}`) */
-    delBtn.addEventListener('click', (e) => {
+    delBtn.addEventListener('click', e => {
         e.preventDefault()
-
-        const createConfirm = () => {
-            const confirm = document.createElement('form')
-            const confirmWrapper = document.createElement('div')
-            confirm.classList.add('window-create__form')
-            confirmWrapper.classList.add('window-create', 'visible')
-            const inpConf = document.createElement('input')
-            const inpExit = document.createElement('input')
-            const inpGroup = document.createElement('div')
-            inpGroup.classList.add('window-create__group')
-            inpConf.type = 'submit'
-            inpConf.value = 'Confirm'
-            inpConf.classList.add('window-create__btn', 'btn')
-            inpExit.type = 'button'
-            inpExit.value = 'Back'
-            inpExit.classList.add('window-create__btn', 'btn')
-            inpGroup.append(inpConf)
-            inpGroup.append(inpExit)
-            confirm.append(inpGroup)
-            confirmWrapper.append(confirm)
-
-            confirm.addEventListener('submit', (eSubm) => {
-                eSubm.preventDefault()
-                e.target.parentNode.remove()
-                confirmWrapper.remove()
-            })
-
-            inpExit.addEventListener('click', () => {
-                confirmWrapper.remove()
-            })
-
-            return confirmWrapper
+        let moveAvaliableBlocks = 0
+        if (form.children) {
+            for (let i = 0; i < form.children.length; i++) {
+                if (!form.children[i].dataset.dntmove) moveAvaliableBlocks++
+            }
         }
-        document.body.append(createConfirm())
+        if (moveAvaliableBlocks > 1) {
+            const createConfirm = () => {
+                const confirm = document.createElement('form')
+                const confirmWrapper = document.createElement('div')
+                confirm.classList.add('window-create__form')
+                confirmWrapper.classList.add('window-create', 'visible')
+                const inpConf = document.createElement('input')
+                const inpExit = document.createElement('input')
+                const inpGroup = document.createElement('div')
+                inpGroup.classList.add('window-create__group')
+                inpConf.type = 'submit'
+                inpConf.value = 'Confirm'
+                inpConf.classList.add('window-create__btn', 'btn')
+                inpExit.type = 'button'
+                inpExit.value = 'Back'
+                inpExit.classList.add('window-create__btn', 'btn')
+                inpGroup.append(inpConf)
+                inpGroup.append(inpExit)
+                confirm.append(inpGroup)
+                confirmWrapper.append(confirm)
 
-        /*  e.target.parentNode.remove() */
+                confirm.addEventListener('submit', (eSubm) => {
+                    eSubm.preventDefault()
+                    e.target.parentNode.remove()
+                    confirmWrapper.remove()
+                })
 
-        /*         formElements[e.target.dataset.index].remove()
-                formElements.splice(e.target.dataset.index, 1)
-                reIndex()
-         */
+                inpExit.addEventListener('click', () => {
+                    confirmWrapper.remove()
+                })
+
+                return confirmWrapper
+            }
+            document.body.append(createConfirm())
+        }
+
     })
-    setBtn.addEventListener('click', (e) => {
+    setBtn.addEventListener('click', e => {
         e.preventDefault()
         changeFormInput(document.querySelector(`#${e.target.dataset.target}`))
     })
 
+    upBtn.addEventListener('click', e => {
+        e.preventDefault()
+        const target = document.querySelector(`#${e.target.dataset.target}`)
+        const parent = target.parentElement
+        const prevEl = parent.previousElementSibling
+        if (!prevEl.dataset.dntmove) {
+            prevEl.before(parent)
+        } else {
+        }
+
+    })
+    dwnBtn.addEventListener('click', e => {
+        e.preventDefault()
+        const target = document.querySelector(`#${e.target.dataset.target}`)
+        const parent = target.parentElement
+        const nextEl = parent.nextElementSibling
+        if (!nextEl.dataset.dntmove) {
+            nextEl.after(parent)
+        } else {
+        }
+
+    })
 
     div.append(delBtn)
     div.append(setBtn)
+    div.append(upBtn)
+    div.append(dwnBtn)
     const inputs = form.querySelectorAll('.input')
 
     if (inputs.length > 0) {

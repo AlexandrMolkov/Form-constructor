@@ -370,15 +370,31 @@ body,
   margin-top: -8px;
 }
 
+.btn-up {
+  top: 50%;
+  right: 68px;
+  margin-top: -8px;
+}
+
+.btn-dwn {
+  top: 50%;
+  right: 49px;
+  margin-top: -8px;
+}
+
 .input-group {
   position: relative;
 }
-.input-group:hover .btn-del {
+.input-group:hover .btn-inp.btn-del {
   background-color: red;
   cursor: pointer;
 }
-.input-group:hover .btn-set {
+.input-group:hover .btn-inp.btn-set {
   background-color: blue;
+  cursor: pointer;
+}
+.input-group:hover .btn-inp {
+  background-color: green;
   cursor: pointer;
 }
 
