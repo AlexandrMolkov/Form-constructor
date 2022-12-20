@@ -84,7 +84,7 @@ const propertys = {
         border: '0',
         width: `120px`,
         height: `40px`,
-        background: `white`,
+        backgroundColor: `#ffffff`,
         color: `black`,
         borderRadius: '25px',
         fontSize: '18px',
@@ -102,7 +102,11 @@ const propertys = {
     },
     btnSubmitPropertyHover: {
         cursor: 'pointer',
-        transform: 'skewX(15deg) scale(1.2)'
+        transform: 'skewX(15deg) scale(1.2)',
+        backgroundColor: '#ffffff',
+        color: '#000000',
+        width: '120px',
+        height: `40px`,
     },
     btnExitProperty: {
         position: 'absolute',

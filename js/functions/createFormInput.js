@@ -45,9 +45,11 @@ export default function createFormInput({ type, place, name, id, label, count, c
     const upBtn = document.createElement(`button`)
     upBtn.classList.add('btn-inp', 'btn-up')
     upBtn.textContent = 'U'
+    upBtn.setAttribute('title','move up')
     const dwnBtn = document.createElement(`button`)
     dwnBtn.classList.add('btn-inp', 'btn-dwn')
     dwnBtn.textContent = 'D'
+    dwnBtn.setAttribute('title','move down')
 
     // label
     function createLabel(id, label) {
@@ -60,7 +62,7 @@ export default function createFormInput({ type, place, name, id, label, count, c
         }
         return inputLabel
     }
-
+    
     if (count) {
         for (let i = 0; i < count; i++) {
             if (label) {
@@ -79,9 +81,14 @@ export default function createFormInput({ type, place, name, id, label, count, c
             for (let property in propertys.inputsPropertys) {
                 input.style[property] = propertys.inputsPropertys[property]
             }
+
+            delBtn.dataset.target = id
+            setBtn.dataset.target = id
+            upBtn.dataset.target = id
+            dwnBtn.dataset.target = id
         }
     } else {
-
+        
         if (label) {
             div.prepend(createLabel(id, label))
         }
@@ -106,7 +113,6 @@ export default function createFormInput({ type, place, name, id, label, count, c
         }
     }
     delBtn.addEventListener('click', e => {
-        e.preventDefault()
         let moveAvaliableBlocks = 0
         if (form.children) {
             for (let i = 0; i < form.children.length; i++) {

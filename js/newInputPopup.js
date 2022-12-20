@@ -12,6 +12,9 @@ function group() {
     return groupDiv
 }
 
+newInputForm.addEventListener('submit', e =>{
+    e.preventDefault()
+})
 
 // type
 {

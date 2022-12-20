@@ -92,10 +92,11 @@ function outHtml() {
     codeOut.value = getNewString(form.outerHTML.replaceAll(/\s\s/g, ''))
         .replaceAll(/style="([^"]*)"/g, '')
         .replaceAll(/data-index="([^"]*)"/g, '')
-        .replaceAll(/<button class="btn-del" title="delete input" >[^"]*<\/button>/g, '')
+        /* .replaceAll(/<button class="btn-del" title="delete input" >[^"]*<\/button>/g, '') */
+        .replaceAll(/<button class="[^"]*" title="[^"]*" data-target="[^"]*">[^"]*<\/button>/g, '')
 }
 
-const hovProp = (propertys) => {
+const getPropertys = (propertys) => {
 
     let res = ''
 
@@ -126,12 +127,13 @@ function outCss() {
     codeOut.value += `\n.form__text {\n \t ` + formText.getAttribute('style') + `\n }`
     codeOut.value += formInputGroup && formInputGroup.getAttribute('style') ? `\n .input-group {\n \t ` + formInputGroup.getAttribute('style') + `\n }` : ``
     codeOut.value += formInput && formInput.getAttribute('style') ? `\n .input {\n \t ` + formInput.getAttribute('style') + `\n }` : ``
-    codeOut.value += `\n .btnSubm {\n \t ` + hovProp(propertys.btnSubmitProperty) + `\n }`
-    codeOut.value += `\n .btnSubm:hover {\n ` + hovProp(propertys.btnSubmitPropertyHover) + `\n }`
-    codeOut.value += `\n .btnSubm > span {\n \t ` + hovProp(propertys.btnSubmitTextProperty) + `\n }`
-    codeOut.value += `\n .btnSubm:hover > span {\n ` + hovProp(propertys.btnSubmitTextPropertyHover) + `\n }`
-    codeOut.value += `\n .btnExt {\n \t ` + hovProp(propertys.btnExitProperty) + `\n }`
-    codeOut.value += `\n .btnExt:hover {\n ` + hovProp(propertys.btnExitPropertyHover) + `\n }`
-
+    codeOut.value += `\n .label {\n \t ` + getPropertys(propertys.inputLabelPropertys) + `\n }`
+    codeOut.value += `\n .btnSubm {\n \t ` + getPropertys(propertys.btnSubmitProperty) + `\n }`
+    codeOut.value += `\n .btnSubm:hover {\n ` + getPropertys(propertys.btnSubmitPropertyHover) + `\n }`
+    codeOut.value += `\n .btnSubm > span {\n \t ` + getPropertys(propertys.btnSubmitTextProperty) + `\n }`
+    codeOut.value += `\n .btnSubm:hover > span {\n ` + getPropertys(propertys.btnSubmitTextPropertyHover) + `\n }`
+    codeOut.value += `\n .btnExt {\n \t ` + getPropertys(propertys.btnExitProperty) + `\n }`
+    codeOut.value += `\n .btnExt:hover {\n ` + getPropertys(propertys.btnExitPropertyHover) + `\n }`
+    
 }
 

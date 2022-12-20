@@ -1,4 +1,4 @@
-
+import hex2rgb from './hex2rgb.js'
 
 const getValues = (target, parent, property) => {
 
@@ -51,7 +51,7 @@ const toRem = (target, property) => {
 }
 
 
-function changeProperty(inp, propertys) {
+export function changeProperty(inp, propertys) {
     const targets = document.querySelectorAll(`${inp.getAttribute('data-target')}`)
     targets.forEach((target) => {
         const units = inp.nextElementSibling?.firstChild?.value
@@ -105,7 +105,7 @@ export function textAlign(target, propertys) {
 
 }
 
-export function createInput(type, property, target, propertys, func) {
+export function createInput(type, property, target, propertys, func , id) {
 
     const input = document.createElement('input')
     input.classList.add('sidebar-group__input')
@@ -113,6 +113,7 @@ export function createInput(type, property, target, propertys, func) {
     input.setAttribute('type', type)
     input.setAttribute('data-property', property)
     input.setAttribute('data-target', target)
+    if(id) input.id = id
     if (type !== 'color') {
         input.value = parseInt(propertys[property]) ? parseInt(propertys[property]) : 0
     } else {
@@ -130,17 +131,22 @@ export function createInput(type, property, target, propertys, func) {
     return input
 }
 
-export function createInputHover(type, property, propertys) {
+export function createInputHover(type, property, propertys, sidebarInputPtopertys) {
 
-    const input = document.createElement('input')
+    const input = type !=='textarea' ? document.createElement('input') : document.createElement('textarea') 
     input.classList.add('sidebar-group__input')
     input.classList.add('newinp')
+    if (type !=='textarea')
     input.setAttribute('type', type)
     input.setAttribute('data-property', property)
-    if (type !== 'color') {
+    if (type !== 'color' && property !== 'transform') {
         input.value = parseInt(propertys[property]) ? parseInt(propertys[property]) : 0
-    } else {
+    }else {
         input.value = propertys[property]
+    }
+    
+    for(let property in sidebarInputPtopertys) {
+        input.style[property] = sidebarInputPtopertys[property]
     }
 
     input.addEventListener('input', (ev) => {
@@ -148,6 +154,7 @@ export function createInputHover(type, property, propertys) {
     })
 
     if (input.getAttribute('type') === 'color') input.style.width = '100%'
+
     return input
 }
 
@@ -308,14 +315,7 @@ export function createTextContentInput(target, defaultVal) {
     return input
 }
 
-function hex2rgb(c) {
-    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(c);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
-}
+
 
 export function createInputBoxShadow(target, prop) {
 

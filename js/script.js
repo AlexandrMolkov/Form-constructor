@@ -13,6 +13,7 @@ import createCBForm from "./functions/createCBForm.js"
 import addNewCheckbox from "./functions/addNewCheckbox.js"
 import createSubmitButton from "./functions/createSubmitButton.js"
 import createExitButton from "./functions/createExitButton.js"
+import random from "./functions/random.js"
 
 
 
@@ -118,3 +119,4 @@ new SimpleBar(document.getElementById('codeout'),{
         autoHide: false
     });
 })  */
+document.random = random

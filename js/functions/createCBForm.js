@@ -16,7 +16,7 @@ export default function createCBForm() {
     const inputs = [
         { id: 'input-id', text: 'Id', required: true },
         { id: 'input-name', text: 'Name', required: true },
-        { id: 'input-label', text: 'Label', required: true },
+        { id: 'input-label', text: 'Label'},
         { id: 'input-checked', text: 'Checked', type: 'checkbox' }
     ]
 

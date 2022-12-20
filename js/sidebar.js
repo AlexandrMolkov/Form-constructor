@@ -120,7 +120,7 @@ formSets.addSidebarGroupItem('padding',
     createText('Left'), createInput('number', 'paddingLeft', '.form', propertys.formPropertys), createUnitsSelect(propertys.formPropertys),
     createText('Right'), createInput('number', 'paddingRight', '.form', propertys.formPropertys), createUnitsSelect(propertys.formPropertys)
 )
-formSets.addSidebarGroupItem('Background Color', createInput('color', 'backgroundColor', '.form', propertys.formPropertys, disableGradient))
+formSets.addSidebarGroupItem('Background Color', createInput('color', 'backgroundColor', '.form', propertys.formPropertys, disableGradient,'bgcform'))
 formSets.addSidebarGroupItem('Background gradient', createLinearGradient('.form', propertys.formPropertys))
 formSets.addSidebarGroupItem('Shadow', createInputBoxShadow('.form', propertys.formPropertys))
 formSets.addSidebarGroupItem('border Radius', createInput('number', 'borderRadius', '.form', propertys.formPropertys), createUnitsSelect(propertys.formPropertys))
@@ -136,7 +136,7 @@ formTitle.create()
 formTitle.addSidebarGroupItem('Title', createTextContentInput('.form__text', 'Hello!'))
 formTitle.addSidebarGroupItem('Align', textAlign('.form__text'))
 formTitle.addSidebarGroupItem('Title Font Size', createInput('number', 'fontSize', '.form__text', propertys.formTextPropertys), createUnitsSelect(propertys.formTextPropertys, ['px', 'em', 'rem']))
-formTitle.addSidebarGroupItem('Title Color', createInput('color', 'color', '.form__text', propertys.formTextPropertys))
+formTitle.addSidebarGroupItem('Title Color', createInput('color', 'color', '.form__text', propertys.formTextPropertys,null,'clrtitleform'))
 formTitle.addSidebarGroupItem('Title Weight', createSelect('fontWeight', '.form__text', weight, propertys.formTextPropertys))
 formTitle.addSidebarGroupItem('Title Style', createSelect('fontStyle', '.form__text', fontStyles, propertys.formTextPropertys))
 formTitle.addSidebarGroupItem('Title Shadow', createInputTextShadow('.form__text', propertys.formTextPropertys))
@@ -154,7 +154,7 @@ inputsSets.addSidebarGroupItem('border',
     createText('Color'), createInput('color', 'borderColor', '.input', propertys.inputsPropertys)
 )
 inputsSets.addSidebarGroupItem('Color', createInput('color', 'color', '.input', propertys.inputsPropertys))
-inputsSets.addSidebarGroupItem('Background Color', createInput('color', 'backgroundColor', '.input', propertys.inputsPropertys))
+inputsSets.addSidebarGroupItem('Background Color', createInput('color', 'backgroundColor', '.input', propertys.inputsPropertys, null,'clrform'))
 inputsSets.addSidebarGroupItem('Align', textAlign('.input', propertys.nputsPropertys))
 
 // Input group
@@ -179,9 +179,11 @@ buttonsSets.create()
 buttonsSets.addSidebarGroupItem('padding', createInput('number', 'padding', '.btnSubm', propertys.btnSubmitProperty), createUnitsSelect())
 buttonsSets.addSidebarGroupItem('width', createInput('number', 'width', '.btnSubm', propertys.btnSubmitProperty), createUnitsSelect())
 buttonsSets.addSidebarGroupItem('height', createInput('number', 'height', '.btnSubm', propertys.btnSubmitProperty), createUnitsSelect())
-buttonsSets.addSidebarGroupItem('background Color', createInput('color', 'backgroundColor', '.btnSubm', propertys.btnSubmitProperty))
+buttonsSets.addSidebarGroupItem('background Color', createInput('color', 'backgroundColor', '.btnSubm', propertys.btnSubmitProperty, null, 'submitform'))
 buttonsSets.addSidebarGroupItem('Color', createInput('color', 'color', '.btnSubm', propertys.btnSubmitProperty))
-buttonsSets.addSidebarGroupItem('Background gradient', createLinearGradient('.btnSubm'))
+buttonsSets.addSidebarGroupItem('Background gradient', createLinearGradient('.btnSubm',propertys.btnSubmitProperty))
+buttonsSets.addSidebarGroupItem('Transform', createInputHover('textarea', 'transform', propertys.btnSubmitProperty, {width:'100%'}))
+buttonsSets.addSidebarGroupItem('Transform button text', createInputHover('textarea', 'transform', propertys.btnSubmitTextProperty, {width:'100%'}))
 
 // Hover
 const buttonsSetsHover = new FormSettings('Submit Button Hover')
@@ -190,6 +192,9 @@ buttonsSetsHover.addSidebarGroupItem('Background color', createInputHover('color
 buttonsSetsHover.addSidebarGroupItem('Color', createInputHover('color', 'color', propertys.btnSubmitPropertyHover))
 buttonsSetsHover.addSidebarGroupItem('Width', createInputHover('number', 'width', propertys.btnSubmitPropertyHover), createUnitsSelect())
 buttonsSetsHover.addSidebarGroupItem('Height', createInputHover('number', 'height', propertys.btnSubmitPropertyHover), createUnitsSelect())
+buttonsSetsHover.addSidebarGroupItem('Transform', createInputHover('textarea', 'transform', propertys.btnSubmitPropertyHover, {width:'100%'}))
+buttonsSetsHover.addSidebarGroupItem('Transform button text', createInputHover('textarea', 'transform', propertys.btnSubmitTextPropertyHover, {width:'100%'}))
+
 
 // Exit buttom
 const buttonsExitSets = new FormSettings('Exit Button')
