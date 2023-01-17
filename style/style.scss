@@ -120,6 +120,10 @@ body,
     display: block;
 }
 
+
+
+
+
 .btn-inp {
     color: transparent;
     background-color: transparent;
@@ -127,33 +131,45 @@ body,
     position: absolute;
     width: 16px;
     height: 16px;
-
     border-radius: 5px;
     transition: all 0.3s;
 }
 
+.btn-set, .btn-del, .btn-up, .btn-dwn {
+    opacity: 0.5;
+    background-size: 0;
+
+    &:hover{
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+}
 .btn-set {
     top: 50%;
     right: 30px;
     margin-top: -8px;
+    background-image: url('/img/tools.svg');
 }
 
 .btn-del {
     top: 50%;
     right: 10px;
     margin-top: -8px;
+    background-image: url('/img/X.png');
 }
 
 .btn-up {
     top: 50%;
     right: 68px;
     margin-top: -8px;
+    background-image: url('/img/up.png');
 }
 
 .btn-dwn {
     top: 50%;
     right: 49px;
     margin-top: -8px;
+    background-image: url('/img/down.png');
 }
 
 .input-group {
@@ -161,21 +177,19 @@ body,
     position: relative;
 
     &:hover .btn-inp.btn-del {
-        background-color: red;
         color: white;
         cursor: pointer
     }
 
     &:hover .btn-inp.btn-set {
-        background-color: blue;
         color: white;
         cursor: pointer
     }
 
     &:hover .btn-inp {
-        background-color: green;
         color: white;
-        cursor: pointer
+        cursor: pointer;
+        background-size: cover;
     }
 
 }

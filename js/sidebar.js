@@ -196,13 +196,13 @@ buttonsSetsHover.addSidebarGroupItem('Transform', createInputHover('textarea', '
 buttonsSetsHover.addSidebarGroupItem('Transform button text', createInputHover('textarea', 'transform', propertys.btnSubmitTextPropertyHover, {width:'100%'}))
 
 
-// Exit buttom
+// Exit button
 const buttonsExitSets = new FormSettings('Exit Button')
 buttonsExitSets.create()
 buttonsExitSets.addSidebarGroupItem('padding', createInput('number', 'padding', '.btnExt', propertys.btnExitProperty), createUnitsSelect())
 buttonsExitSets.addSidebarGroupItem('width', createInput('number', 'width', '.btnExt', propertys.btnExitProperty), createUnitsSelect())
 buttonsExitSets.addSidebarGroupItem('height', createInput('number', 'height', '.btnExt', propertys.btnExitProperty), createUnitsSelect())
-buttonsExitSets.addSidebarGroupItem('Left', createInput('number', 'left', '.btnExt', propertys.btnExitProperty), createUnitsSelect())
+buttonsExitSets.addSidebarGroupItem('Right', createInput('number', 'right', '.btnExt', propertys.btnExitProperty), createUnitsSelect())
 buttonsExitSets.addSidebarGroupItem('Top', createInput('number', 'top', '.btnExt', propertys.btnExitProperty), createUnitsSelect())
 buttonsExitSets.addSidebarGroupItem('Border Radius', createInput('number', 'borderRadius', '.btnExt', propertys.btnExitProperty), createUnitsSelect())
 buttonsExitSets.addSidebarGroupItem('border',
@@ -211,19 +211,25 @@ buttonsExitSets.addSidebarGroupItem('border',
     createText('Color'), createInput('color', 'borderColor', '.btnExt', propertys.btnExitProperty)
 )
 buttonsExitSets.addSidebarGroupItem('background Color', createInput('color', 'backgroundColor', '.btnExt', propertys.btnExitProperty, disableGradient))
-buttonsExitSets.addSidebarGroupItem('Color', createInput('color', 'color', '.btnExt', propertys.btnExitProperty))
 buttonsExitSets.addSidebarGroupItem('Background gradient', createLinearGradient('.btnExt'))
 
 // Hover
 const buttonExitHover = new FormSettings('Exit Button Hover')
 buttonExitHover.create()
 buttonExitHover.addSidebarGroupItem('Background color', createInputHover('color', 'backgroundColor', propertys.btnExitPropertyHover))
-buttonExitHover.addSidebarGroupItem('Color', createInputHover('color', 'color', propertys.btnExitPropertyHover))
 buttonExitHover.addSidebarGroupItem('Width', createInputHover('number', 'width', propertys.btnExitPropertyHover), createUnitsSelect())
 buttonExitHover.addSidebarGroupItem('Height', createInputHover('number', 'height', propertys.btnExitPropertyHover), createUnitsSelect())
 
+// Exit button pseudo elements
+const buttonExitPseudo = new FormSettings('Exit Before & After')
+buttonExitPseudo.create()
+buttonExitPseudo.addSidebarGroupItem('Color', createInput('color', 'background', '.btnExt-pseudo', propertys.btnExitPseudo))
+buttonExitPseudo.addSidebarGroupItem('Width', createInput('number', 'height', '.btnExt-pseudo', propertys.btnExitPseudo), createUnitsSelect())
 
-
+const buttonExitPseudoHover = new FormSettings('Exit Before & After Hover')
+buttonExitPseudoHover.create()
+buttonExitPseudoHover.addSidebarGroupItem('Color', createInputHover('color', 'background', propertys.btnExitPseudoHover))
+buttonExitPseudoHover.addSidebarGroupItem('Width', createInputHover('number', 'height',  propertys.btnExitPseudoHover), createUnitsSelect())
 
 
 

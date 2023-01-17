@@ -105,12 +105,14 @@ export function textAlign(target, propertys) {
 
 }
 
-export function createInput(type, property, target, propertys, func , id) {
+export function createInput(type, property, target, propertys, func , id, min, max) {
 
     const input = document.createElement('input')
     input.classList.add('sidebar-group__input')
     input.classList.add('newinp')
     input.setAttribute('type', type)
+    if(min) input.setAttribute('min', min)
+    if(max) input.setAttribute('max', max)
     input.setAttribute('data-property', property)
     input.setAttribute('data-target', target)
     if(id) input.id = id

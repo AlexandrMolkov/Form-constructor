@@ -110,11 +110,11 @@ const propertys = {
     },
     btnExitProperty: {
         position: 'absolute',
-        left: `86%`,
-        top: `3px`,
+        right: `3%`,
+        top: `8px`,
         padding: '0',
-        width: `40px`,
-        height: `40px`,
+        width: `20px`,
+        height: `20px`,
         background: `transparent`,
         color: `black`,
         fontSize: '18px',
@@ -123,11 +123,37 @@ const propertys = {
         borderRadius: '25px',
         borderStyle: 'solid',
         borderColor: 'black',
-        borderWidth: '0'
+        borderWidth: '0',
+        margin: '0',
     },
     btnExitPropertyHover: {
         cursor: 'pointer',
         color: `red`
+    },
+
+    btnExitPseudo: {
+        position: 'absolute',
+        transition: 'all 0.3s',
+        background: 'black',
+        width: '20px',
+        height: '3px',
+    },
+    btnExitPseudoHover: {
+        background: 'red',
+    },
+
+    btnExitBefore: {
+        transform: 'rotate(45deg)',
+    },
+    btnExitBeforeHover: {
+        background: 'red',
+    },
+    
+    btnExitAfter: {
+        transform: 'rotate(-45deg)',
+    },
+    btnExitAfterHover: {
+        background: 'red',
     },
 }
 

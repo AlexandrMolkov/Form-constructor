@@ -94,6 +94,7 @@ function outHtml() {
         .replaceAll(/data-index="([^"]*)"/g, '')
         /* .replaceAll(/<button class="btn-del" title="delete input" >[^"]*<\/button>/g, '') */
         .replaceAll(/<button class="[^"]*" title="[^"]*" data-target="[^"]*">[^"]*<\/button>/g, '')
+        .replaceAll(/<div class="btnExt-pseudo btnExt-[^"]*" >[^"]*<\/div>/g, '')
 }
 
 const getPropertys = (propertys) => {
@@ -132,8 +133,12 @@ function outCss() {
     codeOut.value += `\n .btnSubm:hover {\n ` + getPropertys(propertys.btnSubmitPropertyHover) + `\n }`
     codeOut.value += `\n .btnSubm > span {\n \t ` + getPropertys(propertys.btnSubmitTextProperty) + `\n }`
     codeOut.value += `\n .btnSubm:hover > span {\n ` + getPropertys(propertys.btnSubmitTextPropertyHover) + `\n }`
-    codeOut.value += `\n .btnExt {\n \t ` + getPropertys(propertys.btnExitProperty) + `\n }`
+    codeOut.value += `\n .btnExt {\n \t transform: translateX(-50%);` + getPropertys(propertys.btnExitProperty) + `\n }`
     codeOut.value += `\n .btnExt:hover {\n ` + getPropertys(propertys.btnExitPropertyHover) + `\n }`
-    
+
+    codeOut.value += `\n .btnExt:before {\n \t content: "";` + getPropertys(propertys.btnExitPseudo) + getPropertys(propertys.btnExitBefore) + `\n }`
+    codeOut.value += `\n .btnExt:hover:before {\n ` + getPropertys(propertys.btnExitPseudoHover) + `\n }`
+    codeOut.value += `\n .btnExt:after {\n \t content: "";` + getPropertys(propertys.btnExitPseudo) + getPropertys(propertys.btnExitAfter) + `\n }`
+    codeOut.value += `\n .btnExt:hover:after {\n ` + getPropertys(propertys.btnExitPseudoHover) + `\n }`
 }
 

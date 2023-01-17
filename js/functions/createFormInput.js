@@ -34,21 +34,17 @@ export default function createFormInput({ type, place, name, id, label, count, c
     // кнопка удаления инпута
     const delBtn = document.createElement(`button`)
     delBtn.classList.add('btn-del', 'btn-inp')
-    delBtn.textContent = 'X'
     delBtn.setAttribute('title', 'delete input')
     // кнопка изменения инпута
     const setBtn = document.createElement(`button`)
     setBtn.classList.add('btn-set', 'btn-inp')
-    setBtn.textContent = 'S'
     setBtn.setAttribute('title', 'input settings')
 
     const upBtn = document.createElement(`button`)
     upBtn.classList.add('btn-inp', 'btn-up')
-    upBtn.textContent = 'U'
     upBtn.setAttribute('title','move up')
     const dwnBtn = document.createElement(`button`)
     dwnBtn.classList.add('btn-inp', 'btn-dwn')
-    dwnBtn.textContent = 'D'
     dwnBtn.setAttribute('title','move down')
 
     // label

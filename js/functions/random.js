@@ -3,6 +3,7 @@
 import {form, propertys} from "../main.js"
 import rgbToHex from './rgb2hex.js'
 import {changeProperty} from './sidebarFunctions.js'
+import createFormInput from "./createFormInput.js"
 
 const getRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min)
@@ -42,6 +43,9 @@ const random = () => {
    document.querySelector('#submitform').value = fsclr
    changeProperty(document.querySelector('#submitform'),propertys.formTextPropertys)
 
+/*    for(let count = 0 ; count < 3; count++) {
+        createFormInput({ type: 'text', place: ':)', name: 'smile' })
+   } */
 }
 
 export default random
